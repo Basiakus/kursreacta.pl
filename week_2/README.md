@@ -9,28 +9,34 @@
 Kod w html ma wyglądać tak:
 `<div class=ProgressBar style="???? cośtam cośtam 20% cośtam" />`
 
-## `Zadanie 3. Mistrz(yni) document.createElement`
+## `Zadanie 3. - Mistrz(yni) document.createElement`
 ### Zbuduj całą naszą aplikację za pomocą document.createElement
 `Znacznik body ma zawierać tylko kontener <div id="root" /> do którego w javascripcie dodaj wszystkie elementy naszej aplikacji.`
 
-## `Zadanie 4. Mistrz(yni) React.createElement`
+## `Zadanie 4. - Mistrz(yni) React.createElement`
 ### To samo co powyżej, tylko że za pomocą React.createElement
 `UWAGA: Nie wolno używać JSX`
 `Podpowiedź: W obu powyższych można uprościć sobie życie i stworzyć własne funkcje pomocnicze.`
 
-## `Zadanie 5. Lepszy zegar`
+## `Zadanie 5. - Lepszy zegar`
 ### Spróbuj przekazać do komponentu Clock wartości jednocyfrowe (nie jako string, ale jako liczba). Np 7 minut i 0 sekund. Nie wygląda to ładnie, prawda? („7:0”).
 `Dodaj kawałek kodu do komponentu Clock który skowertuje zarówno minuty i sekundy do stringa, oraz doda zero na początku jeśli string zawiera tylko jedną cyfrę. W powyższym przykładzie, zegar powinien wyświetlać „07:00”`.
 
-## `Zadanie6. Wyświetlanie godzin`
+## `Zadanie6. - Wyświetlanie godzin`
 ### Rozbuduj zegar o wyświetlanie godzin. 
 `Dodaj property hours i spraw żeby zegar wyświetlał czas w formacie „03:07:00” po podaniu 3 godzin, 7 minut i zero sekund.`
 
-## `Zadanie 7. Wyświetlanie milisekund`
+## `Zadanie 7. - Wyświetlanie milisekund`
 ### Rozbuduj zegar o wyświetlanie milisekund. 
 `Dodaj property miliseconds i spraw żeby zegar wyświetlał czas w formacie „03:07:00.023” po podaniu 3 godzin, 7 minut, zero sekund i 23 milisekund`.
 
-## `Zadanie 8. Normalizacja danych`
+## `Zadanie 8. - Normalizacja danych`
 ### Spraw żeby zegar wyświetlał czas od „00:00:00.000” do „23:59:59.999”.
 `Jeśli ktoś poda wartości ujemne dla np minut to zegar ma wyświetlić 00 w polu minut, a jeśli poda 100 minut to zegar ma wyświetlić 59 minut. Nie przejmuj się obsługą wartości, które nie są liczbami. Tym zajmiemy się kiedy indziej.`
+
+## `Zadanie 8. - Wielozadaniowy progress bar`
+### Dodaj właściwość trackRemaining do komponentu ProgressBar.
+`1. Gdy jest ona ustawiona na false to progress bar powinien sie zachowywać tak jak teraz (odmierzać czas, który upłynął.`
+`2. Gdy jest true to powinien odmierzać czas który pozostał (malejący progress bar przytwierdzony z prawej strony).`
+`3. Domyślnie niech będzie false.`
 
