@@ -36,9 +36,9 @@ Kod w html ma wyglądać tak:
 
 ## `Zadanie 8. - Wielozadaniowy progress bar`
 ### Dodaj właściwość trackRemaining do komponentu ProgressBar.
-`1. Gdy jest ona ustawiona na false to progress bar powinien sie zachowywać tak jak teraz (odmierzać czas, który upłynął.` /n \n
-`2. Gdy jest true to powinien odmierzać czas który pozostał (malejący progress bar przytwierdzony z prawej strony).`
-`3. Domyślnie niech będzie false.`
+####`1. Gdy jest ona ustawiona na false to progress bar powinien sie zachowywać tak jak teraz (odmierzać czas, który upłynął.`
+####`2. Gdy jest true to powinien odmierzać czas który pozostał (malejący progress bar przytwierdzony z prawej strony).`
+####`3. Domyślnie niech będzie false.`
 
 ## `Zadanie Indywidualne`
 ### implementacja odliczania milisekund
