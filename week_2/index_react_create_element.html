@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Kurs Reacta - Tydzień 2 - zadanie 1.</title>
+      <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <style>
+      .App  {
+         font-family: sans-serif;
+      }
+      .TimeboxEditor {
+         border: 1px solid gray;
+         border-radius: 5px;
+         padding: 20px;
+         text-align: right;
+         margin-bottom: 20px;
+      }
+      input {
+         min-width: 60%;
+         margin-left: 20px;
+         font-size: 1em;
+      }
+      button {
+         font-size: 1em;
+         margin-left: 10px;
+      }
+      .Timebox {
+         text-align: center;
+         border: 1px solid gray;
+         border-radius: 5px;
+         padding: 20px;
+      }
+      .Clock {
+         color: orangered;
+      }
+      .ProgressBar {
+         border: 1px solid orangered;
+         margin-bottom: 20px;
+         height: 25px;
+         padding: 3px;
+         border-radius: 5px;
+         display: flex;
+         justify-content: flex-end;
+      }
+      .ProgressBar > div {
+         height: 100%;
+         background-color: orangered;
+         border-radius: 3px;
+      }
+      .inActive {
+         filter: blur(2px) grayscale(1);
+      }
+      </style>
+   </head>
+   <body>
+      <h1>Kurs Reacta - tydzień 2 - zadanie 1.</h1>
+      <hr>
+
+      <div id="rootHomework"></div>
+   </body>
+
+
+   <script type="text/babel">
+      /* Elements from DOM */
+      const rootHomework = document.getElementById("rootHomework");
+
+      /* React element constructor */
+      const elementCreator = (type, props, children) => {
+         return React.createElement(
+            type,
+            props,
+            children
+         );
+      }
+
+      /* React elements created by the elementCreator */
+      const timeboxEditor = elementCreator('div', {className: "TimeboxEditor inActive", key: 'timeboxEditor'}, 
+         [
+            elementCreator('label', {key: 'label_1'}, 
+               [
+                  "Co robisz:",
+                  elementCreator('input', {key: 'input1', type: 'text',disabled:true, defaultValue: 'Uczę się skrótów klawiszowych'})
+               ]
+            ),
+            elementCreator('br', {key: 'br1'}, null),
+            elementCreator('label', {key: 'label_2'}, 
+               [
+                  "Ile minut?",
+                  elementCreator('input', {key: 'input2', type: 'number',disabled:true, defaultValue: '25'})
+               ]
+            ),
+            elementCreator('br', {key: 'br2'}, null),
+            elementCreator('button', {key: 'button'}, 'Zacznij')
+         ]
+      );
+      const clock = elementCreator('h2', {className: "Clock", key: 'clock'}, `Pozostało ${22}:${10}`);//????
+      const progressBar = elementCreator('div', {className: 'ProgressBar', key: 'progressBar'}, elementCreator('div', {style: {width: '30%'}}));
+      const timeBox = elementCreator('div', {className: 'Timebox', key: 'timeBox'}, 
+         [  
+            elementCreator('h1', {key: 0}, "Uczę się skrótów klawiszowych"),
+            clock,
+            progressBar,
+            elementCreator('button', {key: 1}, "start"),
+            elementCreator('button', {key: 2}, "stop"),
+            elementCreator('button', {key: 3}, "pauzuj"),
+            'liczba przerw: 0'
+         ]
+      );
+      const app = elementCreator('div', {className: "App"}, 
+         [
+            timeboxEditor,
+            timeBox
+         ]
+      );
+      
+      
+
+      /* Render funcional components to virtualDOM */
+      ReactDOM.render(app, rootHomework);
+   </script>   
+</html>
