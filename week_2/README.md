@@ -40,3 +40,8 @@ Kod w html ma wyglądać tak:
 `2. Gdy jest true to powinien odmierzać czas który pozostał (malejący progress bar przytwierdzony z prawej strony).`
 `3. Domyślnie niech będzie false.`
 
+## `Zadanie Indywidualne`
+### implementacja odliczania milisekund
+### implementacja odliczania godzin
+
+
