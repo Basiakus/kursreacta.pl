@@ -20,7 +20,7 @@ Kod w html ma wyglądać tak:
 
 ## `Zadanie 5. - Lepszy zegar`
 ### Spróbuj przekazać do komponentu Clock wartości jednocyfrowe (nie jako string, ale jako liczba). Np 7 minut i 0 sekund. Nie wygląda to ładnie, prawda? („7:0”).
-`Dodaj kawałek kodu do komponentu Clock który skowertuje zarówno minuty i sekundy do stringa, oraz doda zero na początku jeśli string zawiera tylko jedną cyfrę. W powyższym przykładzie, zegar powinien wyświetlać „07:00”`.
+`Dodaj kawałek kodu do komponentu Clock który skowertuje zarówno minuty i sekundy do stringa,oraz doda zero na początku jeśli string zawiera tylko jedną cyfrę. W powyższym przykładzie, zegar powinien wyświetlać „07:00”`.
 
 ## `Zadanie6. - Wyświetlanie godzin`
 ### Rozbuduj zegar o wyświetlanie godzin. 
@@ -36,9 +36,12 @@ Kod w html ma wyglądać tak:
 
 ## `Zadanie 8. - Wielozadaniowy progress bar`
 ### Dodaj właściwość trackRemaining do komponentu ProgressBar.
-####`1. Gdy jest ona ustawiona na false to progress bar powinien sie zachowywać tak jak teraz (odmierzać czas, który upłynął.`
-####`2. Gdy jest true to powinien odmierzać czas który pozostał (malejący progress bar przytwierdzony z prawej strony).`
-####`3. Domyślnie niech będzie false.`
+
+`1. Gdy jest ona ustawiona na false to progress bar powinien sie zachowywać tak jak teraz (odmierzać czas, który upłynął.`
+
+`2. Gdy jest true to powinien odmierzać czas który pozostał (malejący progress bar przytwierdzony z prawej strony).`
+
+`3. Domyślnie niech będzie false.`
 
 ## `Zadanie Indywidualne`
 ### implementacja odliczania milisekund
