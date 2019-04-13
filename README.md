@@ -1,5 +1,7 @@
-# <h1><a href="http://kursreacta.pl/" >React - Kurs</a></h1>
+# `KURS REACT-A`
 
-### Kurs podzielony jest na 12 tygodni, gdzie po kolei do każdego z nich odblokowywane są przydzielone im treści i zadania.
+## <a href="http://kursreacta.pl/" >kursreacta.pl</a>
 
-### <p>TEST: Gałęzie reprezentują dane tygodnie kursu.</p>
+### - Kurs podzielony jest na 12 tygodni
+### - kolejno w każdym z nich odblokowywane są przydzielone mu treści i zadania
+### - Dany katalog powyżej odpowiada danemu tygodniowi kursu
