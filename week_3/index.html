@@ -136,7 +136,8 @@
          }
          render() {
             const { isRunning, isPaused, pausesCount, elapsedTimeInSeconds } = this.state;
-            const totalTimeInSeconds = 60*17 + 30;
+            const {title, totalTimeInMinutes} = this.props;
+            const totalTimeInSeconds = parseInt(totalTimeInMinutes) * 60;
             const timeLeftInSeconds = totalTimeInSeconds - elapsedTimeInSeconds;
             const hoursLeft = totalTimeInSeconds >= 3600 ? Math.floor(timeLeftInSeconds/3600) : 0;
             const minutesLeft = hoursLeft == 0 ? Math.floor(timeLeftInSeconds/60) : Math.floor(( (timeLeftInSeconds - hoursLeft * 3600) / 60));
@@ -146,7 +147,7 @@
             const progressInPercent = (timeLeftInSeconds / totalTimeInSeconds) * 100;
             return (
                <div className="Timebox">
-                  <h1>Uczę się skrótów klawiszowych</h1>
+                  <h1>{title}</h1>
                   <Clock className={isPaused ? 'inactive' : ''} hours={hoursLeft} minutes={minutesLeft} seconds={secondsLeft} miliseconds={decimalConverter(milisecondsLeft)} />
                   <ProgressBar className={isPaused ? 'inactive' : ''} percent={progressInPercent} trackRemaining={false}/>
                   <button onClick={this.handleStart} disabled={isRunning}>Start</button>
@@ -215,12 +216,25 @@
             </div>           
          )
       }
-
+      class EditableTimebox extends React.Component {
+         state = {
+            title: 'tydzień 3 - Kolejny',
+            totalTimeInMinutes: 25
+         }
+         render() {
+            const {title, totalTimeInMinutes} = this.state;
+            return (
+               <React.Fragment>
+                  <TimeboxEditor />
+                  <Timebox title={title} totalTimeInMinutes={totalTimeInMinutes} />
+               </React.Fragment>
+            )
+         }
+      }
       function App() {
          return (
             <div className="App">
-               <TimeboxEditor />
-               <Timebox />
+               <EditableTimebox />
             </div>
          )
       }
