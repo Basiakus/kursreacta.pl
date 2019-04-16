@@ -13,6 +13,5 @@
 
 ##Zadanie 4 - Stwórz referencję do formularza (zamiast do pojedynczych pól) i w metodzie handleSubmit dostań się do wartości za pomocą API przeglądarki.
 
-`Utworzyłem jedną referencje w komponencie TimeboxCreator i przypisałem ją do elementu formularza. W celu dostania się do wartości inputów odpowiadających za wpisywanie tekstu i czasu odniosłem się do obiektu "curent" referencji, a następnie danemu indeksu odpowiadającemu inputowi, oraz właściwości value.`
- `Przykład: this.formRef.current[0].value`
+`Utworzyłem jedną referencje w komponencie TimeboxCreator i przypisałem ją do elementu formularza. W celu dostania się do wartości inputów odpowiadających za wpisywanie tekstu i czasu odniosłem się do obiektu "curent" referencji, a następnie danemu indeksu odpowiadającemu inputowi, oraz właściwości value. Przykład: this.formRef.current[0].value`
 

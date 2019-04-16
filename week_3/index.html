@@ -299,7 +299,7 @@
          }
          handleSubmit = (event)=> {
             event.preventDefault();
-            console.log(this.formRef.current[0]) 
+            //console.log(this.formRef.current[0]) 
             this.props.onCreate({
                id: uuid.v4(),
                title: this.formRef.current[0].value,
