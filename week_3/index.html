@@ -64,17 +64,19 @@
 
       class TimeboxEditor extends React.Component {
          state = {
-            title: "Uczę się kursu react - tydzień 3",
-            totalTimeInSeconds: 3721
+            title: this.props.title,
+            totalTimeInSeconds: this.props.totalTimeInMinutes
          }
-
          handleTitleChange = (event)=> {
             this.setState({title: event.target.value});
+            this.props.handleTitleOnChange(event);
+            
          }
          handleTotalTimeInSecondsChange = (event) => {
             const inputValue = parseInt(event.target.value);
             this.setState({totalTimeInSeconds: inputValue});
-                     }
+            this.props.handleTotalTimeInMinutesOnChange(event);
+         }
          render() {
             const { title, totalTimeInSeconds } = this.state;
             return (
@@ -199,7 +201,11 @@
             }
          }
 
-         return <h2 className={`Clock ${className}`}>{`Pozostało ${hConverter(hours)}:${minConverter(minutes)}:${secConverter(seconds)}.${msConverter(miliseconds)}`}</h2> 
+         return <h2 className={`Clock ${className}`}>
+            {
+               `Pozostało ${hConverter(hours)}:${minConverter(minutes)}:${secConverter(seconds)}.${msConverter(miliseconds)}`
+            }
+         </h2> 
       }
          
       function ProgressBar({ percent = 0, trackRemaining, className }) {
@@ -218,14 +224,26 @@
       }
       class EditableTimebox extends React.Component {
          state = {
-            title: 'tydzień 3 - Kolejny',
-            totalTimeInMinutes: 25
+            title: 'tydzień 3 - lollo',
+            totalTimeInMinutes: 35
+         }
+         handleTitleOnChange = (event)=> {
+            this.setState({title: event.target.value});
+         }
+         handleTotalTimeInMinutesOnChange = (event) => {
+            const inputValue = parseInt(event.target.value);
+            this.setState({totalTimeInMinutes: inputValue});
          }
          render() {
             const {title, totalTimeInMinutes} = this.state;
             return (
                <React.Fragment>
-                  <TimeboxEditor />
+                  <TimeboxEditor 
+                     title={title} 
+                     totalTimeInMinutes={totalTimeInMinutes} 
+                     handleTitleOnChange={this.handleTitleOnChange} 
+                     handleTotalTimeInMinutesOnChange={this.handleTotalTimeInMinutesOnChange} 
+                  />
                   <Timebox title={title} totalTimeInMinutes={totalTimeInMinutes} />
                </React.Fragment>
             )
