@@ -36,17 +36,44 @@
          padding: 20px;
       }
       .Timebox {
+         position: relative;
          border: 1px solid gray;
          border-radius: 5px;
          padding: 10px;
          margin-bottom: 5px;
+         z-index: 99;
       }
-      .Timebox input:nth-child(1) {
-         min-width: 1%;
+      .TimeboxEditer {
+         background-color: white;
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         border: 1px solid gray;
+         border-radius: 5px;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         z-index: 100;
       }
-      .Timebox input:nth-child(2) {
+      .TimeboxEditer.unactive {
+         display: none;
+      }
+      .TimeboxEditer form {
+         margin: 0;
+         height: 100%;
+         width: 100%;
+         display: flex;
+         flex-direction: row;
+         justify-content: space-evenly;
+         align-items: center;
+      }
+      .TimeboxEditer form input {
          min-width: 1%;
-         width: 10%;         
+         max-width: 50%;
+      }
+      .TimeboxEditer form input:nth-child(2) {
+         min-width: 1%;
+         max-width: 10%;
       }
       .Clock {
          color: orangered;
@@ -365,11 +392,10 @@
             this.setState( prevState => {
                /* new array of state with new timebox */
                const newTimeboxes = prevState.timeboxes.map((timebox, index) => index === indexToUpdate ? updatedTimebox : timebox);
-               console.log(this.state.timeboxes);
                return { timeboxes: newTimeboxes }
             })
          }
-
+         
          render() {
             const { timeboxes } = this.state;
             return(
@@ -379,7 +405,6 @@
                      (
                         <Timebox 
                            key={timebox.id}
-                           indexId={timebox.id}
                            index={index}
                            title={timebox.title} 
                            totalTimeInMinutes={timebox.totalTimeInMinutes} 
@@ -393,13 +418,40 @@
             )
          }
       }
-
       class Timebox extends React.Component {
+         state = {
+            isEditActive: false
+         }
+         handleIsEditActive = () => {
+            this.setState({isEditActive: !this.state.isEditActive});
+         }   
+         render() {
+            const { onDelete, title, totalTimeInMinutes } = this.props;
+            return (
+               <div className='Timebox'>
+                  <TimeboxEditer 
+                     key={uuid.v4()}
+                     title={this.props.title}
+                     totalTimeInMinutes={this.props.totalTimeInMinutes}
+                     index={this.props.index}
+                     onEdit={this.props.onEdit}
+                     isEdit={this.state.isEditActive}
+                     handleIsEdit={this.handleIsEditActive}
+                  />
+                  <h3>
+                     {title} - {totalTimeInMinutes}
+                  </h3>
+                  <button onClick={onDelete}>Delete</button>
+                  <button onClick={this.handleIsEditActive}>Edit</button>
+               </div>
+            )
+         }
+      }
+      class TimeboxEditer extends React.Component {
          state = {
             title: this.props.title,
             totalTimeInMinutes: this.props.totalTimeInMinutes
          }
-
          handleTitleOnChange = (event)=> {
             console.log(event.target.value)
             this.setState({title: event.target.value});
@@ -408,22 +460,20 @@
             console.log(event.target.value)
             this.setState({totalTimeInMinutes: event.target.value});
          }
-         handleEdit = () => {
-            this.props.onEdit(this.props.index, {id: uuid.v4(), title: this.state.title, totalTimeInMinutes: this.state.totalTimeInMinutes})
-            alert('edytowano Timebox');
+         handleSubmitForm = (event) => {
+            event.preventDefault();
+            this.props.onEdit(this.props.index, {id: uuid.v4(), title: this.state.title, totalTimeInMinutes: this.state.totalTimeInMinutes});
          }
-
          render() {
-            const { onDelete, indexId, title, totalTimeInMinutes } = this.props;
-            return (
-               <div className='Timebox'>
-                  <span>
-                     ToDo<input type="text" onChange={this.handleTitleOnChange} defaultValue={title} /> 
+            const { index, title, totalTimeInMinutes, onEdit, isEdit, handleIsEdit } = this.props;
+            return(
+               <div className={`TimeboxEditer ${isEdit ? '' : 'unactive'}`}>
+                  <form onSubmit={this.handleSubmitForm}>
+                     <input type="text" onChange={this.handleTitleOnChange} defaultValue={title} /> 
                      <input type="number" onChange={this.handleTimeOnChange} defaultValue={totalTimeInMinutes} /> 
-                     min.
-                  </span>
-                  <button onClick={onDelete}>Delete</button>
-                  <button onClick={this.handleEdit}>Edit</button>
+                     <button type="submit">edytuj</button>
+                     <button onClick={handleIsEdit}>anuluj</button>
+                  </form>
                </div>
             )
          }
