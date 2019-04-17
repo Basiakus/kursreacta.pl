@@ -11,10 +11,10 @@
 
 `Przypisanie indeksu tablicy do klucza ma sens w przypadku, kiedy liczba elementów tablicy jest stała i index tablicy zawsze odpowiada danemu elementowi. W sytuacji kiedy elementy są dodawane bądź usuwane z tablicy index się zmienia w stosunku do aktualnych elementów. Wtedy każdy element powinien mieć przypisany mu unikatowy klucz.`
 
-##Zadanie 4 - Stwórz referencję do formularza (zamiast do pojedynczych pól) i w metodzie handleSubmit dostań się do wartości za pomocą API przeglądarki.
+## Zadanie 4 - Stwórz referencję do formularza (zamiast do pojedynczych pól) i w metodzie handleSubmit dostań się do wartości za pomocą API przeglądarki.
 
 `Utworzyłem jedną referencje w komponencie TimeboxCreator i przypisałem ją do elementu formularza. W celu dostania się do wartości inputów odpowiadających za wpisywanie tekstu i czasu odniosłem się do obiektu "current" należącego do referencji, a następnie do indeksu danego inputa. Na koniec odniosłem się do właściwości "value". Przykład: this.formRef.current[0].value`
 
-##Zadanie 5 (dodatkowe) - Edycja timeboxa na liście. Dodaj możliwość edytowania timeboxa wewnątrz listy. Przycisk edit powinien aktywować jakiś rodzaj formularza.
+## Zadanie 5 (dodatkowe) - Edycja timeboxa na liście. Dodaj możliwość edytowania timeboxa wewnątrz listy. Przycisk edit powinien aktywować jakiś rodzaj ormularza.
 
 `Utworzyłem komponent TimeboxEditer i umieściłem go w komponencie Timebox. Zawiera on stan i formularz podobnie jak w komponencie TimeboxCreator do przetrzymywania lokalnych danych. Zmiany z TimeboxEditer 'nadpisują' globalny stan aplikacji poprzez metody przekazane przez props-y.`
