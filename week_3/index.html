@@ -374,6 +374,8 @@
          addTimebox = (newTimebox) => {
             this.setState( prevState => {
                /* new array of state with new timebox */
+               /* const newTimeboxes = prevState.timeboxes;
+               newTimeboxes.push(newTimebox); */
                const newTimeboxes = [newTimebox, ...prevState.timeboxes];
                return { timeboxes: newTimeboxes }
             })
@@ -383,6 +385,8 @@
          removeTimebox = (indexToRemove) => {
             this.setState( prevState => {
                /* new array of state with new timebox */
+               /* const newTimebox = prevState.timeboxes;
+               const newTimeboxes = newTimebox.slice(0, indexToRemove).concat(newTimebox.slice(indexToRemove + 1, newTimebox.length)); */
                const newTimeboxes = prevState.timeboxes.filter((timebox, index) => index !== indexToRemove);
                return { timeboxes: newTimeboxes }
             })
@@ -391,11 +395,12 @@
          updateTimebox = (indexToUpdate, updatedTimebox) => {
             this.setState( prevState => {
                /* new array of state with new timebox */
+               /* const newTimeboxes =  prevState.timeboxes;
+               newTimeboxes[indexToUpdate] = updatedTimebox; */
                const newTimeboxes = prevState.timeboxes.map((timebox, index) => index === indexToUpdate ? updatedTimebox : timebox);
                return { timeboxes: newTimeboxes }
             })
          }
-         
          render() {
             const { timeboxes } = this.state;
             return(

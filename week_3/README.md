@@ -15,6 +15,6 @@
 
 `Utworzyłem jedną referencje w komponencie TimeboxCreator i przypisałem ją do elementu formularza. W celu dostania się do wartości inputów odpowiadających za wpisywanie tekstu i czasu odniosłem się do obiektu "current" należącego do referencji, a następnie do indeksu danego inputa. Na koniec odniosłem się do właściwości "value". Przykład: this.formRef.current[0].value`
 
-## Zadanie 5 (dodatkowe) - Edycja timeboxa na liście. Dodaj możliwość edytowania timeboxa wewnątrz listy. Przycisk edit powinien aktywować jakiś rodzaj ormularza.
+## Zadanie 5 (dodatkowe) - Edycja timeboxa na liście. Dodaj możliwość edytowania timeboxa wewnątrz listy. Przycisk edit powinien aktywować jakiś rodzaj formularza.
 
 `Utworzyłem komponent TimeboxEditer i umieściłem go w komponencie Timebox. Zawiera on stan i formularz podobnie jak w komponencie TimeboxCreator do przetrzymywania lokalnych danych. Zmiany z TimeboxEditer 'nadpisują' globalny stan aplikacji poprzez metody przekazane przez props-y.`
