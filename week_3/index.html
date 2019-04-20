@@ -12,7 +12,7 @@
       .App  {
          font-family: sans-serif;
       }
-      .TimeboxEditor {
+      .TimeboxEditor, .TimeboxCreator {
          border: 1px solid gray;
          border-radius: 5px;
          padding: 20px;
@@ -28,11 +28,17 @@
          font-size: 1em;
          margin-left: 10px;
       }
-      .Timebox {
+      .CurrentTimebox {
          text-align: center;
          border: 1px solid gray;
          border-radius: 5px;
          padding: 20px;
+      }
+      .Timebox {
+         border: 1px solid gray;
+         border-radius: 5px;
+         padding: 10px;
+         margin-bottom: 5px;
       }
       .Clock {
          color: orangered;
@@ -124,10 +130,11 @@
             </div>           
          )
       }
+      
       function App() {
          return (
             <div className="App">
-               <EditableTimebox />
+               <TimeboxList />
             </div>
          )
       }
@@ -210,7 +217,7 @@
                      isEditable={isEditable}
                      onConfirm={this.handleConfirm}
                   />
-                  <Timebox 
+                  <CurrentTimebox 
                      title={title} 
                      totalTimeInMinutes={totalTimeInMinutes} 
                      isRunning={isRunning} 
@@ -244,46 +251,90 @@
                <label>Ile minut?<input type="number" onChange={handleTotalTimeInMinutesOnChange} value={totalTimeInMinutes} disabled={!isEditable}/></label><br />
                <button onClick={handleStart} disabled={!isEditable} >Zacznij</button>
                <button onClick={onConfirm} disabled={!isEditable}>Zatwierdź zmiany</button>
-
             </div>
          )
       }
       
-      function Timebox(props) {
-         
-            const { title, 
-               totalTimeInMinutes, 
-               isRunning, 
-               isPaused, 
-               pausesCount, 
-               elapsedTimeInSeconds,
-               handleStart, 
-               handleStop, 
-               togglePause,
-               isEditable,
-               handleEdit 
-            } = props;
+      function CurrentTimebox(props) { 
+         const { title, 
+            totalTimeInMinutes, 
+            isRunning, 
+            isPaused, 
+            pausesCount, 
+            elapsedTimeInSeconds,
+            handleStart, 
+            handleStop, 
+            togglePause,
+            isEditable,
+            handleEdit 
+         } = props;
 
-            const totalTimeInSeconds = totalTimeInMinutes * 60;
-            const timeLeftInSeconds = totalTimeInSeconds - elapsedTimeInSeconds;
-            const hoursLeft = totalTimeInSeconds >= 3600 ? Math.floor(timeLeftInSeconds/3600) : 0;
-            const minutesLeft = hoursLeft == 0 ? Math.floor(timeLeftInSeconds/60) : Math.floor(( (timeLeftInSeconds - hoursLeft * 3600) / 60));
-            const secondsLeft = Math.floor(timeLeftInSeconds % 60);
-            const milisecondsLeft = ( (timeLeftInSeconds) - Math.floor(timeLeftInSeconds) ).toFixed(2);
-            const decimalConverter = (value) => (value % 1) * 1000; 
-            const progressInPercent = (timeLeftInSeconds / totalTimeInSeconds) * 100;
-            return (
-               <div className={`Timebox ${isEditable ? 'inactive' : ""}`}>
-                  <h1>{title}</h1>
-                  <Clock className={isPaused ? 'inactive' : ''} hours={hoursLeft} minutes={minutesLeft} seconds={secondsLeft} miliseconds={decimalConverter(milisecondsLeft)} />
-                  <ProgressBar className={isPaused ? 'inactive' : ''} percent={progressInPercent} trackRemaining={false}/>
-                  <button onClick={handleStart} disabled={isRunning}>Start</button>
-                  <button onClick={handleStop} disabled={!isRunning}>Stop</button>
-                  <button onClick={togglePause} disabled={!isRunning}>{isPaused ? 'Wznów' : 'Pauzuj'}</button>  
-                  <button onClick={handleEdit} disabled={isEditable}>Edytuj</button>
-                  liczba przerw: {pausesCount}
-               </div>
+         const totalTimeInSeconds = totalTimeInMinutes * 60;
+         const timeLeftInSeconds = totalTimeInSeconds - elapsedTimeInSeconds;
+         const hoursLeft = totalTimeInSeconds >= 3600 ? Math.floor(timeLeftInSeconds/3600) : 0;
+         const minutesLeft = hoursLeft == 0 ? Math.floor(timeLeftInSeconds/60) : Math.floor(( (timeLeftInSeconds - hoursLeft * 3600) / 60));
+         const secondsLeft = Math.floor(timeLeftInSeconds % 60);
+         const milisecondsLeft = ( (timeLeftInSeconds) - Math.floor(timeLeftInSeconds) ).toFixed(2);
+         const decimalConverter = (value) => (value % 1) * 1000; 
+         const progressInPercent = (timeLeftInSeconds / totalTimeInSeconds) * 100;
+         return (
+            <div className={`CurrentTimebox ${isEditable ? 'inactive' : ""}`}>
+               <h1>{title}</h1>
+               <Clock className={isPaused ? 'inactive' : ''} hours={hoursLeft} minutes={minutesLeft} seconds={secondsLeft} miliseconds={decimalConverter(milisecondsLeft)} />
+               <ProgressBar className={isPaused ? 'inactive' : ''} percent={progressInPercent} trackRemaining={false}/>
+               <button onClick={handleStart} disabled={isRunning}>Start</button>
+               <button onClick={handleStop} disabled={!isRunning}>Stop</button>
+               <button onClick={togglePause} disabled={!isRunning}>{isPaused ? 'Wznów' : 'Pauzuj'}</button>  
+               <button onClick={handleEdit} disabled={isEditable}>Edytuj</button>
+               liczba przerw: {pausesCount}
+            </div>
+         )
+      }
+
+      function TimeboxCreator(props) { 
+         return (
+            <div className='TimeboxCreator'>
+               <label>Co robisz?<input type="text" /></label><br />
+               <label>Ile minut?<input type="number" /></label><br />
+               <button>Dodaj Timebox</button>
+            </div>
+         )
+      }
+
+      class TimeboxList extends React.Component {
+         state = {
+            timeboxes: [
+               {
+                  title: 'Week 1 introduction',
+                  totalTimeInMinutes: 25
+               },
+               {
+                  title: "week 2 componens of react",
+                  totalTimeInMinutes: 35
+               },
+               {
+                  title: "week 3 lists and forms",
+                  totalTimeInMinutes: 30
+               }
+            ]
+         }
+         render() {
+            const { timeboxes } = this.state;
+            return(
+               <>
+                  <TimeboxCreator />
+                  {timeboxes.map( (timebox, index) => (<Timebox key={index} title={timebox.title} totalTimeInMinutes={timebox.totalTimeInMinutes} />))}
+               </>
             )
+         }
+      }
+
+      function Timebox({title, totalTimeInMinutes}) {
+         return (
+            <div className='Timebox'>
+               <h3>{title} - {totalTimeInMinutes} min.</h3>
+            </div>
+         )
       }
          /* Elements from DOM */
          const rootElement = document.getElementById("root");
