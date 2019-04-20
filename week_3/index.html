@@ -336,8 +336,8 @@
             //console.log(this.formRef.current[0]) 
             this.props.onCreate({
                id: uuid.v4(),
-               title: this.formRef.current[0].value,
-               totalTimeInMinutes: this.formRef.current[1].value
+               title: this.formRef.current[0].value === "" ? "brak" : this.formRef.current[0].value,
+               totalTimeInMinutes: this.formRef.current[1].value === '' ? 0 : this.formRef.current[1].value
             });
          }
          render() {
@@ -374,9 +374,9 @@
          addTimebox = (newTimebox) => {
             this.setState( prevState => {
                /* new array of state with new timebox */
-               /* const newTimeboxes = prevState.timeboxes;
-               newTimeboxes.push(newTimebox); */
-               const newTimeboxes = [newTimebox, ...prevState.timeboxes];
+               const newTimeboxes = [...prevState.timeboxes];
+               newTimeboxes.unshift(newTimebox); 
+               //const newTimeboxes = [newTimebox, ...prevState.timeboxes];
                return { timeboxes: newTimeboxes }
             })
          }
@@ -385,6 +385,7 @@
          removeTimebox = (indexToRemove) => {
             this.setState( prevState => {
                /* new array of state with new timebox */
+               
                /* const newTimebox = prevState.timeboxes;
                const newTimeboxes = newTimebox.slice(0, indexToRemove).concat(newTimebox.slice(indexToRemove + 1, newTimebox.length)); */
                const newTimeboxes = prevState.timeboxes.filter((timebox, index) => index !== indexToRemove);
@@ -395,9 +396,10 @@
          updateTimebox = (indexToUpdate, updatedTimebox) => {
             this.setState( prevState => {
                /* new array of state with new timebox */
-               /* const newTimeboxes =  prevState.timeboxes;
-               newTimeboxes[indexToUpdate] = updatedTimebox; */
-               const newTimeboxes = prevState.timeboxes.map((timebox, index) => index === indexToUpdate ? updatedTimebox : timebox);
+
+               /* const newTimeboxes =  [...prevState.timeboxes];
+               newTimeboxes[indexToUpdate] = updatedTimebox;  */
+               //const newTimeboxes = prevState.timeboxes.map((timebox, index) => index === indexToUpdate ? updatedTimebox : timebox);
                return { timeboxes: newTimeboxes }
             })
          }
@@ -444,7 +446,7 @@
                      handleIsEdit={this.handleIsEditActive}
                   />
                   <h3>
-                     {title} - {totalTimeInMinutes}
+                     Zadanie: {title} - {totalTimeInMinutes}min.
                   </h3>
                   <button onClick={onDelete}>Delete</button>
                   <button onClick={this.handleIsEditActive}>Edit</button>
