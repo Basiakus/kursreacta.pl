@@ -8,6 +8,7 @@
       <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
       <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
       <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.js"></script>
       <style>
       .App  {
          font-family: sans-serif;
@@ -305,14 +306,17 @@
          state = {
             timeboxes: [
                {
+                  id: uuid.v4(),
                   title: 'Week 1 introduction',
                   totalTimeInMinutes: 25
                },
                {
+                  id: uuid.v4(),
                   title: "week 2 componens of react",
                   totalTimeInMinutes: 35
                },
                {
+                  id: uuid.v4(),
                   title: "week 3 lists and forms",
                   totalTimeInMinutes: 30
                }
@@ -325,12 +329,20 @@
                return { timeboxes: newTimeboxes }
             })
          }
-         handleCreate = () => this.addTimebox({title: 'new timebox', totalTimeInMinutes: 321});
+         handleCreate = () => this.addTimebox({id: uuid.v4(), title: 'new timebox', totalTimeInMinutes: 321});
 
          removeTimebox = (indexToRemove) => {
             this.setState( prevState => {
                /* new array of state with new timebox */
                const newTimeboxes = prevState.timeboxes.filter((timebox, index) => index !== indexToRemove);
+               return { timeboxes: newTimeboxes }
+            })
+         }
+
+         updateTimebox = (indexToUpdate, updatedTimebox) => {
+            this.setState( prevState => {
+               /* new array of state with new timebox */
+               const newTimeboxes = prevState.timeboxes.map((timebox, index) => index === indexToUpdate ? updatedTimebox : timebox);
                return { timeboxes: newTimeboxes }
             })
          }
@@ -343,10 +355,10 @@
                   {timeboxes.map( (timebox, index) => 
                      (
                         <Timebox 
-                           key={index} 
+                           key={timebox.id} 
                            title={timebox.title} 
                            totalTimeInMinutes={timebox.totalTimeInMinutes} 
-                           onEdit={ () => console.log(`edycja komponentu ${index}`) }
+                           onEdit={ () => this.updateTimebox(index, {...timebox, title: "Zedytowano"}) }
                            onDelete={() => this.removeTimebox(index)}
                         />
                      )
