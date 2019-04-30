@@ -1,0 +1,100 @@
+import React from 'react';
+
+class EditableTimebox extends React.Component {
+   state = {
+      title: 'Nauka reacta',
+      totalTimeInMinutes: 34,
+      isRunning: false,
+      isPaused: false,
+      elapsedTimeInSeconds: 0,
+      pausesCount: 0,
+      isEditable: true
+   }
+   handleTitleOnChange = (event) => {
+      this.setState({ title: event.target.value });
+   }
+   handleTotalTimeInMinutesOnChange = (event) => {
+      let inputValue = event.target.value;
+      this.setState({ totalTimeInMinutes: inputValue });
+   }
+   startTimer = () => {
+      this.intervalId = window.setInterval(
+         () => {
+            this.setState(
+               (prevState) => ({ elapsedTimeInSeconds: prevState.elapsedTimeInSeconds + 0.01 })
+            )
+         }, 10
+      )
+   }
+   stopTimer = () => {
+      window.clearInterval(this.intervalId);
+   }
+   handleStart = (e) => {
+      this.setState({
+         isRunning: true
+      });
+      this.startTimer();
+   }
+   handleStop = (e) => {
+      this.setState({
+         isRunning: false,
+         isPaused: false,
+         pausesCount: 0,
+         elapsedTimeInSeconds: 0
+      })
+      this.stopTimer();
+   }
+   togglePause = () => {
+      this.setState(
+         (prevState) => {
+            const isPaused = !prevState.isPaused;
+            isPaused ? this.stopTimer() : this.startTimer();
+            return {
+               isPaused,
+               pausesCount: isPaused ? prevState.pausesCount + 1 : prevState.pausesCount
+            }
+         }
+      )
+   }
+   handleConfirm = () => {
+      this.setState({
+         isEditable: false
+      })
+   }
+   handleEdit = () => {
+      this.setState({
+         isEditable: true
+      })
+   }
+   render() {
+      const { title, totalTimeInMinutes, isRunning, isPaused, elapsedTimeInSeconds, pausesCount, isEditable } = this.state;
+      return (
+         <React.Fragment>
+            <TimeboxEditor
+               title={title}
+               totalTimeInMinutes={totalTimeInMinutes}
+               handleTitleOnChange={this.handleTitleOnChange}
+               handleTotalTimeInMinutesOnChange={this.handleTotalTimeInMinutesOnChange}
+               handleStart={this.handleStart}
+               isEditable={isEditable}
+               onConfirm={this.handleConfirm}
+            />
+            <CurrentTimebox
+               title={title}
+               totalTimeInMinutes={totalTimeInMinutes}
+               isRunning={isRunning}
+               isPaused={isPaused}
+               pausesCount={pausesCount}
+               elapsedTimeInSeconds={elapsedTimeInSeconds}
+               handleStart={this.handleStart}
+               handleStop={this.handleStop}
+               togglePause={this.togglePause}
+               isEditable={isEditable}
+               handleEdit={this.handleEdit}
+            />
+         </React.Fragment>
+      )
+   }
+}
+
+export default EditableTimebox;
