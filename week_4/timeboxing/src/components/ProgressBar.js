@@ -14,3 +14,5 @@ function ProgressBar({ percent = 0, trackRemaining, className }) {
       </div>
    )
 }
+
+export default ProgressBar;

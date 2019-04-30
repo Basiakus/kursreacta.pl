@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid';
 
 class TimeboxEditer extends React.Component {
    state = {

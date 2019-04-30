@@ -1,5 +1,6 @@
 import React from 'react';
-import { Clock, ProgressBar } from './';
+import Clock from './ProgressBar';
+import ProgressBar from './ProgressBar';
 
 function CurrentTimebox(props) {
    const { title,

@@ -1,6 +1,6 @@
 import React from 'react';
-import { TimeboxList, EditableTimebox } from './';
-
+import TimeboxList from './TimeboxList'; 
+import EditableTimebox from './EditableTimebox';
 function App() {
    return (
       <div className="App">
