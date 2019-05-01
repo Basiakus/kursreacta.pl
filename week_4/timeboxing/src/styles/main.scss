@@ -1,13 +1,11 @@
-.App {
-   font-family: sans-serif;
-}
+@import 'base.scss';
 
 .TimeboxEditor,
 .TimeboxCreator {
-border: 1px solid rgb(128, 128, 128);
-border-radius: 5px;
-padding: 20px;
-text-align: right;
+   border: 1px solid rgb(128, 128, 128);
+   border-radius: 5px;
+   padding: 20px;
+   text-align: right;
 }
 
 .TimeboxCreator {
