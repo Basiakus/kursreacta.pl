@@ -1,5 +1,5 @@
 import React from 'react';
-import Clock from './ProgressBar';
+import Clock from './Clock';
 import ProgressBar from './ProgressBar';
 
 function CurrentTimebox(props) {
@@ -19,10 +19,10 @@ function CurrentTimebox(props) {
    const totalTimeInSeconds = totalTimeInMinutes * 60;
    const timeLeftInSeconds = totalTimeInSeconds - elapsedTimeInSeconds;
    const hoursLeft = totalTimeInSeconds >= 3600 ? Math.floor(timeLeftInSeconds / 3600) : 0;
-   const minutesLeft = hoursLeft == 0 ? Math.floor(timeLeftInSeconds / 60) : Math.floor(((timeLeftInSeconds - hoursLeft * 3600) / 60));
+   const minutesLeft = hoursLeft === 0 ? Math.floor(timeLeftInSeconds / 60) : Math.floor(((timeLeftInSeconds - hoursLeft * 3600) / 60));
    const secondsLeft = Math.floor(timeLeftInSeconds % 60);
-   const milisecondsLeft = ((timeLeftInSeconds) - Math.floor(timeLeftInSeconds)).toFixed(2);
-   const decimalConverter = (value) => (value % 1) * 1000;
+   const milisecondsLeft = (timeLeftInSeconds >= elapsedTimeInSeconds -1) ? (timeLeftInSeconds - Math.floor(timeLeftInSeconds)).toFixed(2) : 0;
+   const decimalConverter = ((value) => (value % 1) * 1000);
    const progressInPercent = (timeLeftInSeconds / totalTimeInSeconds) * 100;
    return (
       <div className={`CurrentTimebox ${isEditable ? 'inactive' : ""}`}>
