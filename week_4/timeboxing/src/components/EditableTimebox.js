@@ -5,7 +5,7 @@ import CurrentTimebox from './CurrentTimebox';
 class EditableTimebox extends React.Component {
    state = {
       title: 'Nauka reacta',
-      totalTimeInMinutes: 34,
+      totalTimeInMinutes: .2,
       isRunning: false,
       isPaused: false,
       elapsedTimeInSeconds: 0,
