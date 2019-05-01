@@ -22,6 +22,8 @@ class EditableTimebox extends React.Component {
    startTimer = () => {
       this.intervalId = window.setInterval(
          () => {
+            let totalTimeInSeconds = this.state.totalTimeInMinutes * 60;
+            if (totalTimeInSeconds < this.state.elapsedTimeInSeconds) return window.clearInterval(this.intervalId);
             this.setState(
                (prevState) => ({ elapsedTimeInSeconds: prevState.elapsedTimeInSeconds + 0.01 })
             )
