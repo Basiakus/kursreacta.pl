@@ -1,6 +1,7 @@
 import React from 'react';
 import Clock from './Clock';
 import ProgressBar from './ProgressBar';
+import '../styles/components/CurrentTimebox.scss';
 
 function CurrentTimebox(props) {
    const { title,

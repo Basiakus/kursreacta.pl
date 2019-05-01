@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/components/Clock.scss';
 
 function Clock({ hours = 0, minutes = 0, seconds = 0, miliseconds = 0, className = '' }) {
    const msConverter = (miliseconds) => {

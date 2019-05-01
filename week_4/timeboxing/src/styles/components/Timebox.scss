@@ -1,0 +1,12 @@
+@import '../variables.scss';
+@import '../utilities.scss';
+
+.Timebox {
+   position: relative;
+   border: $default-border;
+   border-radius: $default-border-radius;
+   padding: 10px;
+   margin-bottom: 5px;
+   z-index: 99;
+   background-color: rgb(91, 178, 255);
+}

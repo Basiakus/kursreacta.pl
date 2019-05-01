@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/components/ProgressBar.scss';
 
 function ProgressBar({ percent = 0, trackRemaining, className }) {
    return (
