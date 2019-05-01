@@ -7,4 +7,7 @@
 
 ## Zadanie 2 - Wyciągnij pozostałe komponenty do osobnych plików
 
-## Zadanie 3 - 
+## Zadanie 3 
+`1. Stwórz katalog components w katalogu styles`
+`2. Wyciągnij do niego pliki zawierające style komponentów (jeden komponent na jeden plik)`
+`3. Zaimportuj wszystkie komponenty w pliku`
