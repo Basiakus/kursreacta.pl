@@ -19,7 +19,7 @@ class TimeboxEditer extends React.Component {
       this.props.onEdit(this.props.index, { id: uuid.v4(), title: this.state.title, totalTimeInMinutes: this.state.totalTimeInMinutes });
    }
    render() {
-      const { index, title, totalTimeInMinutes, onEdit, isEdit, handleIsEdit } = this.props;
+      const { title, totalTimeInMinutes, isEdit, handleIsEdit } = this.props;
       return (
          <div className={`TimeboxEditer ${isEdit ? '' : 'unactive'}`}>
             <form onSubmit={this.handleSubmitForm}>
