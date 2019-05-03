@@ -14,3 +14,4 @@
 
 ## Zadanie 4 - Dodaj modyfikator elementu progress__bar zmieniający mu kolor na zielony 
 ## Zadanie 5 - Wystyluj komponent Clock przy pomocy metodyki BEM w taki sposób by dało się nadać rózne kolory minutom, sekundom i separatorowi (znakowi dwukropka).
+## Zadanie 6 - Spróbuj znaleźć inne miejsca w naszym kodzie, w których funkcja classNames mogłaby się przydać.
