@@ -1,10 +1,10 @@
 import React from 'react';
 import '../styles/components/ProgressBar.scss';
 
-function ProgressBar({ percent = 0, trackRemaining, className }) {
+function ProgressBar({ percent = 0, trackRemaining}) {
    return (
       <div
-         className={`ProgressBar ${className}`}
+         className={`ProgressBar ProgressBar--big ProgressBar--green`}
          style={{
             background: (trackRemaining ?
                `linear-gradient(orangered, orangered) right /${percent}% no-repeat content-box` :
