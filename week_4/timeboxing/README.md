@@ -17,4 +17,5 @@
 `Zmianę koloru można uzyskać poprzez zmienną przekazaną przez propsy zawierającą "nazweKoloru" i urzyciu jej w sylowaniu znajdującym się w pliku ProgressBar.js`
 ## Zadanie 5 - Wystyluj komponent Clock przy pomocy metodyki BEM w taki sposób by dało się nadać rózne kolory minutom, sekundom i separatorowi (znakowi dwukropka).
 ## Zadanie 6 - Spróbuj znaleźć inne miejsca w naszym kodzie, w których funkcja classNames mogłaby się przydać.
-`Tak jak w komponencie ProgressBar tak i w komponencie Clock można zastosować bibliotekę classnames. W komponencie CurrentTimebox (parrent) są deklarowane zmienne dotyczące koloru danego elementu i przekazywane niźej do (child) poprzez propsy`
+`Tak jak w komponencie ProgressBar tak i w komponencie Clock można zastosować bibliotekę classnames. W komponencie CurrentTimebox (parrent) są deklarowane zmienne dotyczące koloru danego elementu i przekazywane niźej do (child) poprzez propsy.`
+`Ciekawym użyciem tej funkcji byłoby zaimplementownie koloru przy tworzeniu timeboxa (np. określające jego hierarchię)`
