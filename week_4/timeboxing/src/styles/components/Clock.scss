@@ -2,5 +2,17 @@
 @import '../utilities.scss';
 
 .Clock {
-   color: orangered;
+   .Clock__part {
+   color: black;
+   }
+   .Clock__part--red {
+      color: red;
+   }
+   .Clock__part--green {
+      color: green;
+   }
+   .Clock__part--blue {
+      color: blue;
+   } 
 }
+

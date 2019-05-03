@@ -4,7 +4,7 @@
 
 .ProgressBar {
    box-sizing: border-box;
-   border: 1px solid orangered;
+   border: 1px solid black;
    border-radius: $default-border-radius;
    margin-bottom: 20px;
    height: 25px;
@@ -12,4 +12,11 @@
    display: flex;
    align-items: center;
    width: 100%;
+}
+
+.ProgressBar--big {
+   height: 50px;
+}
+.ProgressBar--green {
+   border: 2px solid lighten(green, 10);
 }
