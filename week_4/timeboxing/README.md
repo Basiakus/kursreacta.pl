@@ -13,5 +13,8 @@
 ### 3. Zaimportuj wszystkie komponenty w pliku components.scss
 
 ## Zadanie 4 - Dodaj modyfikator elementu progress__bar zmieniający mu kolor na zielony 
+`Wcześniej wykonałem zadanie dodatkowe polegające na utworzeniu progressBar-a jako 1 div, co w rezultacie wymusiło stylowanie w pliku ProgresBar.js (długość bara zależna jest od zmiennej przekazanej przez props-y i użyta  w stylowaniu pezpośrednio w ProgressBar.js - użycie linear-gradient)`.
+`Zmianę koloru można uzyskać poprzez zmienną przekazaną przez propsy zawierającą "nazweKoloru" i urzyciu jej w sylowaniu znajdującym się w pliku ProgressBar.js`
 ## Zadanie 5 - Wystyluj komponent Clock przy pomocy metodyki BEM w taki sposób by dało się nadać rózne kolory minutom, sekundom i separatorowi (znakowi dwukropka).
 ## Zadanie 6 - Spróbuj znaleźć inne miejsca w naszym kodzie, w których funkcja classNames mogłaby się przydać.
+`Tak jak w komponencie ProgressBar tak i w komponencie Clock można zastosować bibliotekę classnames. W komponencie CurrentTimebox (parrent) są deklarowane zmienne dotyczące koloru danego elementu i przekazywane niźej do (child) poprzez propsy`
