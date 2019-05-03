@@ -1,14 +1,24 @@
 import React from 'react';
+import classNames from 'classnames';
 import '../styles/components/ProgressBar.scss';
 
-function ProgressBar({ percent = 0, trackRemaining, colorGreen, colorOrangered}) {
+function ProgressBar({ percent = 0, trackRemaining, barColor, borderBlue, isBig, className}) {
+   //`ProgressBar ProgressBar--big ProgressBar--borderBlue`
+   let progressBarClassNames = classNames(
+      "ProgressBar",
+      className,
+      {
+         "ProgressBar--big": isBig,
+         "ProgressBar--borderBlue": borderBlue
+      }
+   );
    return (
       <div
-         className={`ProgressBar ProgressBar--big ProgressBar--green`}
+         className={progressBarClassNames}
          style={{
             background: (trackRemaining ?
-               `linear-gradient(${colorGreen}, ${colorGreen}) right /${percent}% no-repeat content-box` :
-               `linear-gradient(${colorGreen}, ${colorGreen}) left /${percent}% no-repeat content-box`
+               `linear-gradient(${barColor}, ${barColor}) right /${percent}% no-repeat content-box` :
+               `linear-gradient(${barColor}, ${barColor}) left /${percent}% no-repeat content-box`
             )
          }}
       >

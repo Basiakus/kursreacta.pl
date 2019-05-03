@@ -13,10 +13,9 @@
    align-items: center;
    width: 100%;
 }
-
 .ProgressBar--big {
    height: 50px;
 }
-.ProgressBar--green {
-   border: 2px solid lighten(green, 10);
+.ProgressBar--borderBlue {
+   border: 2px solid lighten(rgb(46, 102, 213), 10);
 }
