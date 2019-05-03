@@ -4,7 +4,8 @@ import ProgressBar from './ProgressBar';
 import '../styles/components/CurrentTimebox.scss';
 
 function CurrentTimebox(props) {
-   const { title,
+   const { 
+      title,
       totalTimeInMinutes,
       isRunning,
       isPaused,
@@ -22,7 +23,7 @@ function CurrentTimebox(props) {
    const hoursLeft = totalTimeInSeconds >= 3600 ? Math.floor(timeLeftInSeconds / 3600) : 0;
    const minutesLeft = hoursLeft === 0 ? Math.floor(timeLeftInSeconds / 60) : Math.floor(((timeLeftInSeconds - hoursLeft * 3600) / 60));
    const secondsLeft = Math.floor(timeLeftInSeconds % 60);
-   const milisecondsLeft = (timeLeftInSeconds >= elapsedTimeInSeconds -1) ? (timeLeftInSeconds - Math.floor(timeLeftInSeconds)).toFixed(2) : 0;
+   const milisecondsLeft = (totalTimeInSeconds > elapsedTimeInSeconds) ? (timeLeftInSeconds - Math.floor(timeLeftInSeconds)).toFixed(2) : 0;
    const decimalConverter = ((value) => (value % 1) * 1000);
    const progressInPercent = (timeLeftInSeconds / totalTimeInSeconds) * 100;
    return (
