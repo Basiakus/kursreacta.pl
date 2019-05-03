@@ -8,6 +8,10 @@
 ## Zadanie 2 - Wyciągnij pozostałe komponenty do osobnych plików
 
 ## Zadanie 3 
-`1. Stwórz katalog components w katalogu styles`
-`2. Wyciągnij do niego pliki zawierające style komponentów (jeden komponent na jeden plik)`
-`3. Zaimportuj wszystkie komponenty w pliku`
+### 1. Stwórz katalog components w katalogu styles
+### 2. Wyciągnij do niego pliki zawierające style komponentów (jeden komponent na jeden plik)
+### 3. Zaimportuj wszystkie komponenty w pliku components.scss
+
+## Zadanie 4 - Dodaj modyfikator elementu progress__bar zmieniający mu kolor na zielony 
+`???`
+## Zadanie 5 - Wystyluj komponent Clock przy pomocy metodyki BEM w taki sposób by dało się nadać rózne kolory minutom, sekundom i separatorowi (znakowi dwukropka).
