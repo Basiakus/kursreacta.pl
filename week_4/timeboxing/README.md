@@ -13,5 +13,4 @@
 ### 3. Zaimportuj wszystkie komponenty w pliku components.scss
 
 ## Zadanie 4 - Dodaj modyfikator elementu progress__bar zmieniający mu kolor na zielony 
-`???`
 ## Zadanie 5 - Wystyluj komponent Clock przy pomocy metodyki BEM w taki sposób by dało się nadać rózne kolory minutom, sekundom i separatorowi (znakowi dwukropka).
