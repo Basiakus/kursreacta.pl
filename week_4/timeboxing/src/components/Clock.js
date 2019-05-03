@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/components/Clock.scss';
 
-function Clock({ hours = 0, minutes = 0, seconds = 0, miliseconds = 0, className = '' }) {
+function Clock({ hours = 0, minutes = 0, seconds = 0, miliseconds = 0}) {
    const msConverter = (miliseconds) => {
       miliseconds = miliseconds / 10;
       return miliseconds < 10 ? `0${miliseconds}` : miliseconds;
@@ -39,11 +39,18 @@ function Clock({ hours = 0, minutes = 0, seconds = 0, miliseconds = 0, className
          return '23';
       }
    }
-   return <h2 className={`Clock ${className}`}>
-      {
-         `Pozostało ${hConverter(hours)}:${minConverter(minutes)}:${secConverter(seconds)}.${msConverter(miliseconds)}`
-      }
-   </h2>
+   return (
+      <h2 className={`Clock`}>
+      Pozostało: 
+         <span className={`Clock__part`}>{hConverter(hours)}</span>
+         <span className={`Clock__part Clock__part--blue`}>:</span>
+         <span className={`Clock__part Clock__part--green`}>{minConverter(minutes)}</span>
+         <span className={`Clock__part Clock__part--blue`}>:</span>
+         <span className={`Clock__part Clock__part--green`}>{secConverter(seconds)}</span>
+         <span className={`Clock__part Clock__part--blue`}>.</span>
+         <span className={`Clock__part Clock__part--red`}>{msConverter(miliseconds)}</span>
+      </h2>
+   )
 }
 
 export default Clock;
