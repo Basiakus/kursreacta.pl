@@ -70,23 +70,29 @@ function Clock({
    let secondsColorClassNames = classNames(
       className,
       "Clock__part",
-      {"Clock__part--red": secondsColor === "red" ,
-      "Clock__part--green": secondsColor === "green" ,
-      "Clock__part--blue": secondsColor === "blue"}
+      {
+         "Clock__part--red": secondsColor === "red" ,
+         "Clock__part--green": secondsColor === "green" ,
+         "Clock__part--blue": secondsColor === "blue"
+      }
    );
    let milisecondsColorClassNames = classNames(
       className,
       "Clock__part",
-      {"Clock__part--red": milisecondsColor === "red",
-      "Clock__part--green": milisecondsColor === "green",
-      "Clock__part--blue": milisecondsColor === "blue"}
+      {
+         "Clock__part--red": milisecondsColor === "red",
+         "Clock__part--green": milisecondsColor === "green",
+         "Clock__part--blue": milisecondsColor === "blue"
+      }
    );
    let separatorColorClassNames = classNames(
       className,
       "Clock__part",
-      {"Clock__part--red": separatorColor === "red",
-      "Clock__part--green": separatorColor === "green",
-      "Clock__part--blue": separatorColor === "blue"}
+      {
+         "Clock__part--red": separatorColor === "red",
+         "Clock__part--green": separatorColor === "green",
+         "Clock__part--blue": separatorColor === "blue"
+      }
    );
 
    return (
