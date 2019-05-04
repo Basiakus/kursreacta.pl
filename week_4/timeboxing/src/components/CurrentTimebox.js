@@ -43,7 +43,8 @@ function CurrentTimebox(props) {
          />
          <ProgressBar 
             className={isPaused ? 'inactive' : ''} 
-            borderBlue={true} barColor="orangered" 
+            borderBlue={true} 
+            barColor="green" 
             isBig={true} percent={progressInPercent} 
             trackRemaining={true} 
          />
