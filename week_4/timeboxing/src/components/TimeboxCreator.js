@@ -13,14 +13,32 @@ class TimeboxCreator extends React.Component {
       this.props.onCreate({
          id: uuid.v4(),
          title: this.formRef.current[0].value === "" ? "brak" : this.formRef.current[0].value,
-         totalTimeInMinutes: this.formRef.current[1].value === '' ? 0 : this.formRef.current[1].value
+         totalTimeInMinutes: this.formRef.current[1].value === '' ? 0 : this.formRef.current[1].value,
+         flag: this.formRef.current[2].value
+         
       });
    }
    render() {
       return (
          <form onSubmit={this.handleSubmit} className='TimeboxCreator' ref={this.formRef}>
-            <label>Co robisz?<input type="text" /></label><br />
-            <label>Ile minut?<input type="number" /></label><br />
+            <label>
+               Co robisz?
+               <input type="text" />
+            </label>
+            <br />
+            <label>
+               Ile minut?
+               <input type="number" />
+            </label>
+            <br />
+            <label> kolor?
+               <select>
+                  <option value="blue">niebieski</option>
+                  <option value="yellow">żółty</option>
+                  <option value="red">czerwony</option>
+               </select>
+            </label>
+            <br />
             <button >Dodaj Timebox</button>
          </form>
       )
