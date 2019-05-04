@@ -8,8 +8,8 @@
    text-align: right;
    background-color: rgb(0, 132, 247);
    margin-bottom: 10px;
-   input {
-      min-width: 60%;
+   input, select {
+      min-width: 50%;
       margin-left: 20px;
       font-size: 1em;
    }
