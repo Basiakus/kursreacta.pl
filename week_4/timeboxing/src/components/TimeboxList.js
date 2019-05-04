@@ -9,17 +9,20 @@ class TimeboxList extends React.Component {
          {
             id: uuid.v4(),
             title: 'Week 1 introduction',
-            totalTimeInMinutes: 25
+            totalTimeInMinutes: 25,
+            flag: 'blue'
          },
          {
             id: uuid.v4(),
             title: "week 2 componens of react",
-            totalTimeInMinutes: 35
+            totalTimeInMinutes: 35,
+            flag: 'blue'
          },
          {
             id: uuid.v4(),
             title: "week 3 lists and forms",
-            totalTimeInMinutes: 30
+            totalTimeInMinutes: 30,
+            flag: 'blue'
          }
       ]
    }
@@ -66,6 +69,7 @@ class TimeboxList extends React.Component {
                      key={timebox.id}
                      index={index}
                      title={timebox.title}
+                     flag={timebox.flag}
                      totalTimeInMinutes={timebox.totalTimeInMinutes}
                      //onEdit={ () => this.updateTimebox(index, {...timebox, title: "Zedytowano"}) }
                      onEdit={this.updateTimebox}
