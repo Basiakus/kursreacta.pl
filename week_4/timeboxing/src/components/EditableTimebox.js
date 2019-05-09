@@ -71,8 +71,12 @@ class EditableTimebox extends React.Component {
          isEditable: true
       })
    }
+   prettyDir = () => {
+      console.log(this.state);
+   }
    render() {
       const { title, totalTimeInMinutes, isRunning, isPaused, elapsedTimeInSeconds, pausesCount, isEditable } = this.state;
+      this.prettyDir();
       return (
          <React.Fragment>
             <TimeboxEditor
