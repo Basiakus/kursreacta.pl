@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-//import './styles/main.scss';
+import './styles/components/components.scss';
 /* Elements from DOM */
 const rootElement = document.getElementById("root");
 

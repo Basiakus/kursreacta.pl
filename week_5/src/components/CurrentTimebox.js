@@ -29,7 +29,7 @@ function CurrentTimebox(props) {
    return (
       <div className={`CurrentTimebox ${isEditable ? 'inactive' : ""}`}>
          <h1>{title}</h1>
-         <Clock 
+         pozostało: <Clock 
             className={isPaused ? 'inactive' : ''} 
             hours={hoursLeft} 
             hoursColor="default" 

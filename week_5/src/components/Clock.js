@@ -97,7 +97,6 @@ function Clock({
 
    return (
       <h2 className={`Clock`}>
-         <span>Pozostało:</span>
          <span className={hoursColorClassNames}>{hConverter(hours)}</span>
          <span className={separatorColorClassNames}>:</span>
          <span className={minutesColorClassNames}>{minConverter(minutes)}</span>
