@@ -4,9 +4,7 @@ import ProgressBar from './ProgressBar';
 import '../styles/components/CurrentTimebox.scss';
 
 class CurrentTimebox extends React.Component {
-   constructor(props) {
-      super(props);
-   }
+
 
    componentWillUnmount() {
       console.log(`CurrentTimebox component will unmount`);
