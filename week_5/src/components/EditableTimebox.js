@@ -17,6 +17,7 @@ class EditableTimebox extends React.Component {
     obj: {name: "adam", age: 23},
     arr: [1,2,3]
   };
+  
   handleTitleOnChange = event => {
     this.setState({ title: event.target.value });
   };
@@ -32,6 +33,7 @@ class EditableTimebox extends React.Component {
       this.setState(prevState => ({
         elapsedTimeInSeconds: prevState.elapsedTimeInSeconds + 0.01
       }));
+      console.log("start interval in EditableTimebox component");
     }, 10);
   };
   stopTimer = () => {
@@ -73,11 +75,12 @@ class EditableTimebox extends React.Component {
     this.setState({
       isEditable: true
     });
+    this.handleStop();
   };
 
   
   render() {
-    prettyDir("stan log", this.state);
+    //prettyDir("stan log", this.state);
     const {
       title,
       totalTimeInMinutes,
@@ -90,29 +93,29 @@ class EditableTimebox extends React.Component {
     return (
       <React.Fragment>
         <RealTimeClock />
-        <TimeboxEditor
+        
+          <TimeboxEditor
           title={title}
           totalTimeInMinutes={totalTimeInMinutes}
           handleTitleOnChange={this.handleTitleOnChange}
-          handleTotalTimeInMinutesOnChange={
-            this.handleTotalTimeInMinutesOnChange
-          }
+          handleTotalTimeInMinutesOnChange={this.handleTotalTimeInMinutesOnChange}
           isEditable={isEditable}
           onConfirm={this.handleConfirm}
         />
-        <CurrentTimebox
-          title={title}
-          totalTimeInMinutes={totalTimeInMinutes}
-          isRunning={isRunning}
-          isPaused={isPaused}
-          pausesCount={pausesCount}
-          elapsedTimeInSeconds={elapsedTimeInSeconds}
-          handleStart={this.handleStart}
-          handleStop={this.handleStop}
-          togglePause={this.togglePause}
-          isEditable={isEditable}
-          handleEdit={this.handleEdit}
-        />
+          <CurrentTimebox
+            title={title}
+            totalTimeInMinutes={totalTimeInMinutes}
+            isRunning={isRunning}
+            isPaused={isPaused}
+            pausesCount={pausesCount}
+            elapsedTimeInSeconds={elapsedTimeInSeconds}
+            handleStart={this.handleStart}
+            handleStop={this.handleStop}
+            togglePause={this.togglePause}
+            isEditable={isEditable}
+            handleEdit={this.handleEdit}
+          />
+        
       </React.Fragment>
     );
   }
