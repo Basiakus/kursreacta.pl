@@ -34,13 +34,18 @@ export const prettyDir = (nameGroup, obj) => {
             `${index}: %c ${element} (${typeof element})`,
             `color: blue`
          );
+      } else if (element instanceof Array) {
+         console.log(
+            `${index}: %c ${element} (array)`,
+            `color: orange`
+         );
       } else if (typeof element === "object") {
          console.log(`${index}: %c ${element} (${typeof element})`,
             `color: green`);
-      } else if (Array.isArray(element)) {
+      } else if (typeof element === "boolean") {
          console.log(
-            `${index}: %c ${element} (${typeof element})`,
-            `color: orange`
+            `${index}: %c ${element} ${(typeof element)}`,
+            `color: brown`
          );
       }
    });
