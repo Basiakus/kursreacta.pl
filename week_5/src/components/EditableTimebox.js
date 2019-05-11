@@ -1,7 +1,8 @@
 import React from 'react';
 import TimeboxEditor from './TimeboxEditor';
 import CurrentTimebox from './CurrentTimebox';
-import { prettyDir } from '../additionalFunctions.js'
+import RealTimeBox from './RealTimeClock';
+import { prettyDir } from '../additionalFunctions.js';
 //import '../styles/components/EditableTimebox.scss';
 
 class EditableTimebox extends React.Component {
@@ -88,6 +89,7 @@ class EditableTimebox extends React.Component {
     } = this.state;
     return (
       <React.Fragment>
+        <RealTimeBox />
         <TimeboxEditor
           title={title}
           totalTimeInMinutes={totalTimeInMinutes}
