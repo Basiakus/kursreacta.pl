@@ -14,3 +14,5 @@
 ### Obiekty na zielono.
 ### Tablice na różowo.
 `Stworzyłem funkcję w pliku "src/addicionalFunction.js", którą zaimportowałem i wywołałem w momencie renderowania komponentu EditableTimebox. Przyjmuje ona 2 parametry. 1 odpowiada tytułowi console.group, natowiast 2 obiektu, który chcemy odpowiednio wyświetlić w konsoli. Jako 2 parametr użyłem obiektu reprezentującego początkowy stan aplikacji. W funkcji tej użyłem metody Object.values(), oraz map() w celu przekształcenia obiektu na tablicę, a następnie zmapowaniu w celu dostania się do każdej wartości klucza. Prawidłowo przypisuję kolor do typu z wyjątkiem tablicy, która jeśli występuje w podanym obiekcie, równieź konwertowana jest na obiekt.`
+## Zadanie 3 - Stwórz komponent RealTimeClock, który wyświetla aktualny czas.
+`Użyj metod componentDitMount() i componentWillUnmount() by zainicjalizować interwał i posprzątać po nim.`
