@@ -4,6 +4,7 @@ import EditableTimebox from './EditableTimebox';
 import '../styles/components/App.scss';
 
 function App() {
+
    return (
       <React.StrictMode>
          <div className="App">
@@ -13,5 +14,4 @@ function App() {
       </React.StrictMode>
    )
 }
-
 export default App;
