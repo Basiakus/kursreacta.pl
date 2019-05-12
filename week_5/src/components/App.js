@@ -5,10 +5,12 @@ import '../styles/components/App.scss';
 
 function App() {
    return (
-      <div className="App">
-         <TimeboxList />
-         <EditableTimebox />
-      </div>
+      <React.StrictMode>
+         <div className="App">
+            <TimeboxList />
+            <EditableTimebox />
+         </div>
+      </React.StrictMode>
    )
 }
 
