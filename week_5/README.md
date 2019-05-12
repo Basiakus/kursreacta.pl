@@ -27,6 +27,7 @@
     `in StrictMode (at App.js:8)`
     `in App (at src/index.js:9)`
 `componentWillMount: Please update the following components to use componentDidMount instead: CurrentTimebox, RealTimeClock`
+`zgodnie z ostrzeżeniem nadpisałem metodę componentWillMount() na componentDidMount()`
 ## Zadanie 6 Naucz się skrótów klawiszowych najważniejszych narzędzi debuggera:
 step in - `F11` `wejście do ciała funkcji, która aktualnie jest wywoływana`
 step over -`F10` `przejście do następnej linijki kodu, która jest aktualnie wywoływana`
