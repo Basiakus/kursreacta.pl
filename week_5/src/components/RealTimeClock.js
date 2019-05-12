@@ -5,8 +5,8 @@ import '../styles/components/Clock.scss';
 class RealTimeClock extends React.Component {
    state = {
       globalH: 0, 
-      globalMin: 23, 
-      glogalSec: 21
+      globalMin: 0, 
+      glogalSec: 0
    }
    
    componentWillMount() {
