@@ -25,28 +25,17 @@ export const prettyDir = (nameGroup, obj) => {
    });   */
    Object.values(obj).map((element, index) => {
       if (typeof element === "string") {
-         console.log(
-            `${index}: %c ${element} (${typeof element})`,
-            `color: red`
-         );
-      } else if (typeof element === "number") {
-         console.log(
-            `${index}: %c ${element} (${typeof element})`,
-            `color: blue`
-         );
+         return console.log(`${index}: %c ${element} (${typeof element})`, `color: red`);
       } else if (element instanceof Array) {
-         console.log(
-            `${index}: %c ${element} (array)`,
-            `color: orange`
-         );
+         return console.log(`${index}: %c ${element} (array)`, `color: orange`);
+      } else if (typeof element === "number") {
+         return console.log(`${index}: %c ${element} (${typeof element})`,`color: blue`);
       } else if (typeof element === "object") {
-         console.log(`${index}: %c ${element} (${typeof element})`,
-            `color: green`);
+         return console.log(`${index}: %c ${element} (${typeof element})`, `color: green`);
       } else if (typeof element === "boolean") {
-         console.log(
-            `${index}: %c ${element} ${(typeof element)}`,
-            `color: brown`
-         );
+         return console.log(`${index}: %c ${element} ${(typeof element)}`, `color: brown`);
+      } else {
+         return console.log(`${index}: %c ${element} ${(typeof element)}`, `color: black`);
       }
    });
    console.groupEnd();
