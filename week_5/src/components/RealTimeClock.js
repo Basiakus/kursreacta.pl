@@ -9,7 +9,7 @@ class RealTimeClock extends React.Component {
       glogalSec: 0
    }
    
-   componentWillMount() {
+   componentDidMount() {
       console.log('RealTimeClock component is mounted');
       this.startGlobalTime();
    };
