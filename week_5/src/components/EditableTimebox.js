@@ -17,7 +17,7 @@ class EditableTimebox extends React.Component {
     obj: {name: "adam", age: 23},
     arr: [1,2,3]
   };
-  
+
   handleTitleOnChange = event => {
     this.setState({ title: event.target.value });
   };
@@ -26,18 +26,21 @@ class EditableTimebox extends React.Component {
     this.setState({ totalTimeInMinutes: inputValue });
   };
   startTimer = () => {
-    this.intervalId = window.setInterval(() => {
-      let totalTimeInSeconds = this.state.totalTimeInMinutes * 60;
-      if (totalTimeInSeconds < this.state.elapsedTimeInSeconds)
-        return window.clearInterval(this.intervalId);
-      this.setState(prevState => ({
-        elapsedTimeInSeconds: prevState.elapsedTimeInSeconds + 0.01
-      }));
-      console.log("start interval in EditableTimebox component");
-    }, 10);
+    if (this.intervalId === null) {
+      this.intervalId = window.setInterval(() => {
+        let totalTimeInSeconds = this.state.totalTimeInMinutes * 60;
+        if (totalTimeInSeconds < this.state.elapsedTimeInSeconds)
+          return window.clearInterval(this.intervalId);
+        this.setState(prevState => ({
+          elapsedTimeInSeconds: prevState.elapsedTimeInSeconds + 0.01
+        }));
+        console.log("start interval in EditableTimebox component");
+      }, 10);
+    }
   };
   stopTimer = () => {
     window.clearInterval(this.intervalId);
+    this.intervalId = null;
   };
   handleStart = e => {
     this.setState({
@@ -56,6 +59,7 @@ class EditableTimebox extends React.Component {
   };
   togglePause = () => {
     this.setState(prevState => {
+      debugger;
       const isPaused = !prevState.isPaused;
       isPaused ? this.stopTimer() : this.startTimer();
       return {
@@ -93,8 +97,7 @@ class EditableTimebox extends React.Component {
     return (
       <React.Fragment>
         <RealTimeClock />
-        
-          <TimeboxEditor
+        <TimeboxEditor
           title={title}
           totalTimeInMinutes={totalTimeInMinutes}
           handleTitleOnChange={this.handleTitleOnChange}
@@ -102,20 +105,19 @@ class EditableTimebox extends React.Component {
           isEditable={isEditable}
           onConfirm={this.handleConfirm}
         />
-          <CurrentTimebox
-            title={title}
-            totalTimeInMinutes={totalTimeInMinutes}
-            isRunning={isRunning}
-            isPaused={isPaused}
-            pausesCount={pausesCount}
-            elapsedTimeInSeconds={elapsedTimeInSeconds}
-            handleStart={this.handleStart}
-            handleStop={this.handleStop}
-            togglePause={this.togglePause}
-            isEditable={isEditable}
-            handleEdit={this.handleEdit}
-          />
-        
+        <CurrentTimebox
+          title={title}
+          totalTimeInMinutes={totalTimeInMinutes}
+          isRunning={isRunning}
+          isPaused={isPaused}
+          pausesCount={pausesCount}
+          elapsedTimeInSeconds={elapsedTimeInSeconds}
+          handleStart={this.handleStart}
+          handleStop={this.handleStop}
+          togglePause={this.togglePause}
+          isEditable={isEditable}
+          handleEdit={this.handleEdit}
+        />
       </React.Fragment>
     );
   }
