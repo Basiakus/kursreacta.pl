@@ -59,7 +59,7 @@ class EditableTimebox extends React.Component {
   };
   togglePause = () => {
     this.setState(prevState => {
-      debugger;
+      //debugger;
       const isPaused = !prevState.isPaused;
       isPaused ? this.stopTimer() : this.startTimer();
       return {
@@ -84,7 +84,7 @@ class EditableTimebox extends React.Component {
 
   
   render() {
-    //prettyDir("stan log", this.state);
+    prettyDir("stan log", this.state);
     const {
       title,
       totalTimeInMinutes,
