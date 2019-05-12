@@ -20,3 +20,19 @@
 ## Zadanie 4 - Użyj metod componentDitMount() i componentWillUnmount() by zainicjalizować interwał i posprzątać po nim.
 `Użyłem wyżej wymienionych metod ale wymagało to przekształcenia funkcyjnego komponentu CurrentTimebox na klasowy, oraz dodania logiki, która odmontowywała by i montowywała komponent.`
 `Moim rozwiązaniem w tej sytuacji gdzie chcemy zachować komponent na stronie, jak również mieć wpływ na aktualny stan intervau jest wywołanie metody odpowiadającej za jego zatrzymanie za każdym razem kiedy chcemy edytować komponent. W rezultacie komponent pozostaje na stronie jak również mamy wpływ na stan interwału podczaj jego edycji. Nie dochodzi do 'wycieku pamięci' i nie musimy po 'nim sprzątać'.`
+## Zadanie 5 - Przeczytaj w dokumentacji React.StrictMode pozostałe przypadki powodujące ostrzeżenia w trybie restrykcyjnym i spróbuj je spowodować.
+## Innymi słowy użyj przestarzałego API Reacta i upewnij się, że StrictMode je wykrywa.
+### Opakowałem całą aplikację w komponencie App.js w dodatkowy komponent React.StrictMode, aby mieć wglad do potencjalnych błędów całej aplikacji. W rezultacie otrzymałem błąd o treści
+`Warning: Unsafe lifecycle methods were found within a strict-mode tree:`
+    `in StrictMode (at App.js:8)`
+    `in App (at src/index.js:9)`
+`componentWillMount: Please update the following components to use componentDidMount instead: CurrentTimebox, RealTimeClock`
+## Zadanie 6 Naucz się skrótów klawiszowych najważniejszych narzędzi debuggera:
+step in - `F11` `wejście do ciała funkcji, która aktualnie jest wywoływana`
+step over -`F10` `przejście do następnej linijki kodu, która jest aktualnie wywoływana`
+step - `F9` `Przechodzenie pezposrednio do funkcji, która aktualnie jest wywoływana`
+resume `F8` `wznowienie wykonywania skryptu` 
+
+## 2. Dowiedz się do czego służą Conditional Breakpoints oraz Log Points.
+`Conditional Breakpoints dodatkowo umoźliwiają podanie wyrażenia. Zatrzymanie się kodu na danym breakpoint-cie następuje, kiedy jego wyrazenie jest równe true`
+`Log Points umozliwiają wypisanie wartości zmiennych w danym momencie (miejscu) kodu`
