@@ -1,0 +1,20 @@
+@import '../variables.scss';
+@import '../utilities.scss';
+
+.Clock {
+   .Clock__part {
+      font-style: oblique;
+      color: black;
+
+   }
+   .Clock__part--red {
+      color: red;
+   }
+   .Clock__part--green {
+      color: green;
+   }
+   .Clock__part--blue {
+      color: blue;
+   } 
+}
+
