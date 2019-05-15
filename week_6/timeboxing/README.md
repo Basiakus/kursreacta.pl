@@ -1,6 +1,6 @@
 # Tydzień 6
 
-# Zadanie - 1
+## Zadanie - 1
 ### Załóż konto na code sandb   
 ### Stwórz nowy projekt na codesandbox z szablonu create-react-a    
 ### Skopiuj do sandboxa rozwiązanie jednego z poprzednich zadań domowy  
@@ -9,4 +9,6 @@
 ### Stwórz projekt na CodeSandbox poprzez import repo z githu   
 
 `https://codesandbox.io/s/week5-1kh3k`
+
+## Zadanie -2 
 
