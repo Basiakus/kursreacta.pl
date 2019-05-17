@@ -17,3 +17,4 @@
 ### 100% = cały okrąg
 ### 50% = pół okręgu
 ### Powinien przerysowywać się tylko podczas aktualizacji
+<a href='https://codesandbox.io/s/react-curse-week6-exercise-2-87w5b'>https://codesandbox.io/s/react-curse-week6-exercise-2-87w5b</a>
