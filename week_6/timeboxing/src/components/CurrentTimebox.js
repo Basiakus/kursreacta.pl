@@ -53,12 +53,13 @@ class CurrentTimebox extends React.Component {
                milisecondsColor="red"
                separatorColor="red"
             />
-            <ProgressArc />
+            <ProgressArc canvasSize={100} percent={progressInPercent} />
             <ProgressBar
                className={isPaused ? 'inactive' : ''}
                borderBlue={true}
                barColor="green"
-               isBig={true} percent={progressInPercent}
+               isBig={true} 
+               percent={progressInPercent}
                trackRemaining={false}
             />
             <button onClick={handleStart} disabled={isRunning}>Start</button>
