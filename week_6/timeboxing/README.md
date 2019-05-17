@@ -7,8 +7,8 @@
 ### Pochwal się na grupie
 ### Wyeksportuj kod z CodeSandbox, zainstaluj lokalnie i uruchom  
 ### Stwórz projekt na CodeSandbox poprzez import repo z githuba  
+<a href='https://codesandbox.io/s/week5-1kh3k'>https://codesandbox.io/s/week5-1kh3k</a>
 
-`https://codesandbox.io/s/week5-1kh3k`
 
 ## Zadanie -2 
 ### Stwórz komponent ProgressArc
