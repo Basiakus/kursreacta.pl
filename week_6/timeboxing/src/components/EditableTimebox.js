@@ -17,6 +17,9 @@ class EditableTimebox extends React.Component {
     obj: {name: "adam", age: 23},
     arr: [1,2,3]
   };
+  componentDidMount() {
+    this.intervalId = null;
+  }
 
   handleTitleOnChange = event => {
     this.setState({ title: event.target.value });
@@ -29,8 +32,9 @@ class EditableTimebox extends React.Component {
     if (this.intervalId === null) {
       this.intervalId = window.setInterval(() => {
         let totalTimeInSeconds = this.state.totalTimeInMinutes * 60;
-        if (totalTimeInSeconds < this.state.elapsedTimeInSeconds)
+        if (totalTimeInSeconds < this.state.elapsedTimeInSeconds) {
           return window.clearInterval(this.intervalId);
+        }
         this.setState(prevState => ({
           elapsedTimeInSeconds: prevState.elapsedTimeInSeconds + 0.01
         }));
@@ -59,7 +63,7 @@ class EditableTimebox extends React.Component {
   };
   togglePause = () => {
     this.setState(prevState => {
-      debugger;
+      //debugger;
       const isPaused = !prevState.isPaused;
       isPaused ? this.stopTimer() : this.startTimer();
       return {
