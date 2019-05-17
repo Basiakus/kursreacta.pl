@@ -11,4 +11,9 @@
 `https://codesandbox.io/s/week5-1kh3k`
 
 ## Zadanie -2 
-
+### Stwórz komponent ProgressArc
+### Powinien przyjmować te same propsy co ProgressBar
+### ale zamiast prostokąta rysować łuk za pomocą canvas API
+### 100% = cały okrąg
+### 50% = pół okręgu
+### Powinien przerysowywać się tylko podczas aktualizacji
