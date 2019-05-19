@@ -41,7 +41,9 @@ class CurrentTimebox extends React.Component {
       return (
          <div className={`CurrentTimebox ${isEditable ? 'inactive' : ""}`}>
             <h1>{title}</h1>
-            pozostało: <Clock
+            pozostało: 
+            <ProgressArc canvasSize={80} percent={progressInPercent} />
+            <Clock
                className={isPaused ? 'inactive' : ''}
                hours={hoursLeft}
                hoursColor="default"
@@ -53,7 +55,7 @@ class CurrentTimebox extends React.Component {
                milisecondsColor="red"
                separatorColor="red"
             />
-            <ProgressArc canvasSize={100} percent={progressInPercent} />
+            
             <ProgressBar
                className={isPaused ? 'inactive' : ''}
                borderBlue={true}
