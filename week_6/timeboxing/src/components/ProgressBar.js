@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import '../styles/components/ProgressBar.scss';
+//import '../styles/components/ProgressBar.scss';
 
 function ProgressBar({ percent = 0, trackRemaining, barColor, borderBlue, isBig, className}) {
    //`ProgressBar ProgressBar--big ProgressBar--borderBlue`
