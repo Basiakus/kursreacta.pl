@@ -2,6 +2,8 @@ import React from 'react';
 import Clock from './Clock';
 import ProgressBar from './ProgressBar';
 import ProgressArc from './ProgressArc';
+import ProgressBarJui from './ProgressBarJui';
+
 import '../styles/components/CurrentTimebox.scss';
 
 class CurrentTimebox extends React.Component {
@@ -55,12 +57,19 @@ class CurrentTimebox extends React.Component {
                milisecondsColor="red"
                separatorColor="red"
             />
-            
             <ProgressBar
                className={isPaused ? 'inactive' : ''}
                borderBlue={true}
                barColor="green"
                isBig={true} 
+               percent={progressInPercent}
+               trackRemaining={false}
+            />
+            <ProgressBarJui
+               className={isPaused ? 'inactive' : ''}
+               borderBlue={true}
+               barColor="green"
+               isBig={true}
                percent={progressInPercent}
                trackRemaining={false}
             />
