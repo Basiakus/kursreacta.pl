@@ -28,11 +28,12 @@
 
 ## Zadanie - 4
 ### Dodaj props initialDate do komponentu Datepicker z lekcji
-###Jeśli to property jest ustawione, wybrana data powinna być zaznaczona po wyświetleniu komponentu
+### Jeśli to property jest ustawione, wybrana data powinna być zaznaczona po wyświetleniu komponentu.
+<a href='https://codesandbox.io/s/week-6-exercise-4-vuc5u'>link</a>
 
-## Zadanie -5 
+## Zadanie - 5 
 ### Stwórz komponent ProgressBarJui
 ### Powinien przyjmować te same propsy co ProgressBar ale wewnątrz wyświetlać komponent "https://jqueryui.com/progressbar".
-<a href='https://codesandbox.io/s/week-6-exercise-4-vuc5u'>link</a>
+
 
 
