@@ -25,3 +25,14 @@
 ### Powinien przerysowywać się około 60 razy na sekundę
 ### Wrzuć oba na codesandbox i pochwal się na grupie #tydzien6
 <a href='https://codesandbox.io/s/react-curse-week6-exercise-2-87w5b'>link</a>
+
+## Zadanie - 4
+### Dodaj props initialDate do komponentu Datepicker z lekcji
+###Jeśli to property jest ustawione, wybrana data powinna być zaznaczona po wyświetleniu komponentu
+
+## Zadanie -5 
+### Stwórz komponent ProgressBarJui
+### Powinien przyjmować te same propsy co ProgressBar ale wewnątrz wyświetlać komponent `<a src="https://jqueryui.com/progressbar">https://jqueryui.com/progressbar</a>`
+<a href='https://codesandbox.io/s/week-6-exercise-4-vuc5u'>link</a>
+
+
