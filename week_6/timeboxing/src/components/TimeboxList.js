@@ -2,6 +2,8 @@ import React from 'react';
 import uuid from 'uuid';
 import Timebox from './Timebox';
 import TimeboxCreator from './TimeboxCreator';
+import Error from './Error';
+
 
 class TimeboxList extends React.Component {
    state = {
@@ -26,6 +28,7 @@ class TimeboxList extends React.Component {
          }
       ]
    }
+
    addTimebox = (newTimebox) => {
       this.setState(prevState => {
          /* new array of state with new timebox */
@@ -63,20 +66,24 @@ class TimeboxList extends React.Component {
       return (
          <>
             <TimeboxCreator onCreate={this.handleCreate} />
-            {timeboxes.map((timebox, index) =>
-               (
-                  <Timebox
-                     key={timebox.id}
-                     index={index}
-                     title={timebox.title}
-                     flag={timebox.flag}
-                     totalTimeInMinutes={timebox.totalTimeInMinutes}
-                     //onEdit={ () => this.updateTimebox(index, {...timebox, title: "Zedytowano"}) }
-                     onEdit={this.updateTimebox}
-                     onDelete={() => this.removeTimebox(index)}
-                  />
-               )
-            )}
+            <Error message='Wystąpił błąd w TimeboxList'>
+               {
+                  timeboxes.map((timebox, index) =>
+                     (
+                           <Timebox
+                              key={timebox.id}
+                              index={index}
+                              title={timebox.title}
+                              flag={timebox.flag}
+                              totalTimeInMinutes={timebox.totalTimeInMinutes}
+                              //onEdit={ () => this.updateTimebox(index, {...timebox, title: "Zedytowano"}) }
+                              onEdit={this.updateTimebox}
+                              onDelete={() => this.removeTimebox(index)}
+                           />
+                     )
+                  )
+               }
+            </Error>
          </>
       )
    }
