@@ -13,6 +13,9 @@ class Timebox extends React.Component {
    }
    render() {
       const { onDelete, title, totalTimeInMinutes, flag } = this.props;
+      if (totalTimeInMinutes <= 0) {
+         throw new Error('totalTimeInMinutes musi być większy od 0');
+      }
       let timeboxClasses = classNames(
          "Timebox",
          {

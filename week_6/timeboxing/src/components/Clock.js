@@ -14,6 +14,7 @@ function Clock({
       milisecondsColor="", 
       separatorColor=""
 }) {
+   //throw new Error('Clock is demage');
    const msConverter = (miliseconds) => {
       miliseconds = miliseconds / 10;
       return miliseconds < 10 ? `0${miliseconds}` : miliseconds;
