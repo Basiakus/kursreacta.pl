@@ -15,8 +15,10 @@ class TimeboxCreator extends React.Component {
          title: this.formRef.current[0].value === "" ? "brak" : this.formRef.current[0].value,
          totalTimeInMinutes: this.formRef.current[1].value === '' ? 0 : this.formRef.current[1].value,
          flag: this.formRef.current[2].value
-         
       });
+      this.formRef.current[0].value = "wpisz zadanie";
+      this.formRef.current[1].value = 3;
+      this.formRef.current[2].value = 'blue';
    }
    render() {
       return (
