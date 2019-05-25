@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import ErrorMessage from './ErrorMessage.js'
 
 class Error extends Component {
      state = {
           hasError: false
      }
+
      static getDerivedStateFromError(error) {
           // Update state so the next render will show the fallback UI.
           return { hasError: true };
@@ -15,8 +17,9 @@ class Error extends Component {
 
      render() {
           const { message, children } = this.props;
+          const { hasError } = this.state;
           return (
-               this.state.hasError ? message : children
+               <ErrorMessage message={message} hasError={hasError} children={children} />
           )
      }
 }
