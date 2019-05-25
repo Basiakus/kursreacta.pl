@@ -26,10 +26,12 @@ class TimeboxList extends React.Component {
             totalTimeInMinutes: 30,
             flag: 'blue'
          }
-      ]
+      ],
+      isError: false
    }
 
    addTimebox = (newTimebox) => {
+      throw new Error('test błędu metody addTimebox');
       this.setState(prevState => {
          /* new array of state with new timebox */
          const newTimeboxes = [...prevState.timeboxes];
@@ -38,7 +40,15 @@ class TimeboxList extends React.Component {
          return { timeboxes: newTimeboxes }
       })
    }
-   handleCreate = (createdTimebox) => this.addTimebox(createdTimebox);
+   handleCreate = (createdTimebox) => {
+         try {
+            this.addTimebox(createdTimebox);
+         }
+         catch(error) {
+            this.setState({isError: true})
+            console.log(`błąd w metodzie addTimebox ${error}`, this.state.isError)
+         } 
+   }
 
    removeTimebox = (indexToRemove) => {
       this.setState(prevState => {
@@ -64,14 +74,14 @@ class TimeboxList extends React.Component {
    render() {
       const { timeboxes } = this.state;
       return (
-         <>
+         <> 
             <TimeboxCreator onCreate={this.handleCreate} />
             <Error message='Wystąpił błąd w TimeboxList'>
                {
                   timeboxes.map((timebox, index) =>
                      (
+                        <Error key={timebox.id} message='Wystąpił błąd w Timebox'>
                            <Timebox
-                              key={timebox.id}
                               index={index}
                               title={timebox.title}
                               flag={timebox.flag}
@@ -80,6 +90,7 @@ class TimeboxList extends React.Component {
                               onEdit={this.updateTimebox}
                               onDelete={() => this.removeTimebox(index)}
                            />
+                        </Error>
                      )
                   )
                }
