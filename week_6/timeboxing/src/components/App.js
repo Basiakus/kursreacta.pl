@@ -10,7 +10,9 @@ function App() {
       <React.StrictMode>
          <Error message="Wystąpił błąd w aplikacji">
             <div className="App">
-               <TimeboxList />
+               <Error message="Wystąpił błąd w TimeboxList">
+                  <TimeboxList />
+               </Error>
                <Error message="Wystąpił błąd w EditableTimebox">
                   <EditableTimebox />
                </Error>
