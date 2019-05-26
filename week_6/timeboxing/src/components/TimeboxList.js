@@ -27,9 +27,8 @@ class TimeboxList extends React.Component {
             flag: 'blue'
          }
       ],
-      isError: false
+      hasError: false
    }
-
    addTimebox = (newTimebox) => {
       throw new Error('test błędu metody addTimebox');
       this.setState(prevState => {
@@ -45,8 +44,8 @@ class TimeboxList extends React.Component {
             this.addTimebox(createdTimebox);
          }
          catch(error) {
-            this.setState({isError: true})
-            console.log(`błąd w metodzie addTimebox ${error}`, this.state.isError)
+            this.setState({ hasError: true });
+            console.log(` metoda addTimebox nie działa`);
          } 
    }
 
@@ -72,10 +71,12 @@ class TimeboxList extends React.Component {
       })
    }
    render() {
-      const { timeboxes } = this.state;
+      const { timeboxes, hasError } = this.state;
       return (
          <> 
-            <TimeboxCreator onCreate={this.handleCreate} />
+            {
+              hasError ? <h1>emulacja błędu metody addTimebox</h1> : <TimeboxCreator onCreate={this.handleCreate} />
+            }
             <Error message='Wystąpił błąd w TimeboxList'>
                {
                   timeboxes.map((timebox, index) =>
