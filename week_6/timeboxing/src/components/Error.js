@@ -14,12 +14,11 @@ class Error extends Component {
           // You can also log the error to an error reporting service
           console.log('wystąpił błąd:', error, info);
      }
-
      render() {
           const { message, children } = this.props;
           const { hasError } = this.state;
           return (
-               <ErrorMessage message={message} hasError={hasError} children={children} />
+               <ErrorMessage message={message} hasError={hasError} children={children}/>
           )
      }
 }

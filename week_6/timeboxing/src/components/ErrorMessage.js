@@ -1,4 +1,4 @@
-function ErrorMessage({ hasError = false, message='', children }) {
+function ErrorMessage({ hasError = false, message='', children}) {
      return (
           hasError ? message : children
      )
