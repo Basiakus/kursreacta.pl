@@ -1,18 +1,45 @@
 import React from 'react';
 import classNames from 'classnames';
 import '../styles/components/Clock.scss';
+import PropTypes from 'prop-types';
+
+
+const numberOrStringType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
+const correctSrtingColorValue = function(props, propName, componentName ) {
+   const propToCheck = props[propName];
+   if (propToCheck !== 'red' && propToCheck !== 'black' && propToCheck !== 'blue' && propToCheck !== 'green') {
+         return new Error(`niewłaściwy prop ${propName} w komponencie ${componentName}. Opcjonalne wartości to: "black", "green", "blue", "red"`);
+      }
+}
+
+Clock.propTypes = {
+   hours: numberOrStringType.isRequired,
+   minutes: numberOrStringType.isRequired,
+   seconds: numberOrStringType.isRequired,
+   miliseconds: numberOrStringType.isRequired,
+   className: PropTypes.string.isRequired,
+   hoursColor: correctSrtingColorValue,
+   minutesColor: correctSrtingColorValue,
+   secondsColor: correctSrtingColorValue,
+   milisecondsColor: correctSrtingColorValue,
+   separatorColor: correctSrtingColorValue
+}
+
+Clock.defaultProps = {
+   className: ""
+}
 
 function Clock({ 
-      hours = 0, 
-      minutes = 0, 
-      seconds = 0, 
-      miliseconds = 0, 
-      className="", 
-      hoursColor="", 
-      minutesColor="", 
-      secondsColor="", 
-      milisecondsColor="", 
-      separatorColor=""
+      hours, 
+      minutes, 
+      seconds, 
+      miliseconds, 
+      className, 
+      hoursColor, 
+      minutesColor, 
+      secondsColor, 
+      milisecondsColor, 
+      separatorColor
 }) {
    //throw new Error('Clock is demage');
    const msConverter = (miliseconds) => {
@@ -55,9 +82,13 @@ function Clock({
    let hoursColorClassNames = classNames(
       className,
       "Clock__part",
-      {"Clock__part--red": hoursColor === "red",
-      "Clock__part--green": hoursColor === "green",
-      "Clock__part--blue": hoursColor === "blue"}
+      {
+         "Clock__part--red": hoursColor === "red",
+         "Clock__part--green": hoursColor === "green",
+         "Clock__part--blue": hoursColor === "blue",
+         "Clock__part--black": hoursColor === "black"
+
+   }
    );
    let minutesColorClassNames = classNames(
       className,
@@ -65,7 +96,8 @@ function Clock({
       {
          "Clock__part--red": minutesColor === "red",
          "Clock__part--green": minutesColor === "green",
-         "Clock__part--blue": minutesColor === "blue"
+         "Clock__part--blue": minutesColor === "blue",
+         "Clock__part--black": minutesColor === "black"
       }
    );
    let secondsColorClassNames = classNames(
@@ -74,7 +106,8 @@ function Clock({
       {
          "Clock__part--red": secondsColor === "red" ,
          "Clock__part--green": secondsColor === "green" ,
-         "Clock__part--blue": secondsColor === "blue"
+         "Clock__part--blue": secondsColor === "blue",
+         "Clock__part--black": secondsColor === "black"
       }
    );
    let milisecondsColorClassNames = classNames(
@@ -83,7 +116,8 @@ function Clock({
       {
          "Clock__part--red": milisecondsColor === "red",
          "Clock__part--green": milisecondsColor === "green",
-         "Clock__part--blue": milisecondsColor === "blue"
+         "Clock__part--blue": milisecondsColor === "blue",
+         "Clock__part--black": milisecondsColor === "black"
       }
    );
    let separatorColorClassNames = classNames(
@@ -92,7 +126,8 @@ function Clock({
       {
          "Clock__part--red": separatorColor === "red",
          "Clock__part--green": separatorColor === "green",
-         "Clock__part--blue": separatorColor === "blue"
+         "Clock__part--blue": separatorColor === "blue",
+         "Clock__part--black": separatorColor === "black"
       }
    );
 
