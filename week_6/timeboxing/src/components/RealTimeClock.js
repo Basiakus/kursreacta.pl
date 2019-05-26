@@ -10,16 +10,16 @@ class RealTimeClock extends React.Component {
    }
    
    componentDidMount() {
-      console.log('RealTimeClock component is mounted');
+      //console.log('RealTimeClock component is mounted');
       this.startGlobalTime();
    };
    componentWillUnmount() {
       window.clearInterval(this.startGlobalTime);
-      console.log('RealTimeClock component is unmounted');
+      //console.log('RealTimeClock component is unmounted');
    }
    startGlobalTime = () => {
       this.intervalTime = window.setInterval(() => {
-         console.log('Start interval in RealTimeClock component');
+         //console.log('Start interval in RealTimeClock component');
          const today = new Date();
          const hour = (today.getHours() > 10) ? today.getHours() : `0${today.getHours()}`;
          const minutes = (today.getMinutes() > 10) ? today.getMinutes() : `0${today.getMinutes()}`;

@@ -45,7 +45,7 @@ class TimeboxList extends React.Component {
          }
          catch(error) {
             this.setState({ hasError: true });
-            console.log(` metoda addTimebox nie działa`);
+            //console.log(` metoda addTimebox nie działa`);
          } 
    }
 
