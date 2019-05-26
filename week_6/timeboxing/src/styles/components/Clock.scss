@@ -4,7 +4,7 @@
 .Clock {
    .Clock__part {
       font-style: oblique;
-      color: black;
+      color: white;
    }
    .Clock__part--red {
       color: red;
@@ -14,6 +14,9 @@
    }
    .Clock__part--blue {
       color: blue;
+   } 
+   .Clock__part--black {
+      color: black;
    } 
 }
 
