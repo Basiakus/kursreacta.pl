@@ -10,15 +10,15 @@ class TimeboxEditer extends React.Component {
       flag: this.props.flag
    }
    handleTitleOnChange = (event) => {
-      console.log(event.target.value)
+      //console.log(event.target.value)
       this.setState({ title: event.target.value });
    }
    handleTimeOnChange = (event) => {
-      console.log(event.target.value)
+      //console.log(event.target.value)
       this.setState({ totalTimeInMinutes: event.target.value });
    }
    handleFlagOnChange = (event) => {
-      console.log(event.target.value)
+      //console.log(event.target.value)
       this.setState({ flag: event.target.value });
    }
    handleSubmitForm = (event) => {
