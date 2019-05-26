@@ -36,13 +36,17 @@
 ### Powinien przyjmować te same propsy co ProgressBar ale wewnątrz wyświetlać komponent "https://jqueryui.com/progressbar".
 
 # Tydzień 5 spóżnine zadania
-### 1. Stwórz komponent ErrorMessage o następujących propsach:
+## 1. Stwórz komponent ErrorMessage o następujących propsach:
 ### hasError – typu boolean
 ### message – typu string
 `Jeśli property hasError jest prawdziwe ma wyświetlać message, w przeciwnym przypadku dzieci.`
 `(czyli podobnie jak komponent Error ale bez stanu i bez logiki error boundary)`
+## 2. Użyj komponentu ErrorMessage wewnątrz komponentu Error
+## 3. Użyj komponentu ErrorMessage do wyświetlenia błędu między TimeboxCreator a listą Timeboxów gdy metoda addTimebox rzuci wyjątek.
 
-### 2. Użyj komponentu ErrorMessage wewnątrz komponentu Error
-
-### 3. Użyj komponentu ErrorMessage do wyświetlenia błędu między TimeboxCreator a listą Timeboxów gdy metoda addTimebox rzuci wyjątek.
+## 4. Dodaj propTypes do komponentu Timebox, wszystkie propsy powinny być wymagane (łącznie z funkcjami obsługującymi eventy).
+## 5. Dodaj domyślne funkcje obsługujące wydarzenia komponentu Timebox, powinny one wypisywać typ wydarzenia do konsoli.
+## 6. Stwórz własny walidator do property percent w komponencie ProgressBar. 
+### Powinien on akceptować tylko liczby, których wartości są pomiędzy 0 ,a 100. Nie powinien akceptować ani null ani undefined.
+## 7. Znajdz w default props odpowiedni typ i użyj go w komponencie ProgressBar, tak aby opcjonalne property color akceptowało tylko wartości „red”, „green”, „blue”.
 
