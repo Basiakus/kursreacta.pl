@@ -10,11 +10,11 @@ class CurrentTimebox extends React.Component {
 
 
    componentWillUnmount() {
-      console.log(`CurrentTimebox component will unmount`);
+      //console.log(`CurrentTimebox component will unmount`);
       this.props.handleStop();
    }
    componentWilllMount() {
-      console.log(`CurrentTimebox component will mount`);
+      //console.log(`CurrentTimebox component will mount`);
       this.props.handleStop();
    }
    render() {

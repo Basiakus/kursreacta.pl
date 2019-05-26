@@ -38,7 +38,7 @@ class EditableTimebox extends React.Component {
         this.setState(prevState => ({
           elapsedTimeInSeconds: prevState.elapsedTimeInSeconds + 0.01
         }));
-        console.log("start interval in EditableTimebox component");
+        //console.log("start interval in EditableTimebox component");
       }, 10);
     }
   };
