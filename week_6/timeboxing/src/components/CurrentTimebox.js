@@ -61,7 +61,7 @@ class CurrentTimebox extends React.Component {
             <ProgressBar
                className={isPaused ? 'inactive' : ''}
                borderBlue={true}
-               barColor="green"
+               barColor="blue"
                isBig={true} 
                percent={progressInPercent}
                trackRemaining={false}
