@@ -42,7 +42,7 @@ class ProgressArc extends Component {
 		ctx.arc(x, y, radius, 0, ringPercent * Math.PI);
 	}
 	updateColor = () => {
-		if (this.colorValue > 254 || this.colorValue == 0) {
+		if (this.colorValue > 254 || this.colorValue === 0) {
 			this.isOver = !this.isOver
 		}
 		this.colorValue = !this.isOver ? this.colorValue += 2 : this.colorValue -= 2;
