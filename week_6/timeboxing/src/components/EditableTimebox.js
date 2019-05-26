@@ -2,7 +2,7 @@ import React from 'react';
 import TimeboxEditor from './TimeboxEditor';
 import CurrentTimebox from './CurrentTimebox';
 import RealTimeClock from './RealTimeClock';
-import { prettyDir } from '../additionalFunctions.js';
+//import { prettyDir } from '../additionalFunctions.js';
 //import '../styles/components/EditableTimebox.scss';
 
 class EditableTimebox extends React.Component {
