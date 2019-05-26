@@ -48,15 +48,16 @@ class CurrentTimebox extends React.Component {
             <Clock
                className={isPaused ? 'inactive' : ''}
                hours={hoursLeft}
-               hoursColor="default"
+               hoursColor="black"
                minutes={minutesLeft}
-               minutesColor="blue"
+               minutesColor="red"
                seconds={secondsLeft}
                secondsColor="green"
                miliseconds={decimalConverter(milisecondsLeft)}
-               milisecondsColor="red"
+               milisecondsColor="blue"
                separatorColor="red"
             />
+            {/* <Clock hoursColor={'blue'} hours={12} seconds={32} minutes={21} miliseconds={100}/> */}
             <ProgressBar
                className={isPaused ? 'inactive' : ''}
                borderBlue={true}
