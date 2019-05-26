@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import classNames from 'classnames';
 import TimeboxEditer from './TimeboxEditer';
 import '../styles/components/Timebox.scss';
+import PropTypes from 'prop-types';
 
 class Timebox extends React.Component {
    state = {
@@ -45,5 +46,12 @@ class Timebox extends React.Component {
       )
    }
 }
-
+Timebox.propTypes = {
+   index: PropTypes.number.isRequired,
+   title: PropTypes.string.isRequired,
+   flag: PropTypes.string.isRequired,
+   totalTimeInMinutes: PropTypes.number.isRequired,
+   onEdit: PropTypes.func.isRequired,
+   onDelete: PropTypes.func.isRequired
+}
 export default Timebox;
