@@ -30,7 +30,7 @@ class TimeboxList extends React.Component {
       hasError: false
    }
    addTimebox = (newTimebox) => {
-      throw new Error('test błędu metody addTimebox');
+      //throw new Error('test błędu metody addTimebox');
       this.setState(prevState => {
          /* new array of state with new timebox */
          const newTimeboxes = [...prevState.timeboxes];
