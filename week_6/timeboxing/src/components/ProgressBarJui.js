@@ -14,7 +14,7 @@ class ProgressBarJui extends Component {
           })
      }
      componentDidUpdate() {
-          const value = window.$(this.progressBasjui.current).progressbar('option', 'value');
+
           window.$(this.progressBasjui.current).progressbar('option', 'value', this.props.percent);
      }
      componentWillUnmount() {
