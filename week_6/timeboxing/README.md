@@ -61,7 +61,8 @@ function fizzBuzz(i) {
     result += 'Buzz';
   }
   return result || i;
-}```
+}
+```
 ### a) Jaka jest w.g. Ciebie najmniejsza liczba testów która przetestuje że ta funkcja działa poprawnie.
 `Według mnie potrzebne są 3 testy. Pierwszy do sprawdzenia liczb podzielnych przez 3, kolejno przez 5 i liczbę niepodzielną przez podane dzielniki` 
 ### b) Dodaj podgrupy testów sprawdzające podobne przypadki.
