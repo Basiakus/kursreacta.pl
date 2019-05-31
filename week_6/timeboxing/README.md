@@ -50,3 +50,17 @@
 ### Powinien on akceptować tylko liczby, których wartości są pomiędzy 0 ,a 100. Nie powinien akceptować ani null ani undefined.
 ## 7. Znajdz w default props odpowiedni typ i użyj go w komponencie ProgressBar, tak aby opcjonalne property color akceptowało tylko wartości „red”, „green”, „blue”.
 
+## 8.  Przetestuj poniższą funkcję, pamiętaj o ładnych opisach w test/it oraz describe
+`function fizzBuzz(i) {`
+  `let result = '';`
+  `if (i % 3 === 0) {`
+    `result += 'Fizz';`
+  `}`
+  `if (i % 5 === 0) {`
+    `result += 'Buzz';`
+  `}`
+  `return result || i;`
+`}`
+### a) Jaka jest w.g. Ciebie najmniejsza liczba testów która przetestuje że ta funkcja działa poprawnie.
+`Według mnie potrzebne są 3 testy. Pierwszy do sprawdzenia liczb podzielnych przez 3, kolejno przez 5 i liczbę niepodzielną przez podane dzielniki` 
+### b) Dodaj podgrupy testów sprawdzające podobne przypadki.
