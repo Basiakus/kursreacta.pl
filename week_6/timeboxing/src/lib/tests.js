@@ -8,6 +8,14 @@ function fizzBuzz(i) {
      }
      return result || i;
 }
+
+function fib(x) {
+     return x <= 1 ? x : fib(x - 2) + fib(x - 1)
+}
+
+function xxx(str) {
+     return str.split("").reduce((xyz, abc) => abc + xyz, '');
+}
 export {
-     fizzBuzz
+     fizzBuzz, fib, xxx
 }
