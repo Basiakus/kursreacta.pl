@@ -50,7 +50,7 @@
 ### Powinien on akceptować tylko liczby, których wartości są pomiędzy 0 ,a 100. Nie powinien akceptować ani null ani undefined.
 ## 7. Znajdz w default props odpowiedni typ i użyj go w komponencie ProgressBar, tak aby opcjonalne property color akceptowało tylko wartości „red”, „green”, „blue”.
 
-## 8.  Przetestuj poniższą funkcję, pamiętaj o ładnych opisach w test/it oraz describe
+## 8. Przetestuj poniższą funkcję, pamiętaj o ładnych opisach w test/it oraz describe
 ```javascript
 function fizzBuzz(i) {
   let result = '';
@@ -66,3 +66,16 @@ function fizzBuzz(i) {
 ### a) Jaka jest w.g. Ciebie najmniejsza liczba testów która przetestuje że ta funkcja działa poprawnie.
 `Według mnie potrzebne są 3 testy. Pierwszy do sprawdzenia liczb podzielnych przez 3, kolejno przez 5 i liczbę niepodzielną przez podane dzielniki` 
 ### b) Dodaj podgrupy testów sprawdzające podobne przypadki.
+## 9. Przetestuj poniższą funkcję
+```javascript
+function fib(x) {
+  return x <= 1 ? x : fib(x-2) + fib(x-1)
+}
+```
+## 10. 3. Przetestuj tę funkcję i dowiedz się co ona robi
+```javascript
+function xxx(str) {
+  return str.split("").reduce((xyz, abc)=> abc + xyz, '');
+}
+```
+#### `Funkcja ta zwraca "odbicie lustrzane" podanego stringa`
