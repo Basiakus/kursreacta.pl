@@ -81,5 +81,5 @@ function xxx(str) {
 #### `Funkcja ta zwraca "odbicie lustrzane" podanego stringa`
 
 ## Zadanie 10.Napisz testy dla komponentu ProgressBar
-#### * upewnij się że dostaje właściwy className
-#### * oraz że odpowiednia szerokość paska jest ustawiana
+* upewnij się że dostaje właściwy className
+* oraz że odpowiednia szerokość paska jest ustawiana
