@@ -72,10 +72,14 @@ function fib(x) {
   return x <= 1 ? x : fib(x-2) + fib(x-1)
 }
 ```
-## 10. 3. Przetestuj tę funkcję i dowiedz się co ona robi
+## 10. Przetestuj tę funkcję i dowiedz się co ona robi
 ```javascript
 function xxx(str) {
   return str.split("").reduce((xyz, abc)=> abc + xyz, '');
 }
 ```
 #### `Funkcja ta zwraca "odbicie lustrzane" podanego stringa`
+
+## Zadanie 10.Napisz testy dla komponentu ProgressBar
+#### * upewnij się że dostaje właściwy className
+#### * oraz że odpowiednia szerokość paska jest ustawiana
