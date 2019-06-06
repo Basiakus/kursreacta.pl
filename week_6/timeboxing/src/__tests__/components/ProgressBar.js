@@ -1,7 +1,9 @@
 import React from 'react';
 import ProgressBar from '../../components/ProgressBar.js';
 import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer'
 var root = null;
+let progressBarRenerer = null;
 describe('TEST <ProgressBar /> Component', () => {
      beforeEach(() => {
           root = document.createElement('div');
@@ -9,10 +11,22 @@ describe('TEST <ProgressBar /> Component', () => {
                <ProgressBar barColor="blue" percent={20} trackRemaining={false}/>, root
           )
      })
-     it('test for corrent className', () => {
+     xit('test for corrent className', () => {
           expect(root.childNodes[0].className).toEqual('ProgressBar');
      });
-     it('check if conponent bar is modify', () => {
-          expect(root.childNodes[0].trackRemaining).toEqual();
-     });
+});
+
+describe('Use renderer on <ProgressBar />', () => {
+     beforeEach(() => {
+          progressBarRenerer = renderer.create(
+               <ProgressBar barColor="blue" percent={11} trackRemaining={false} />
+          )
+     })
+     it('Create snapshot file represent a component JSON file', () => {
+          console.log(progressBarRenerer.toJSON())
+          expect(progressBarRenerer.toJSON()).toMatchSnapshot();
+     })
+     it('check value of percent if is between 0-100', () => {
+          expect(progressBarRenerer.toJSON().props.style.background).toMatch(/[0-100]/)
+     })
 });
