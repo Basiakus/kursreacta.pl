@@ -1,8 +1,8 @@
 import React from 'react';
 import Clock from './Clock';
 import ProgressBar from './ProgressBar';
-import ProgressArc from './ProgressArc';
-import ProgressBarJui from './ProgressBarJui';
+//import ProgressArc from './ProgressArc';
+//import ProgressBarJui from './ProgressBarJui';
 import { getMinutesAndSecondsFromDuractionInSeconds } from '../lib/time.js';
 
 import '../styles/components/CurrentTimebox.scss';
@@ -44,7 +44,7 @@ class CurrentTimebox extends React.Component {
          <div className={`CurrentTimebox ${isEditable ? 'inactive' : ""}`}>
             <h1>{title}</h1>
             pozostało: 
-            <ProgressArc canvasSize={80} percent={progressInPercent} />
+            {/* <ProgressArc canvasSize={80} percent={progressInPercent} /> */}
             <Clock
                className={isPaused ? 'inactive' : ''}
                hours={hoursLeft}
@@ -57,7 +57,6 @@ class CurrentTimebox extends React.Component {
                milisecondsColor="blue"
                separatorColor="red"
             />
-            {/* <Clock hoursColor={'blue'} hours={12} seconds={32} minutes={21} miliseconds={100}/> */}
             <ProgressBar
                className={isPaused ? 'inactive' : ''}
                borderBlue={true}
@@ -66,14 +65,14 @@ class CurrentTimebox extends React.Component {
                percent={progressInPercent}
                trackRemaining={false}
             />
-            <ProgressBarJui
+            {/* <ProgressBarJui
                className={isPaused ? 'inactive' : ''}
                borderBlue={true}
                barColor="green"
                isBig={true}
                percent={progressInPercent}
                trackRemaining={false}
-            />
+            /> */}
             <button onClick={handleStart} disabled={isRunning}>Start</button>
             <button onClick={handleStop} disabled={!isRunning}>Stop</button>
             <button onClick={togglePause} disabled={!isRunning}>{isPaused ? 'Wznów' : 'Pauzuj'}</button>
