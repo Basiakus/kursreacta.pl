@@ -33,7 +33,13 @@
     ]
   },
   "devDependencies": {
-    "react-test-renderer": "^16.8.6",
-    "@testing-library/react": "^8.0.1"
+    "@testing-library/react": "^8.0.1",
+    "jest": {
+      "setupFiles": [
+        "jest-canvas-mock"
+      ]
+    },
+    "jest-canvas-mock": "^2.1.0",
+    "react-test-renderer": "^16.8.6"
   }
 }
