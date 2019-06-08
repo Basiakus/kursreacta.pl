@@ -6,6 +6,7 @@ import '../styles/components/Timebox.scss';
 import PropTypes from 'prop-types';
 
 class Timebox extends React.Component {
+
    state = {
       isEditActive: false
    }
@@ -52,6 +53,14 @@ Timebox.propTypes = {
    flag: PropTypes.string.isRequired,
    totalTimeInMinutes: PropTypes.number.isRequired,
    onEdit: PropTypes.func.isRequired,
-   onDelete: PropTypes.func.isRequired
+   handleIsEdit: PropTypes.func.isRequired
 }
+Timebox.defaultProps = {
+   index: 0,
+   title: 'test',
+   flag: 'blue',
+   totalTimeInMinutes: 0,
+   onEdit: () => {},
+   handleIsEdit: () => {}
+};
 export default Timebox;
