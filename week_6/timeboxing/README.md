@@ -83,3 +83,11 @@ function xxx(str) {
 ## Zadanie 10.Napisz testy dla komponentu ProgressBar
 * upewnij się że dostaje właściwy className
 * oraz że odpowiednia szerokość paska jest ustawiana
+
+## 11. Przetestuj edycję timeboxa przy pomocy react-testing-library.
+
+* Klikamy w edycję
+* Znajdujemy input odpowiedzialny za edycje tytułu (np. za pomocą etykiety)
+* Odpalamy event change na inpucie
+* Klikamy na przycisku zatwierdź zmiany
+* Upewniamy się że zmieniony tytuł jest widoczny na ekranie.
