@@ -1,32 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
+import toRoman from './toRoman.js';
 import { cleanup, render, fireEvent } from '@testing-library/react';
-
-class RomanConverter extends Component {
-     state = {
-          roman: null
-     }
-
-     handleChange = (event) => {
-          const arabic = event.target.value;
-          let roman = 'alala';
-          if( arabic == 1 ) {
-               roman = 'I'
-          } else if ( arabic == 5 ) {
-               roman = 'V'
-          } else if ( arabic == 10 ) {
-               roman = "X"
-          }
-          return this.setState({ roman });
-     }
-     render() {
-          return (
-               <div>
-                    <label>Arabic: <input type="number" onChange={this.handleChange}></input></label>
-                    <h1>Roman: {this.state.roman ? this.state.roman : 'none'}</h1>
-               </div>
-          )
-     }
-}
+import RomanConverter from './RomanConverter';
 
 
 describe('<RomanConverter />', () => {
@@ -48,7 +23,7 @@ describe('<RomanConverter />', () => {
      });
      it('Convert arabic "1" to roman "I"', () => {
           const { getByText, getByLabelText } = render(<RomanConverter />);
-          fireEvent.change(getByLabelText(/arabic/i), { target: { value: "1" } });
+          fireEvent.change(getByLabelText(/arabic/i), { target: { value: '1' } });
           expect(() => {
                getByText("Roman: I");
           }).not.toThrow();
