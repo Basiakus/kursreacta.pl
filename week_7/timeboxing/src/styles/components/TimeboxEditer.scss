@@ -1,0 +1,37 @@
+@import '../variables.scss';
+@import '../utilities.scss';
+
+.TimeboxEditer {
+   background-color: darken(aqua, 10);
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   border: $default-border;
+   border-radius: $default-border-radius;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   z-index: 100;
+   form {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      input {
+         min-width: 1%;
+         max-width: 50%;
+      }
+   }
+}
+.TimeboxEditer--blue {
+   background-color: rgb(91, 178, 255);
+}
+.TimeboxEditer--yellow {
+   background-color: rgb(253, 253, 145)
+}
+.TimeboxEditer--red {
+   background-color: rgb(255, 121, 121);
+}

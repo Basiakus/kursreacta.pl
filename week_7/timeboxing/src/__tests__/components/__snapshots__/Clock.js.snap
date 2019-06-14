@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Clock /> on clockRenderer Use snaphot on component JSON file 1`] = `
+<h2
+  className="Clock"
+>
+  <span
+    className="Clock__part Clock__part--red"
+  >
+    01
+  </span>
+  <span
+    className="Clock__part Clock__part--black"
+  >
+    :
+  </span>
+  <span
+    className="Clock__part Clock__part--red"
+  >
+    20
+  </span>
+  <span
+    className="Clock__part Clock__part--black"
+  >
+    :
+  </span>
+  <span
+    className="Clock__part Clock__part--red"
+  >
+    13
+  </span>
+  <span
+    className="Clock__part Clock__part--black"
+  >
+    .
+  </span>
+  <span
+    className="Clock__part Clock__part--red"
+  >
+    10
+  </span>
+</h2>
+`;
