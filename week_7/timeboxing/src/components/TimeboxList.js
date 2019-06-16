@@ -7,27 +7,26 @@ import Error from './Error';
 
 class TimeboxList extends React.Component {
    state = {
-      timeboxes: [
+      "timeboxes": [
          {
-            id: uuid.v4(),
-            title: 'Week 1 introduction',
-            totalTimeInMinutes: 25,
-            flag: 'blue'
+            "id": 1,
+            "title": "Week 1 introduction",
+            "totalTimeInMinutes": 25,
+            "flag": "blue"
          },
          {
-            id: uuid.v4(),
-            title: "week 2 componens of react",
-            totalTimeInMinutes: 35,
-            flag: 'blue'
+            "id": 2,
+            "title": "week 2 componens of react",
+            "totalTimeInMinutes": 35,
+            "flag": "blue"
          },
          {
-            id: uuid.v4(),
-            title: "week 3 lists and forms",
-            totalTimeInMinutes: 30,
-            flag: 'blue'
-         }
-      ],
-      hasError: false
+            "id": 3,
+            "title": "week 3 lists and forms",
+            "totalTimeInMinutes": 30,
+            "flag": "Blue"
+         }],
+      "hasError": false
    }
    addTimebox = (newTimebox) => {
       //throw new Error('test błędu metody addTimebox');
