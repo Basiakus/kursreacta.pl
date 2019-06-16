@@ -5,9 +5,9 @@ import '../styles/components/TimeboxEditer.scss';
 
 class TimeboxEditer extends React.Component {
    state = {
-      title: this.props.title,
-      totalTimeInMinutes: this.props.totalTimeInMinutes,
-      flag: this.props.flag
+      "title": this.props.title,
+      "totalTimeInMinutes": this.props.totalTimeInMinutes,
+      "flag": this.props.flag
    }
    handleTitleOnChange = (event) => {
       //console.log(event.target.value)

@@ -11,10 +11,10 @@ class TimeboxCreator extends React.Component {
       event.preventDefault();
       //console.log(this.formRef.current[0]) 
       this.props.onCreate({
-         id: uuid.v4(),
-         title: this.formRef.current[0].value === "" ? "brak" : this.formRef.current[0].value,
-         totalTimeInMinutes: this.formRef.current[1].value === null ? 0 : Number(this.formRef.current[1].value),
-         flag: this.formRef.current[2].value
+         "id": uuid.v4(),
+         "title": this.formRef.current[0].value === "" ? "brak" : this.formRef.current[0].value,
+         "totalTimeInMinutes": this.formRef.current[1].value === null ? 0 : Number(this.formRef.current[1].value),
+         "flag": this.formRef.current[2].value
       });
       this.formRef.current[0].value = "wpisz zadanie";
       this.formRef.current[1].value = 3;
