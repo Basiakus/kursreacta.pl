@@ -14,7 +14,7 @@
 ### 2. Starwars API
 * Użyj Postmana żeby połączyć się ze Starwars REST API
 * Dowiedz się jakimi statkami latał Obi Wan Kenobi
-#### `https://swapi.co/api/people/?search=obi`
+##### `https://swapi.co/api/people/?search=obi`
 ```javascript
 "starships": [
                 "https://swapi.co/api/starships/48/",
@@ -25,6 +25,12 @@
             ]
 ```
 * Odkryj nazwę planety i gatunek postaci „Bib Fortuna”
+##### `https://swapi.co/api/people/?search=bib`
+```javascript
+{
+     "homeworld": "https://swapi.co/api/planets/37/"
+}
+```
 ### 3. Github API
 * Użyj Postmana żeby połączyć się z Github REST API
 * Dowiedz się ile publicznych repozytoriów ma Dan Abramov (jego nick to gaearon)
