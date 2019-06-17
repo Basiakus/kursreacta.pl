@@ -14,6 +14,16 @@
 ### 2. Starwars API
 * Użyj Postmana żeby połączyć się ze Starwars REST API
 * Dowiedz się jakimi statkami latał Obi Wan Kenobi
+#### `https://swapi.co/api/people/?search=obi`
+```javascript
+"starships": [
+                "https://swapi.co/api/starships/48/",
+                "https://swapi.co/api/starships/59/",
+                "https://swapi.co/api/starships/64/",
+                "https://swapi.co/api/starships/65/",
+                "https://swapi.co/api/starships/74/"
+            ]
+```
 * Odkryj nazwę planety i gatunek postaci „Bib Fortuna”
 ### 3. Github API
 * Użyj Postmana żeby połączyć się z Github REST API
