@@ -34,5 +34,12 @@
 ### 3. Github API
 * Użyj Postmana żeby połączyć się z Github REST API
 * Dowiedz się ile publicznych repozytoriów ma Dan Abramov (jego nick to gaearon)
+```javascript
+{
+     "public_repos": 235,
+}
+```
 * Dowiedz się ile forków, open issues i subskrybentów ma repozytorium reacta 🙂
+
 * Pobierz trzecią stronę issues repozytorium reacta
+`https://api.github.com/search/issues?q=per_page=3`
