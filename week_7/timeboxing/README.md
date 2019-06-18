@@ -68,4 +68,4 @@ const sleep = (ms, onSuccess, onError) => {
 };
 sleep(4, result => console.log(result), result => console.log(result));
 ```
-`[link](https://codesandbox.io/s/callback-exemple-xdo8o)`
+[link](https://codesandbox.io/s/callback-exemple-xdo8o)
