@@ -1,6 +1,6 @@
 # Week 7 REST API
 
-## lekcja 2
+## Lekcja 2: JSON Server
 
 ### 1. Zasoby ludzkie
 * Stwórz nowy zasób w pliku json.db pod kluczem people.
@@ -45,3 +45,27 @@
 
 * Pobierz trzecią stronę issues repozytorium reacta
 `https://api.github.com/search/issues?q=per_page=3`
+
+## Lekcja 4: Callback Hell
+
+* Stwórz funkcję sleep(ms, onSuccess, onError) która ma uruchomić callback onSuccess po wybranej ilości milisekund, chyba że użytkownik zażąda mniej niż 5 ,a więcej niż 4000. W takim przypadku ma uruchomić callback onError.
+
+```javascript
+const sleep = (ms, onSuccess, onError) => {
+  if (ms < 5) {
+    setTimeout(() => {
+      onError("sorry is to short time to go sleep!");
+    }, ms);
+  } else if (ms > 4000) {
+    setTimeout(() => {
+      onError("sorry is to long time to go sleep!");
+    }, ms);
+  } else {
+    setTimeout(() => {
+      onSuccess("Zzzzzzz...");
+    }, ms);
+  }
+};
+sleep(4, result => console.log(result), result => console.log(result));
+```
+`https://codesandbox.io/s/callback-exemple-xdo8o`
