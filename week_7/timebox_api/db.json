@@ -1,22 +1,24 @@
 {
-     "timeboxes": [
-          {
-            "id": 1,
-            "title": "Week 1 introduction",
-            "totalTimeInMinutes": 25,
-            "flag": "blue"
-          },
-          {
-            "id": 2,
-            "title": "week 2 componens of react",
-            "totalTimeInMinutes": 35,
-            "flag": "blue"
-          },
-          {
-            "id": 3,
-            "title": "week 3 lists and forms",
-            "totalTimeInMinutes": 30,
-            "flag": "blue"
-          }
-     ]
+  "timeboxes": [
+    {
+      "id": 1,
+      "title": "Week 1 introduction",
+      "totalTimeInMinutes": 25,
+      "flag": "blue"
+    },
+    {
+      "id": 2,
+      "title": "week 2 componens of react",
+      "totalTimeInMinutes": 35,
+      "flag": "blue"
+    },
+    {
+      "id": 5,
+      "surname": "Basiak"
+    },
+    {
+      "name": "Adam",
+      "id": 6
+    }
+  ]
 }

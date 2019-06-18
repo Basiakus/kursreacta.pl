@@ -1,5 +1,7 @@
 # Week 7 REST API
 
+## lekcja 2
+
 ### 1. Zasoby ludzkie
 * Stwórz nowy zasób w pliku json.db pod kluczem people.
 * Ma być to tablica rekordów z kluczami email, first_name, last_name oraz id.
