@@ -69,3 +69,28 @@ const sleep = (ms, onSuccess, onError) => {
 sleep(4, result => console.log(result), result => console.log(result));
 ```
 [link](https://codesandbox.io/s/callback-exemple-xdo8o)
+
+## Lekca 5: Promises
+
+```javascript
+  function sleepPromise(n, ms) {
+  return new Promise((resolve, eject) => {
+    if (!(n < 5) && !(n > 4000)) {
+      setTimeout(() => {
+        resolve(`promise value:${n} resolve promise`);
+      }, ms);
+    } else {
+      setTimeout(() => {
+        eject(`promise value:${n} eject promise`);
+      }, ms);
+    }
+  });
+}
+const test = sleepPromise(4, 1000);
+console.log(test);
+setTimeout(() => {
+  console.log(test);
+}, 2000);
+test.then((result) => console.log(result), (eject) => console.log(eject));
+
+```
