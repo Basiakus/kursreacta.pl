@@ -94,3 +94,7 @@ setTimeout(() => {
 test.then((result) => console.log(result), (eject) => console.log(eject));
 
 ```
+* Stwórz funkcję wait(ms). Ma ona zwrócić oczekującą (pending) obietnicę, która ma być dotrzymana (resolved) po wybranej ilości milisekund. Obietnica zwrócona z tej funkcji nie powinna być nigdy odrzucona (rejected).
+* Stwórz funkcję delayedError(ms, message), która ma zwracać oczekującą obietnicę i odrzucić ją po zadym czasie w milisekundach (ms) przekazując jej w wartości obiekt Error z zadaną wiadomością (message). Obietnica zwrócona z tej funkcji nie powinna być nigdy dotrzymana (resolved).
+
+[link do rozwiązań](https://codesandbox.io/s/callback-exemple-xdo8o)
