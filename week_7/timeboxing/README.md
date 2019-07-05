@@ -104,7 +104,7 @@ test.then((result) => console.log(result), (eject) => console.log(eject));
 ## Lekcja 6: Async/Await
 
 - [x] Stwórz asynchroniczną funkcję slowIsEven(num, ms=1000), która robi to samo co funkcja z zadania domowego w poprzedniej lekcji. Wykorzystaj do implementacji funkcje isEven oraz wait oraz słowo kluczowe await.
-- [] Dowiedz się co robi słowo await gdy jest ustawione przed stringiem?
+- [ ] Dowiedz się co robi słowo await gdy jest ustawione przed stringiem?
 - [x] Przerób poniższy kod tak aby nadal dwa razy używać słowa kluczowego await. Ale tak żeby operacje asynchroniczne rozpoczęły się niemal równocześnie. Nie zmieniaj opóźnień funkcji slowIsEven. W konsoli pierwszy komunikat powinien pojawić sie po około 2 sekundach a drugi po około 5.
 ```javascript
   const is2Even = await slowIsEven(2, 2000);
