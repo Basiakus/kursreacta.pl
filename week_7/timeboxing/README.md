@@ -100,3 +100,25 @@ test.then((result) => console.log(result), (eject) => console.log(eject));
 * 4. Stwórz funkcję slowIsEven(num, ms=1000), która robi to samo co funkcja isEven ale po zadanym czasie w milisekundach. Wykorzystaj do implementacji funkcję isEven oraz wait.
 * 5. Stwórz funkcję timeout(promise, ms=3000), zwracającą obietnicę, która ma być dotrzymana gdy przekazana obietnica zostanie dotrzymana i otrzymać jej wartość. Chyba, że upłynie zadany czas w milisekundach, to obietnica ma być odrzucona. Wykorzystaj do implementacji funkcję delayedError
 [link do rozwiązań](https://codesandbox.io/s/callback-exemple-xdo8o)
+
+## Lekcja 6: Async/Await
+
+- [x] Stwórz asynchroniczną funkcję slowIsEven(num, ms=1000), która robi to samo co funkcja z zadania domowego w poprzedniej lekcji. Wykorzystaj do implementacji funkcje isEven oraz wait oraz słowo kluczowe await.
+- [] Dowiedz się co robi słowo await gdy jest ustawione przed stringiem?
+- [x] Przerób poniższy kod tak aby nadal dwa razy używać słowa kluczowego await. Ale tak żeby operacje asynchroniczne rozpoczęły się niemal równocześnie. Nie zmieniaj opóźnień funkcji slowIsEven. W konsoli pierwszy komunikat powinien pojawić sie po około 2 sekundach a drugi po około 5.
+```javascript
+  const is2Even = await slowIsEven(2, 2000);
+  console.log(is2Even ? „2 is even” : „2 is odd”);
+  const is5Even = await slowIsEven(5, 5000);
+  console.log(is5Even ? „5 is even” : „5 is odd”);
+
+
+async function awaitToAsync(number, ms) {
+  const is2Even = await slowIsEven(number, ms);
+  console.log(is2Even ? `${number} is even ` : `${number} is odd`);
+}
+const multiAwaitActive = () => {
+  awaitToAsync(2, 2000);
+  awaitToAsync(5, 5000);
+}
+```
