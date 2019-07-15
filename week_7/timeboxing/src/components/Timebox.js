@@ -48,7 +48,7 @@ class Timebox extends React.Component {
    }
 }
 Timebox.propTypes = {
-   index: PropTypes.number.isRequired,
+   id: PropTypes.string.isRequired,
    title: PropTypes.string.isRequired,
    flag: PropTypes.string.isRequired,
    totalTimeInMinutes: PropTypes.number.isRequired,
@@ -56,11 +56,11 @@ Timebox.propTypes = {
    handleIsEdit: PropTypes.func.isRequired
 }
 Timebox.defaultProps = {
-   index: 0,
+   id: uuid.v4(),
    title: 'test',
    flag: 'blue',
    totalTimeInMinutes: 0,
    onEdit: () => {},
    handleIsEdit: () => {}
-};
+}; 
 export default Timebox;

@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid';
+//import uuid from 'uuid';
 import '../styles/components/TimeboxCreator.scss';
 
 class TimeboxCreator extends React.Component {
@@ -9,16 +9,15 @@ class TimeboxCreator extends React.Component {
    }
    handleSubmit = (event) => {
       event.preventDefault();
-      //console.log(this.formRef.current[0]) 
       this.props.onCreate({
-         "id": uuid.v4(),
+         //"id": uuid.v4(),
          "title": this.formRef.current[0].value === "" ? "brak" : this.formRef.current[0].value,
          "totalTimeInMinutes": this.formRef.current[1].value === null ? 0 : Number(this.formRef.current[1].value),
          "flag": this.formRef.current[2].value
       });
-      this.formRef.current[0].value = "wpisz zadanie";
-      this.formRef.current[1].value = 3;
-      this.formRef.current[2].value = 'blue';
+      //this.formRef.current[0].value = "wpisz zadanie";
+      //this.formRef.current[1].value = 3;
+      //this.formRef.current[2].value = 'blue';
    }
    render() {
       return (

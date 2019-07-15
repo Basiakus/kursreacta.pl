@@ -3,40 +3,68 @@ import uuid from 'uuid';
 import Timebox from './Timebox';
 import TimeboxCreator from './TimeboxCreator';
 import Error from './Error';
-
+const timeboxes = [
+   {
+      "id": 1,
+      "title": "Week 1 introduction",
+      "totalTimeInMinutes": 25,
+      "flag": "blue"
+   },
+   {
+      "id": 2,
+      "title": "week 2 componens of react",
+      "totalTimeInMinutes": 35,
+      "flag": "blue"
+   },
+   {
+      "id": 3,
+      "title": "week 3 lists and forms",
+      "totalTimeInMinutes": 30,
+      "flag": "Blue"
+   }
+]
+const timeboxesApi = {
+   getAllTimeboxes: async function getAllTimeboxes() {
+      //throw new Error('coś nie tak');
+      await wait(3000);
+      return [...timeboxes];
+   },
+   addTimebox: async function addTimeboxTwo(timeboxToAdd) {
+      await wait(1000);
+      const addedTimebox = {...timeboxToAdd, id: uuid.v4()};
+      timeboxes.push(addedTimebox)
+      return addedTimebox;
+   }
+}
+const wait = (ms = 1000) => {
+   return new Promise( (resolve) => setTimeout(resolve, ms) );
+}
 
 class TimeboxList extends React.Component {
    state = {
-      "timeboxes": [
-         {
-            "id": 1,
-            "title": "Week 1 introduction",
-            "totalTimeInMinutes": 25,
-            "flag": "blue"
-         },
-         {
-            "id": 2,
-            "title": "week 2 componens of react",
-            "totalTimeInMinutes": 35,
-            "flag": "blue"
-         },
-         {
-            "id": 3,
-            "title": "week 3 lists and forms",
-            "totalTimeInMinutes": 30,
-            "flag": "Blue"
-         }],
-      "hasError": false
+      "timeboxes": [],
+      "hasError": false,
+      "loading": true,
+      "error": null
    }
+
+   componentDidMount() {
+      timeboxesApi.getAllTimeboxes()
+      .then( (timeboxes) => this.setState({ timeboxes }))
+      .catch( (error) => Promise.reject(this.setState({error} )))
+      .finally( () => this.setState({loading : false }) ) 
+   }
+   
+
    addTimebox = (newTimebox) => {
-      //throw new Error('test błędu metody addTimebox');
-      this.setState(prevState => {
-         /* new array of state with new timebox */
-         const newTimeboxes = [...prevState.timeboxes];
-         newTimeboxes.unshift(newTimebox);
-         //const newTimeboxes = [newTimebox, ...prevState.timeboxes];
-         return { timeboxes: newTimeboxes }
-      })
+      timeboxesApi.addTimebox(newTimebox).then(
+         (addedTimebox) => this.setState(prevState => {
+            /* new array of state with new timebox */
+            const timeboxes = [...prevState.timeboxes, addedTimebox];
+            return { timeboxes }
+         })
+      )
+      
    }
    handleCreate = (createdTimebox) => {
          try {
@@ -76,6 +104,8 @@ class TimeboxList extends React.Component {
             {
               hasError ? <h1>emulacja błędu metody addTimebox</h1> : <TimeboxCreator onCreate={this.handleCreate} />
             }
+            {this.state.loading ? 'Pobieranie listy timeboxów . . .' : null}
+            {this.state.error ? 'nie udało sie pobrać timeboxów ;(' : null}
             <Error message='Wystąpił błąd w TimeboxList'>
                {
                   timeboxes.map((timebox, index) =>
