@@ -5,35 +5,40 @@ import TimeboxCreator from './TimeboxCreator';
 import Error from './Error';
 const timeboxes = [
    {
-      "id": 1,
+      "id":"1",
       "title": "Week 1 introduction",
       "totalTimeInMinutes": 25,
       "flag": "blue"
    },
    {
-      "id": 2,
+      "id": "2",
       "title": "week 2 componens of react",
       "totalTimeInMinutes": 35,
       "flag": "blue"
    },
    {
-      "id": 3,
+      "id": "3",
       "title": "week 3 lists and forms",
       "totalTimeInMinutes": 30,
       "flag": "Blue"
    }
 ]
 const timeboxesApi = {
-   getAllTimeboxes: async function getAllTimeboxes() {
+   getAllTimeboxes: async function() {
       //throw new Error('coś nie tak');
       await wait(3000);
       return [...timeboxes];
    },
-   addTimebox: async function addTimeboxTwo(timeboxToAdd) {
+   addTimebox: async function(timeboxToAdd) {
       await wait(1000);
       const addedTimebox = {...timeboxToAdd, id: uuid.v4()};
       timeboxes.push(addedTimebox)
       return addedTimebox;
+   },
+   replaceTimebox: async function(timeboxToUpdate) {
+      if (!timeboxToUpdate.id) {
+         throw new Error('timebox nie ma id');
+      }
    }
 }
 const wait = (ms = 1000) => {
@@ -88,14 +93,15 @@ class TimeboxList extends React.Component {
    }
 
    updateTimebox = (indexToUpdate, updatedTimebox) => {
-      this.setState(prevState => {
-         /* new array of state with new timebox */
-
-         const newTimeboxes = [...prevState.timeboxes];
-         newTimeboxes[indexToUpdate] = updatedTimebox;
-         //const newTimeboxes = prevState.timeboxes.map((timebox, index) => index === indexToUpdate ? updatedTimebox : timebox);
-         return { timeboxes: newTimeboxes }
-      })
+      timeboxesApi.replaceTimebox(updatedTimebox).then(
+         this.setState(prevState => {
+            /* new array of state with new timebox */
+            const newTimeboxes = [...prevState.timeboxes];
+            newTimeboxes[indexToUpdate] = updatedTimebox;
+            //const newTimeboxes = prevState.timeboxes.map((timebox, index) => index === indexToUpdate ? updatedTimebox : timebox);
+            return { timeboxes: newTimeboxes }
+         })
+      )
    }
    render() {
       const { timeboxes, hasError } = this.state;
@@ -112,11 +118,11 @@ class TimeboxList extends React.Component {
                      (
                         <Error key={timebox.id} message='Wystąpił błąd w Timebox'>
                            <Timebox
+                              id={timebox.id}
                               index={index}
                               title={timebox.title}
                               flag={timebox.flag}
                               totalTimeInMinutes={timebox.totalTimeInMinutes}
-                              //onEdit={ () => this.updateTimebox(index, {...timebox, title: "Zedytowano"}) }
                               onEdit={this.updateTimebox}
                               onDelete={() => this.removeTimebox(index)}
                            />

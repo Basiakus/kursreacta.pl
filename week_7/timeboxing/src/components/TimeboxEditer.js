@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid';
+//import uuid from 'uuid';
 import classNames from 'classnames';
 import '../styles/components/TimeboxEditer.scss';
 
@@ -7,7 +7,8 @@ class TimeboxEditer extends React.Component {
    state = {
       "title": this.props.title,
       "totalTimeInMinutes": this.props.totalTimeInMinutes,
-      "flag": this.props.flag
+      "flag": this.props.flag,
+      "id": this.props.id
    }
    handleTitleOnChange = (event) => {
       //console.log(event.target.value)
@@ -24,7 +25,7 @@ class TimeboxEditer extends React.Component {
    }
    handleSubmitForm = (event) => {
       event.preventDefault();
-      this.props.onEdit(this.props.index, { id: uuid.v4(), title: this.state.title, totalTimeInMinutes: this.state.totalTimeInMinutes, flag: this.state.flag });
+      this.props.onEdit(this.props.index, { "id": this.state.id, "title": this.state.title, "totalTimeInMinutes": this.state.totalTimeInMinutes, "flag": this.state.flag });
    }
    render() {
       const { title, totalTimeInMinutes, isEdit, handleIsEdit, flag } = this.props;
