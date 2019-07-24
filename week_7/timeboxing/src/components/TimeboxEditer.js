@@ -14,8 +14,9 @@ class TimeboxEditer extends React.Component {
       this.setState({ title: event.target.value });
    }
    handleTimeOnChange = (event) => {
-      //console.log(event.target.value)
-      this.setState({ totalTimeInMinutes: event.target.value });
+      const value = Number(event.target.value);
+      //console.log(typeof value);
+      this.setState({ totalTimeInMinutes: value });
    }
    handleFlagOnChange = (event) => {
       //console.log(event.target.value)
