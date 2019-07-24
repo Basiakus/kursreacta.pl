@@ -29,6 +29,7 @@ class Timebox extends React.Component {
       return (
          <div className={timeboxClasses}>
             <TimeboxEditer
+               id={this.props.id}
                key={uuid.v4()}
                title={this.props.title}
                totalTimeInMinutes={this.props.totalTimeInMinutes}
