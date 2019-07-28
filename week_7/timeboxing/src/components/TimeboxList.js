@@ -1,49 +1,8 @@
 import React from 'react';
-import uuid from 'uuid';
 import Timebox from './Timebox';
 import TimeboxCreator from './TimeboxCreator';
 import Error from './Error';
-const timeboxes = [
-   {
-      "id":"1",
-      "title": "Week 1 introduction",
-      "totalTimeInMinutes": 25,
-      "flag": "blue"
-   },
-   {
-      "id": "2",
-      "title": "week 2 componens of react",
-      "totalTimeInMinutes": 35,
-      "flag": "blue"
-   },
-   {
-      "id": "3",
-      "title": "week 3 lists and forms",
-      "totalTimeInMinutes": 30,
-      "flag": "Blue"
-   }
-]
-const timeboxesApi = {
-   getAllTimeboxes: async function() {
-      //throw new Error('coś nie tak');
-      await wait(3000);
-      return [...timeboxes];
-   },
-   addTimebox: async function(timeboxToAdd) {
-      await wait(1000);
-      const addedTimebox = {...timeboxToAdd, id: uuid.v4()};
-      timeboxes.push(addedTimebox)
-      return addedTimebox;
-   },
-   replaceTimebox: async function(timeboxToUpdate) {
-      if (!timeboxToUpdate.id) {
-         throw new Error('timebox nie ma id');
-      }
-   }
-}
-const wait = (ms = 1000) => {
-   return new Promise( (resolve) => setTimeout(resolve, ms) );
-}
+import timeboxesApi from '../api/fakeTimeboxesApi';
 
 class TimeboxList extends React.Component {
    state = {
@@ -69,7 +28,6 @@ class TimeboxList extends React.Component {
             return { timeboxes }
          })
       )
-      
    }
    handleCreate = (createdTimebox) => {
          try {
@@ -82,25 +40,31 @@ class TimeboxList extends React.Component {
    }
 
    removeTimebox = (indexToRemove) => {
-      this.setState(prevState => {
-         /* new array of state with new timebox */
-
-         /* const newTimebox = prevState.timeboxes;
-         const newTimeboxes = newTimebox.slice(0, indexToRemove).concat(newTimebox.slice(indexToRemove + 1, newTimebox.length)); */
-         const newTimeboxes = prevState.timeboxes.filter((timebox, index) => index !== indexToRemove);
-         return { timeboxes: newTimeboxes }
-      })
+      timeboxesApi.removeTimebox(this.state.timeboxes[indexToRemove])
+         .then(
+            () => {
+               this.setState(prevState => {
+                  // const newTimebox = prevState.timeboxes;
+                  //const newTimeboxes = newTimebox.slice(0, indexToRemove).concat(newTimebox.slice(indexToRemove + 1, newTimebox.length)); 
+                  const newTimeboxes = prevState.timeboxes.filter((timebox, index) => index !== indexToRemove);
+                  return { timeboxes: newTimeboxes }
+               })
+            }
+         )
    }
 
-   updateTimebox = (indexToUpdate, updatedTimebox) => {
-      timeboxesApi.replaceTimebox(updatedTimebox).then(
-         this.setState(prevState => {
-            /* new array of state with new timebox */
-            const newTimeboxes = [...prevState.timeboxes];
-            newTimeboxes[indexToUpdate] = updatedTimebox;
-            //const newTimeboxes = prevState.timeboxes.map((timebox, index) => index === indexToUpdate ? updatedTimebox : timebox);
-            return { timeboxes: newTimeboxes }
-         })
+   updateTimebox = (indexToUpdate, timeboxToUpdate) => {
+      timeboxesApi.replaceTimebox(timeboxToUpdate).then(
+         (updatedTimebox) => {
+            this.setState(prevState => {
+               /* new array of state with new timebox */
+               const newTimeboxes = [...prevState.timeboxes];
+               newTimeboxes[indexToUpdate] = updatedTimebox;
+               //const newTimeboxes = prevState.timeboxes.map((timebox, index) => index === indexToUpdate ? updatedTimebox : timebox);
+               return { timeboxes: newTimeboxes }
+            })
+         }
+         
       )
    }
    render() {
