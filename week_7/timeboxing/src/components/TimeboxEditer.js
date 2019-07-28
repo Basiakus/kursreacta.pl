@@ -26,6 +26,7 @@ class TimeboxEditer extends React.Component {
    handleSubmitForm = (event) => {
       event.preventDefault();
       this.props.onEdit(this.props.index, { "id": this.state.id, "title": this.state.title, "totalTimeInMinutes": this.state.totalTimeInMinutes, "flag": this.state.flag });
+      this.props.handleIsEdit();
    }
    render() {
       const { title, totalTimeInMinutes, isEdit, handleIsEdit, flag } = this.props;
