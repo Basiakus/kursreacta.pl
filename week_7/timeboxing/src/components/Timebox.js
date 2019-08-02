@@ -49,7 +49,7 @@ class Timebox extends React.Component {
    }
 }
 Timebox.propTypes = {
-   id: PropTypes.string.isRequired,
+   id: PropTypes.number.isRequired,
    title: PropTypes.string.isRequired,
    flag: PropTypes.string.isRequired,
    totalTimeInMinutes: PropTypes.number.isRequired,
