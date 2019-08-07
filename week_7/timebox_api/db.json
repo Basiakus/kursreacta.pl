@@ -1,24 +1,13 @@
 {
   "timeboxes": [
     {
-      "id": 1,
-      "title": "Week 1 introduction",
-      "totalTimeInMinutes": 25,
-      "flag": "blue"
+      "id": 15
     },
     {
-      "id": 2,
-      "title": "week 2 componens of react",
-      "totalTimeInMinutes": 35,
-      "flag": "blue"
-    },
-    {
-      "id": 5,
-      "surname": "Basiak"
-    },
-    {
-      "name": "Adam",
-      "id": 6
+      "id": 17,
+      "title": "123",
+      "totalTimeInMinutes": 234,
+      "flag": "red"
     }
   ]
 }

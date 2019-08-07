@@ -2,8 +2,8 @@ import React from 'react';
 import Timebox from './Timebox';
 import TimeboxCreator from './TimeboxCreator';
 import Error from './Error';
-import fetchTimeboxesApi from '../api/fetchTimeboxesApi';
-const timeboxesApi = fetchTimeboxesApi('http://localhost:4000/timeboxes/');
+import axiosTimeboxesApi from '../api/axiosTimeboxesApi';
+const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/');
 
 class TimeboxList extends React.Component {
    state = {
