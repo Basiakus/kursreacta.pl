@@ -3,7 +3,7 @@ import Timebox from './Timebox';
 import TimeboxCreator from './TimeboxCreator';
 import Error from './Error';
 import axiosTimeboxesApi from '../api/axiosTimeboxesApi';
-const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/');
+const timeboxesApi = axiosTimeboxesApi('http://localhost:5000/timeboxes/');
 
 class TimeboxList extends React.Component {
    state = {
@@ -55,7 +55,7 @@ class TimeboxList extends React.Component {
    }
 
    updateTimebox = (indexToUpdate, timeboxToUpdate) => {
-      timeboxesApi.replaceTimebox(timeboxToUpdate).then(
+      timeboxesApi.partiallyUpdateTimebox(timeboxToUpdate).then(
          (updatedTimebox) => {
             this.setState(prevState => {
                /* new array of state with new timebox */
@@ -77,6 +77,7 @@ class TimeboxList extends React.Component {
             }
             {this.state.loading ? 'Pobieranie listy timeboxów . . .' : null}
             {this.state.error ? 'nie udało sie pobrać timeboxów ;(' : null}
+            {<label>szukaj wg. tekstu :<input onChange={timeboxesApi.getTimeboxesByFullTextSearch} /></label>}
             <Error message='Wystąpił błąd w TimeboxList'>
                {
                   timeboxes.map((timebox, index) =>

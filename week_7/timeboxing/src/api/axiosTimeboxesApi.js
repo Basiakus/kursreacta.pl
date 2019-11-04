@@ -7,6 +7,14 @@ const axiosTimeboxesApi = (baseURL = 'http://localhost:4000/timeboxes/') => {
                const timeboxes = response.data;
                return timeboxes;
           },
+          getTimeboxesByFullTextSearch: async function (string) {
+               const newBaseUrl = `${baseURL}?q=test`;
+               const response = await axios.get(newBaseUrl);
+               const timeboxes = response.data;
+
+               console.log(timeboxes);
+               return timeboxes;
+          },
           addTimebox: async function (timeboxToAdd) {
                const response = await axios.post(baseURL, timeboxToAdd);
                const addedTimebox = response.data;
@@ -27,6 +35,15 @@ const axiosTimeboxesApi = (baseURL = 'http://localhost:4000/timeboxes/') => {
                const response = await axios.delete(`${baseURL}/${timeboxToRemove.id}`, timeboxToRemove);
                const removeTimebox = response.data;
                return removeTimebox;
+          },
+          partiallyUpdateTimebox: async function (timeboxToUpdate) {
+               if (!timeboxToUpdate.id) {
+                    throw new Error("id dont exist");
+               }
+               const response = await axios.patch(`${baseURL}/${timeboxToUpdate.id}`, timeboxToUpdate);
+               const updateTimebox = response.data;
+               console.log('axios patch running');
+               return updateTimebox;
           }
      }
      return timeboxesApi;
