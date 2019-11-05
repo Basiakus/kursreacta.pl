@@ -3,9 +3,14 @@ import Timebox from './Timebox';
 import TimeboxCreator from './TimeboxCreator';
 import Error from './Error';
 import axiosTimeboxesApi from '../api/axiosTimeboxesApi';
-const timeboxesApi = axiosTimeboxesApi('http://localhost:5000/timeboxes/');
+const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/');
+
 
 class TimeboxList extends React.Component {
+   constructor(props) {
+      super(props);
+      this.inputRef = React.createRef();
+   }
    state = {
       "timeboxes": [],
       "hasError": false,
@@ -22,6 +27,7 @@ class TimeboxList extends React.Component {
    
 
    addTimebox = (newTimebox) => {
+      console.log(this.inputRef.current.value);
       timeboxesApi.addTimebox(newTimebox).then(
          (addedTimebox) => this.setState(prevState => {
             /* new array of state with new timebox */
@@ -68,6 +74,7 @@ class TimeboxList extends React.Component {
          
       )
    }
+   
    render() {
       const { timeboxes, hasError } = this.state;
       return (
@@ -77,7 +84,7 @@ class TimeboxList extends React.Component {
             }
             {this.state.loading ? 'Pobieranie listy timeboxów . . .' : null}
             {this.state.error ? 'nie udało sie pobrać timeboxów ;(' : null}
-            {<label>szukaj wg. tekstu :<input onChange={timeboxesApi.getTimeboxesByFullTextSearch} /></label>}
+            {<label>szukaj wg. tekstu :<input ref={this.inputRef} onChange={() => {timeboxesApi.getTimeboxesByFullTextSearch(this.inputRef.current.value)}} /></label>}
             <Error message='Wystąpił błąd w TimeboxList'>
                {
                   timeboxes.map((timebox, index) =>
