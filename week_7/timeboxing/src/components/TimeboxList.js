@@ -25,9 +25,17 @@ class TimeboxList extends React.Component {
       .finally( () => this.setState({loading : false }) ) 
    }
    
+   searchingTimeboxes = (inputReference) => {
+      timeboxesApi.getTimeboxesByFullTextSearch(inputReference)
+         .then((searchTimeboxes) => this.setState(prevState => {
+            let newTimeboxes = [...prevState.timeboxes];
+            newTimeboxes = searchTimeboxes;
+            return { timeboxes: newTimeboxes }
+         }) 
+      )
+   }
 
    addTimebox = (newTimebox) => {
-      console.log(this.inputRef.current.value);
       timeboxesApi.addTimebox(newTimebox).then(
          (addedTimebox) => this.setState(prevState => {
             /* new array of state with new timebox */
@@ -84,7 +92,7 @@ class TimeboxList extends React.Component {
             }
             {this.state.loading ? 'Pobieranie listy timeboxów . . .' : null}
             {this.state.error ? 'nie udało sie pobrać timeboxów ;(' : null}
-            {<label>szukaj wg. tekstu :<input ref={this.inputRef} onChange={() => {timeboxesApi.getTimeboxesByFullTextSearch(this.inputRef.current.value)}} /></label>}
+            {<label>szukaj wg. tekstu :<input ref={this.inputRef} onChange={() => { this.searchingTimeboxes(this.inputRef.current.value)}} /></label>}
             <Error message='Wystąpił błąd w TimeboxList'>
                {
                   timeboxes.map((timebox, index) =>

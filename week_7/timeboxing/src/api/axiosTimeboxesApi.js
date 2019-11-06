@@ -10,10 +10,8 @@ const axiosTimeboxesApi = (baseURL = 'http://localhost:4000/timeboxes/') => {
           getTimeboxesByFullTextSearch: async function (string) {
                const newBaseUrl = `${baseURL}?q=${string}`;
                const response = await axios.get(newBaseUrl);
-               console.log(newBaseUrl);
                const timeboxes = response.data;
-
-               console.log(timeboxes);
+               console.log(timeboxes, string);
                return timeboxes;
           },
           addTimebox: async function (timeboxToAdd) {
