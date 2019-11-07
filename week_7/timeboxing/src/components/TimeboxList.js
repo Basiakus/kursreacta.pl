@@ -20,8 +20,8 @@ class TimeboxList extends React.Component {
 
    componentDidMount() {
       timeboxesApi.getAllTimeboxes()
-      .then( (timeboxes) => this.setState({ timeboxes }))
-      .catch( (error) => Promise.reject(this.setState({error} )))
+      .then( (timeboxes) => this.setState({ timeboxes }) )
+      .catch( (error) => Promise.reject(this.setState({error})) )
       .finally( () => this.setState({loading : false }) ) 
    }
    
