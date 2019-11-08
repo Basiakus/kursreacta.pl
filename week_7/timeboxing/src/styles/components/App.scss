@@ -3,3 +3,12 @@
 .App {
    font-family: monospace, sans-serif;
 }
+
+.Header {
+   display: flex;
+   padding: 20px;
+   justify-content: flex-end;
+   &__logout {
+      margin-left: 10px;
+   }
+}

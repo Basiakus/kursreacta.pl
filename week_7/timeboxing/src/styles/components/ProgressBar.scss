@@ -12,10 +12,10 @@
    display: flex;
    align-items: center;
    width: 100%;
-}
-.ProgressBar--big {
-   height: 50px;
-}
-.ProgressBar--borderBlue {
-   border: 2px solid lighten(rgb(46, 102, 213), 10);
+   &--big {
+      height: 50px;
+   }
+   &--borderBlue {
+      border: 2px solid lighten(rgb(46, 102, 213), 10);
+   }
 }

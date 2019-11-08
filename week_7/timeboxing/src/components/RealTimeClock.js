@@ -16,6 +16,11 @@ class RealTimeClock extends React.Component {
    componentWillUnmount() {
       window.clearInterval(this.startGlobalTime);
       //console.log('RealTimeClock component is unmounted');
+      this.setState({
+         globalH: 0,
+         globalMin: 0,
+         glogalSec: 0
+      })
    }
    startGlobalTime = () => {
       this.intervalTime = window.setInterval(() => {
