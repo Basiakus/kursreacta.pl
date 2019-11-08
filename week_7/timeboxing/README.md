@@ -123,7 +123,7 @@ const multiAwaitActive = () => {
 }
 ```
 
-## Lekcja 6: Async/Await
+## Lekcja 7: FakeApiAdapter
 
 ###1. Dodaj funkcję partiallyUpdateTimebox(timeboxToUpdate) do modułu FakeTimeboxesAPI, która:
 
@@ -140,16 +140,16 @@ import createTimeboxesAPI from "../api/FakeTimeboxesApi";
 const TimeboxAPI = createTimeboxesAPI({ delayInMiliseconds: 4000 })
 ```
 
-##Lekcja 9: Axios API adapter
+## Lekcja 9: Axios API adapter
 
-###1. Częściowe zmiany
+### 1. Częściowe zmiany
 Dodaj funkcję partiallyUpdateTimebox(timeboxToUpdate) do modułu AxiosTimeboxesAPI, która:
 
 - [x] uaktualni tylko wybrane pola w timeboksie (np uaktualni tylko tytuł a pozostawi totalTimeInMinutes w spokoju jeśli nie przekażemy tego drugiego. Podpowiedź (json server obsługuję tę funkcjonalność za pomocą metody PATCH)
 - [x] rzuci błąd jeśli przekazany obiekt nie będzie zawierał pola id.
 Wykorzystaj tę funkcję w komponencie TimeboxList zamiast funkcji replaceTimebox.
 
-###2. Konfigurowalny url
+### 2. Konfigurowalny url
 - [x] Stwórz funkcję createTimeboxesAPI({ baseUrl: „http://localhost:4000/timeboxes” }) i zwróć ją jako default export z modułu AxiosTimeboxesAPI.
 Ma ona tworzyć moduł timeboxes API z konfigurowalnym baazowym urlem.
 Jeśli w komponencie TimeboxList chcemy mieć api łączące się z json serverem na porcie 5000, wywołamy ją w taki sposób.
@@ -158,9 +158,21 @@ Jeśli w komponencie TimeboxList chcemy mieć api łączące się z json servere
 import createTimeboxesAPI from "../api/AxiosTimeboxesApi";
 const TimeboxAPI = createTimeboxesAPI({ baseUrl: "http://localhost:5000/timeboxes" })
 ```
-###3. Wyszukiwanie timeboxów
+### 3. Wyszukiwanie timeboxów
 - [x] Stwórz funkcję getTimeboxesByFullTextSearch(searchQuery), gdzie searchQuery jest dowolnym tekstem.
 Funkcja ma działać tak jak getAllTimeboxes, ale ma wyszukiwać timeboksy za pomocą tekstu.
 `Podpowiedź 1: JSON server obsługuje wyszukiwanie poprzez podanie parametru „q” do urla.`
 `Podpowiedź 2: Może Ci się przydać funkcja encodeURIComponent`
 Dodaj wyszukiwanie do komponentu TimeboxList (wystarczy podpiąć input z wydarzeniem onChange do funkcji getTimeboxesByFullTextSearch).
+
+## Lekcja 14: React – Uwierzytelnianie
+### Zadania:
+- [] 1 Stwórz implementacje adaptera uwierzytelniania – AxiosAuthenticationAPI
+- [] Skorzystaj z Local Storage API żeby zapamiętać token pomiędzy odświeżeniami strony
+- [] Po zalogowaniu zapisz accessToken w local storage
+- [] Po wylogowaniu usuń accessToken w local storage
+- [] W metodzie App.componentDidMount odczytaj accessToken z local storage i uaktualnij stan
+- [] Automatycznie wyloguj użytkownika przed upływem godziny
+- [] Po zalogowaniu uruchom timeout z odpowiednim opóźnieniem.
+- [] Nie zapomnij o usunięciu timeoutu w component willUnmount i po wylogowaniu przed upływem czasu.
+- [] Jeśli zapisujesz token w localStorage możesz też zapisać tam czas wygaśnięcia tokenu i odczytać go w componentDidMount
