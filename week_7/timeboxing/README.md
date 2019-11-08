@@ -167,12 +167,12 @@ Dodaj wyszukiwanie do komponentu TimeboxList (wystarczy podpiąć input z wydarz
 
 ## Lekcja 14: React – Uwierzytelnianie
 ### Zadania:
-- [] 1 Stwórz implementacje adaptera uwierzytelniania – AxiosAuthenticationAPI
-- [] Skorzystaj z Local Storage API żeby zapamiętać token pomiędzy odświeżeniami strony
-- [] Po zalogowaniu zapisz accessToken w local storage
-- [] Po wylogowaniu usuń accessToken w local storage
-- [] W metodzie App.componentDidMount odczytaj accessToken z local storage i uaktualnij stan
-- [] Automatycznie wyloguj użytkownika przed upływem godziny
-- [] Po zalogowaniu uruchom timeout z odpowiednim opóźnieniem.
-- [] Nie zapomnij o usunięciu timeoutu w component willUnmount i po wylogowaniu przed upływem czasu.
-- [] Jeśli zapisujesz token w localStorage możesz też zapisać tam czas wygaśnięcia tokenu i odczytać go w componentDidMount
+- [ ] 1 Stwórz implementacje adaptera uwierzytelniania – AxiosAuthenticationAPI
+- [ ] Skorzystaj z Local Storage API żeby zapamiętać token pomiędzy odświeżeniami strony
+- [ ] Po zalogowaniu zapisz accessToken w local storage
+- [ ] Po wylogowaniu usuń accessToken w local storage
+- [ ] W metodzie App.componentDidMount odczytaj accessToken z local storage i uaktualnij stan
+- [ ] Automatycznie wyloguj użytkownika przed upływem godziny
+- [ ] Po zalogowaniu uruchom timeout z odpowiednim opóźnieniem.
+- [ ] Nie zapomnij o usunięciu timeoutu w component willUnmount i po wylogowaniu przed upływem czasu.
+- [ ] Jeśli zapisujesz token w localStorage możesz też zapisać tam czas wygaśnięcia tokenu i odczytać go w componentDidMount
