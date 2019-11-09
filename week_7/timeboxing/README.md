@@ -125,13 +125,13 @@ const multiAwaitActive = () => {
 
 ## Lekcja 7: FakeApiAdapter
 
-###1. Dodaj funkcję partiallyUpdateTimebox(timeboxToUpdate) do modułu FakeTimeboxesAPI, która:
+### 1. Dodaj funkcję partiallyUpdateTimebox(timeboxToUpdate) do modułu FakeTimeboxesAPI, która:
 
 - [x] uaktualni tylko wybrane pola w timeboksie (np uaktualni tylko tytuł a pozostawi totalTimeInMinutes w spokoju jeśli nie przekażemy tego drugiego.
 - [x] rzuci błąd jeśli przekazany obiekt nie będzie zawierał pola id.
 Wykorzystaj tę funkcję w komponencie TimeboxList zamiast funkcji replaceTimebox.
 
-###2. Konfigurowalne opóźnienie
+### 2. Konfigurowalne opóźnienie
 - [ ] Stwórz funkcję createTimeboxesAPI({ delayInMiliseconds: 1000 }) i zwróć ją jako default export z modułu FakeTimeboxesAPI. Ma ona tworzyć moduł timeboxes API z konfigurowalnym opóźnieniem.
 
 Jeśli w komponencie TimeboxList chcemy mieć api z symulowanym opóźnieniem 4 sekundy, wywołamy ją w taki sposób.
