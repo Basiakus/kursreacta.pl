@@ -20,7 +20,9 @@ class EditableTimebox extends React.Component {
   componentDidMount() {
     this.intervalId = null;
   }
-
+  componentWillUnmount() {
+    window.clearInterval(this.intervalId);
+  }
   handleTitleOnChange = event => {
     this.setState({ title: event.target.value });
   };
