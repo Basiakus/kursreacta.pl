@@ -11,37 +11,93 @@ class App extends React.Component {
 
    state = {
       accessToken: null,
-      previusAttemptloginFailed: false
+      previusAttemptloginFailed: false,
+      expireTime: null
    }
 
    isUserLogIn = () => {
-      console.log(this.state.accessToken)
       return this.state.accessToken;
    }
    getLogedEmail = () => {
       return jwt.decode(this.state.accessToken).email;
    }
    handleLogout = () => {
+      localStorage.clear();
       this.setState({
          accessToken: null,
-         previusAttemptloginFailed: false
-      })
+         previusAttemptloginFailed: false,
+         expireTime: null,
+      });
+      clearTimeout(this.setCoundownLogout);
+      clearInterval(this.setCoundownInterval);
+      console.log('clear timeout and interval');
+   }
+   setDataToLocalstorage = (key, value) => {
+      const myStorage = window.localStorage;
+      return myStorage.setItem(key, value);
+   }
+   getDataFromLocalStorage = (dataKey) => {
+      const myStorage = window.localStorage;
+      return myStorage.getItem(dataKey);
+   }
+   removeDataFromLocalStorage = (dataKey) => {
+      const myStorage = window.localStorage;
+      return myStorage.removeItem(dataKey);
    }
    handleLoginAttempt = (credencials) => {
-      console.log(credencials)
       fetchAudenticationApi.login(credencials)
       .then(({accessToken}) => {
          this.setState({
             accessToken,
-            previusAttemptloginFailed: false
+            previusAttemptloginFailed: false,
          })
       })
+         .then(() => this.setDataToLocalstorage("accessToken", this.state.accessToken))
+         .then(() => this.setCoundownLogout(10000))
+         .then(() => this.setCoundownInterval())
       .catch(() => {
          this.setState({
-            previusAttemptloginFailed: true
+            previusAttemptloginFailed: true,
          })
       })
    }
+   setCoundownInterval = () => {
+      this.intervalTime = window.setInterval(() => {
+         let newSecondToLogOut = this.getDataFromLocalStorage("expireTime");
+         if (newSecondToLogOut <= 0) clearInterval(this.intervalTime);
+         let currentTime = newSecondToLogOut - 1000;
+         console.log(currentTime);
+         this.setDataToLocalstorage("expireTime", currentTime);
+      }, 1000)
+   }
+   setCoundownLogout = (time) => {
+      this.setDataToLocalstorage("expireTime", time);
+      this.timeoutTime = window.setTimeout(() => {
+         this.setState({
+            accessToken: null,
+            previusAttemptloginFailed: false,
+            expireTime: null,
+         })
+         localStorage.clear();
+      }, time);
+   }
+   componentDidMount() {
+      const accessTokenFromStorage = this.getDataFromLocalStorage('accessToken');
+      const expireTimeFromStorage = this.getDataFromLocalStorage('expireTime');
+      this.setState({
+         accessToken: accessTokenFromStorage,
+         expireTime: expireTimeFromStorage
+      });
+      this.setCoundownLogout(expireTimeFromStorage);
+      this.setCoundownInterval();
+   }
+
+   componentWillUnmount() {
+      clearTimeout(this.setCoundownLogout);
+      clearInterval(this.setCoundownInterval);
+      console.log('clear timeout')
+   }
+   
    render() {
       return (
          <React.StrictMode>
