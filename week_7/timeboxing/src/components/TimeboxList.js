@@ -19,14 +19,14 @@ class TimeboxList extends React.Component {
    }
 
    componentDidMount() {
-      timeboxesApi.getAllTimeboxes()
+      timeboxesApi.getAllTimeboxes(this.props.accessToken)
       .then( (timeboxes) => this.setState({ timeboxes }) )
       .catch( (error) => Promise.reject(this.setState({error})) )
       .finally( () => this.setState({loading : false }) ) 
    }
    
    searchingTimeboxes = (inputReference) => {
-      timeboxesApi.getTimeboxesByFullTextSearch(inputReference)
+      timeboxesApi.getTimeboxesByFullTextSearch(inputReference, this.props.accessToken)
          .then((searchTimeboxes) => this.setState(prevState => {
             let newTimeboxes = [...prevState.timeboxes];
             newTimeboxes = searchTimeboxes;
@@ -36,7 +36,7 @@ class TimeboxList extends React.Component {
    }
 
    addTimebox = (newTimebox) => {
-      timeboxesApi.addTimebox(newTimebox).then(
+      timeboxesApi.addTimebox(newTimebox, this.props.accessToken).then(
          (addedTimebox) => this.setState(prevState => {
             /* new array of state with new timebox */
             const timeboxes = [...prevState.timeboxes, addedTimebox];
@@ -55,7 +55,7 @@ class TimeboxList extends React.Component {
    }
 
    removeTimebox = (indexToRemove) => {
-      timeboxesApi.removeTimebox(this.state.timeboxes[indexToRemove])
+      timeboxesApi.removeTimebox(this.state.timeboxes[indexToRemove], this.props.accessToken)
          .then(
             () => {
                this.setState(prevState => {
@@ -69,7 +69,7 @@ class TimeboxList extends React.Component {
    }
 
    updateTimebox = (indexToUpdate, timeboxToUpdate) => {
-      timeboxesApi.partiallyUpdateTimebox(timeboxToUpdate).then(
+      timeboxesApi.partiallyUpdateTimebox(timeboxToUpdate, this.props.accessToken).then(
          (updatedTimebox) => {
             this.setState(prevState => {
                /* new array of state with new timebox */

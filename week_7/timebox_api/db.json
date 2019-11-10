@@ -15,26 +15,20 @@
   ],
   "timeboxes": [
     {
-      "title": "Adam",
-      "totalTimeInMinutes": 0,
-      "flag": "blue",
-      "id": 1
-    },
-    {
-      "title": "Basiak",
-      "totalTimeInMinutes": 0,
+      "title": "adam",
+      "totalTimeInMinutes": 49,
       "flag": "blue",
       "id": 2
     },
     {
-      "title": "1",
-      "totalTimeInMinutes": 0,
+      "title": "axios authentication",
+      "totalTimeInMinutes": 69,
       "flag": "blue",
       "id": 3
     },
     {
-      "title": "123",
-      "totalTimeInMinutes": 0,
+      "title": "wee7",
+      "totalTimeInMinutes": 99,
       "flag": "blue",
       "id": 4
     }

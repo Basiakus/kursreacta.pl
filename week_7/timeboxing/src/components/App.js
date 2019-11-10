@@ -53,7 +53,7 @@ class App extends React.Component {
          })
       })
          .then(() => this.setDataToLocalstorage("accessToken", this.state.accessToken))
-         .then(() => this.setCoundownLogout(10000))
+         .then(() => this.setCoundownLogout(3000))
          .then(() => this.setCoundownInterval())
       .catch(() => {
          this.setState({
@@ -65,8 +65,9 @@ class App extends React.Component {
       this.intervalTime = window.setInterval(() => {
          let newSecondToLogOut = this.getDataFromLocalStorage("expireTime");
          if (newSecondToLogOut <= 0) clearInterval(this.intervalTime);
-         let currentTime = newSecondToLogOut - 1000;
-         console.log(currentTime);
+         let currentTime = newSecondToLogOut - 1; 
+         //console.clear();
+         //console.log(`pozostało ${currentTime}s. do wylogowania sesji`);
          this.setDataToLocalstorage("expireTime", currentTime);
       }, 1000)
    }
@@ -79,7 +80,7 @@ class App extends React.Component {
             expireTime: null,
          })
          localStorage.clear();
-      }, time);
+      }, time * 1000);
    }
    componentDidMount() {
       const accessTokenFromStorage = this.getDataFromLocalStorage('accessToken');
@@ -111,7 +112,7 @@ class App extends React.Component {
                   </header>
                   <div className="App">
                      <Error message="Wystąpił błąd w TimeboxList">
-                        <TimeboxList />
+                           <TimeboxList accessToken={this.state.accessToken}/>
                      </Error>
                      <Error message="Wystąpił błąd w EditableTimebox">
                         <EditableTimebox />
