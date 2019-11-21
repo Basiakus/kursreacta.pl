@@ -141,7 +141,7 @@ const TimeboxAPI = createTimeboxesAPI({ delayInMiliseconds: 4000 })
 ```
 
 ## Lekcja 9: Axios API adapter
-
+### Zadania:
 ### 1. Częściowe zmiany
 Dodaj funkcję partiallyUpdateTimebox(timeboxToUpdate) do modułu AxiosTimeboxesAPI, która:
 
@@ -176,3 +176,11 @@ Dodaj wyszukiwanie do komponentu TimeboxList (wystarczy podpiąć input z wydarz
 - [x] Po zalogowaniu uruchom timeout z odpowiednim opóźnieniem.
 - [x] Nie zapomnij o usunięciu timeoutu w component willUnmount i po wylogowaniu przed upływem czasu.
 - [x] Jeśli zapisujesz token w localStorage możesz też zapisać tam czas wygaśnięcia tokenu i odczytać go w componentDidMount
+
+
+## Lekcja 15: React – Autoryzacja
+## Zadania:
+- [x]Autoryzuj zapytania w module AxiosTimeboxesAPI
+- [ ]Zasymuluj autoryzację w module FakeTimeboxesAPI (wystarczy sprawdzenie obecności dowolnego accessTokena)
+- [ ]Zastanów się czy da się tak zmodyfikować funkcję makeFetchRequest i stworzyć funkcję makeAxiorRequest żeby z zewnątrz robiły dokładnie to samo?
+  Czy można wtedy mieć jeden moduł TimeboxesAPI i podmieniać tylko funkcję makeRequest? Jak?

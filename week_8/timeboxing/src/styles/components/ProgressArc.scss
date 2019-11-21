@@ -1,0 +1,9 @@
+@import '../variables.scss';
+@import '../utilities.scss';
+
+.ProgressArc {
+     position: absolute;
+     left: 50%;
+     transform: translate(-50%, -10%);
+     opacity: .6;
+}

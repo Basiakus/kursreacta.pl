@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Use renderer on <ProgressBar /> Create snapshot file represent a component JSON file 1`] = `
+<div
+  className="ProgressBar"
+  style={
+    Object {
+      "background": "linear-gradient(blue, blue) left /11% no-repeat content-box",
+    }
+  }
+/>
+`;
