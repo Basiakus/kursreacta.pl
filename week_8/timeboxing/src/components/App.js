@@ -120,7 +120,7 @@ class App extends React.Component {
                            <EditableTimebox />
                         </Error>
                      </div>
-                  </> :
+               </> :
                   <LoginForm 
                      errorMessage={this.state.previusAttemptloginFailed ? "nie udało sie zalogować" : null}
                      onLoginAttempt={this.handleLoginAttempt}
