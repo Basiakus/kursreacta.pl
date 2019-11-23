@@ -1,5 +1,5 @@
 import React from 'react';
-/* import Header from './Header'; (week 8 lesson 2) */
+import Header from './Header';// (week 8 lesson 2) */
 import TimeboxList from './TimeboxList'; 
 import EditableTimebox from './EditableTimebox'; 
 import LoginForm from './LoginForm';
@@ -107,7 +107,7 @@ class App extends React.Component {
                
                {this.isUserLogIn() ?
                   <>
-                     {/*<Header /> (week 8 lesson 2) */}
+                     {<Header /> /*(week 8 lesson 2)*/ }
                      <header className="Header">
                         {`witaj ${this.getLogedEmail()}`}
                         <a className="Header__logout" href="" onClick={this.handleLogout}>wyloguj</a>

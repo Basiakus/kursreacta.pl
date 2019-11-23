@@ -19,9 +19,12 @@ class Drawing extends React.Component {
           const img = new Image();
           let imgSrc = "https://66.media.tumblr.com/e043dc9a8349104908563f81258dcbc0/tumblr_oujs8owAkm1wx1shbo1_500.jpg";
           img.src = imgSrc;
+          const canvasWidth = this.canvasRef.current.width;
+          const canvasHeight = this.canvasRef.current.height;
           img.onload = () => {
-               ctx.drawImage(img, 0, 0, 300, 300);
+               ctx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
           }
+          //console.log(this.canvasRef.current.width, this.canvasRef.current.height)
      }
 
      render() {
@@ -31,6 +34,8 @@ class Drawing extends React.Component {
                          borderRadius = {10}
                          borderSize= {20}
                          ref={this.canvasRef}
+                         width={250}
+                         height={500}
                     />
                </div>
           )
