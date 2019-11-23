@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button';
-import Canvas from './Canvas';
+import Drawing from './Drawing';
 
 class Header extends React.Component {
      constructor(props) {
@@ -25,7 +25,7 @@ class Header extends React.Component {
                     <Button onClick={this.handleButtonTwo} ref={this.ButtonTwoRef} backgroundColor="lightYellow">
                          button 2
                     </Button>
-                    <Canvas />
+                    <Drawing />
                </>
           )
      }
