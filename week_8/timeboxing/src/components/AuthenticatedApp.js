@@ -3,10 +3,10 @@ import Header from './Header';
 import TimeboxList from './TimeboxList';
 import EditableTimebox from './EditableTimebox'; 
 import Error from './Error';
-const AuthenticatedApp = ({handleLogout}) => {
+const AuthenticatedApp = () => {
      return (
           <>
-               <Header handleLogout={handleLogout} />
+               <Header />
                <div className="App">
                     <Error message="Wystąpił błąd w TimeboxList">
                          <TimeboxList />

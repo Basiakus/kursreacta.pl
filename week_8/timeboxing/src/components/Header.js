@@ -1,5 +1,6 @@
 import React from 'react';
 import UserGreetings from './UserGreetings';
+import AuthenticationContext from '../contexts/AuthenticationContext';
 //import Button from './Button'; week 8 lesson 2
 //import Drawing from './Drawing'; week 8 lesson 2
 
@@ -34,11 +35,16 @@ import UserGreetings from './UserGreetings';
 
 } */  //week 8 lesson 2
 
-const Header = ({handleLogout}) => {
+const Header = () => {
      return (
           <header className="Header">
                <UserGreetings />
-               <a className="Header__logout" href="" onClick={handleLogout}>wyloguj</a>
+               <AuthenticationContext.Consumer>
+                    {
+                         ({ onLogout }) => <a className="Header__logout" href="" onClick={onLogout}>wyloguj</a>
+                    }
+               </AuthenticationContext.Consumer>
+               
           </header>
      )
 }
