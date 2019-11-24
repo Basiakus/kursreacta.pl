@@ -10,6 +10,6 @@
 ## Lekcja 3: Użycie kontekstu w Reakcie
 
 Zadania domowe
-- [ ] 1. Dodaj do kontekstu funkcję onLogout, przekaż do niej odpowiednią funkcję z komponentu App a następnie wyciągnij ją z kontekstu w komponencie Header i użyj do wylogowania się.
+- [x] 1. Dodaj do kontekstu funkcję onLogout, przekaż do niej odpowiednią funkcję z komponentu App a następnie wyciągnij ją z kontekstu w komponencie Header i użyj do wylogowania się.
 - [ ] 2. Podaj przykład innego miejsca w aplikacji gdzie można by użyć tej funkcji do automatycznego wylogowania użytkownika.
 - [ ] 3. Dodaj do kontekstu funkcję onLoginAttempt, przekaż do niej odpowiednią funkcję z komponentu App a następnie wyciągnij ją z kontekstu w komponencie LoginForm i użyj do zalogowania się. (UWAGA! Jest mały haczyk w tym zadaniu. Dlatego jest trochę trudniejsze niż zadanie 1.)
