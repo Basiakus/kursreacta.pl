@@ -167,20 +167,20 @@ Dodaj wyszukiwanie do komponentu TimeboxList (wystarczy podpiąć input z wydarz
 
 ## Lekcja 14: React – Uwierzytelnianie
 ### Zadania:
-- [ ] 1 Stwórz implementacje adaptera uwierzytelniania – AxiosAuthenticationAPI
-- [x] Skorzystaj z Local Storage API żeby zapamiętać token pomiędzy odświeżeniami strony
-- [x] Po zalogowaniu zapisz accessToken w local storage
-- [x] Po wylogowaniu usuń accessToken w local storage
-- [x] W metodzie App.componentDidMount odczytaj accessToken z local storage i uaktualnij stan
-- [x] Automatycznie wyloguj użytkownika przed upływem godziny
-- [x] Po zalogowaniu uruchom timeout z odpowiednim opóźnieniem.
-- [x] Nie zapomnij o usunięciu timeoutu w component willUnmount i po wylogowaniu przed upływem czasu.
-- [x] Jeśli zapisujesz token w localStorage możesz też zapisać tam czas wygaśnięcia tokenu i odczytać go w componentDidMount
+- [ ] 1. Stwórz implementacje adaptera uwierzytelniania – AxiosAuthenticationAPI
+- [x] 2. Skorzystaj z Local Storage API żeby zapamiętać token pomiędzy odświeżeniami strony
+- [x] 3. Po zalogowaniu zapisz accessToken w local storage
+- [x] 4. Po wylogowaniu usuń accessToken w local storage
+- [x] 5. W metodzie App.componentDidMount odczytaj accessToken z local storage i uaktualnij stan
+- [x] 6. Automatycznie wyloguj użytkownika przed upływem godziny
+- [x] 7. Po zalogowaniu uruchom timeout z odpowiednim opóźnieniem.
+- [x] 8. Nie zapomnij o usunięciu timeoutu w component willUnmount i po wylogowaniu przed upływem czasu.
+- [x] 9. Jeśli zapisujesz token w localStorage możesz też zapisać tam czas wygaśnięcia tokenu i odczytać go w componentDidMount
 
 
 ## Lekcja 15: React – Autoryzacja
 ## Zadania:
-- [x]Autoryzuj zapytania w module AxiosTimeboxesAPI
-- [ ]Zasymuluj autoryzację w module FakeTimeboxesAPI (wystarczy sprawdzenie obecności dowolnego accessTokena)
-- [ ]Zastanów się czy da się tak zmodyfikować funkcję makeFetchRequest i stworzyć funkcję makeAxiorRequest żeby z zewnątrz robiły dokładnie to samo?
+- [x] 1. Autoryzuj zapytania w module AxiosTimeboxesAPI
+- [ ] 2. Zasymuluj autoryzację w module FakeTimeboxesAPI (wystarczy sprawdzenie obecności dowolnego accessTokena)
+- [ ] 3. Zastanów się czy da się tak zmodyfikować funkcję makeFetchRequest i stworzyć funkcję makeAxiorRequest żeby z zewnątrz robiły dokładnie to samo?
   Czy można wtedy mieć jeden moduł TimeboxesAPI i podmieniać tylko funkcję makeRequest? Jak?
