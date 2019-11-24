@@ -3,6 +3,7 @@ import Timebox from './Timebox';
 import TimeboxCreator from './TimeboxCreator';
 import Error from './Error';
 import axiosTimeboxesApi from '../api/axiosTimeboxesApi';
+import AuthenticationContext from '../contexts/AuthenticationContext';
 const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/');
 
 
@@ -19,14 +20,14 @@ class TimeboxList extends React.Component {
    }
 
    componentDidMount() {
-      timeboxesApi.getAllTimeboxes(this.props.accessToken)
+      timeboxesApi.getAllTimeboxes(this.context.accessToken)
       .then( (timeboxes) => this.setState({ timeboxes }) )
       .catch( (error) => Promise.reject(this.setState({error})) )
       .finally( () => this.setState({loading : false }) ) 
    }
    
    searchingTimeboxes = (inputReference) => {
-      timeboxesApi.getTimeboxesByFullTextSearch(inputReference, this.props.accessToken)
+      timeboxesApi.getTimeboxesByFullTextSearch(inputReference, this.context.accessToken)
          .then((searchTimeboxes) => this.setState(prevState => {
             let newTimeboxes = [...prevState.timeboxes];
             newTimeboxes = searchTimeboxes;
@@ -36,7 +37,7 @@ class TimeboxList extends React.Component {
    }
 
    addTimebox = (newTimebox) => {
-      timeboxesApi.addTimebox(newTimebox, this.props.accessToken).then(
+      timeboxesApi.addTimebox(newTimebox, this.context.accessToken).then(
          (addedTimebox) => this.setState(prevState => {
             /* new array of state with new timebox */
             const timeboxes = [...prevState.timeboxes, addedTimebox];
@@ -55,7 +56,7 @@ class TimeboxList extends React.Component {
    }
 
    removeTimebox = (indexToRemove) => {
-      timeboxesApi.removeTimebox(this.state.timeboxes[indexToRemove], this.props.accessToken)
+      timeboxesApi.removeTimebox(this.state.timeboxes[indexToRemove], this.context.accessToken)
          .then(
             () => {
                this.setState(prevState => {
@@ -69,7 +70,7 @@ class TimeboxList extends React.Component {
    }
 
    updateTimebox = (indexToUpdate, timeboxToUpdate) => {
-      timeboxesApi.partiallyUpdateTimebox(timeboxToUpdate, this.props.accessToken).then(
+      timeboxesApi.partiallyUpdateTimebox(timeboxToUpdate, this.context.accessToken).then(
          (updatedTimebox) => {
             this.setState(prevState => {
                /* new array of state with new timebox */
@@ -116,5 +117,7 @@ class TimeboxList extends React.Component {
       )
    }
 }
+
+TimeboxList.contextType = AuthenticationContext;
 
 export default TimeboxList;

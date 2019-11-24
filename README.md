@@ -1,5 +1,6 @@
 # `KURS REACT-A`
-
+## login: basiakus@gmail.com
+## password: myPassword
 ## <a href="http://kursreacta.pl/" >kursreacta.pl</a>
 
 ### - Kurs podzielony jest na 12 tygodni

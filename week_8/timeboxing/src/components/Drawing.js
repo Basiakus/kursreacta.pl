@@ -31,11 +31,11 @@ class Drawing extends React.Component {
           return (
                <div className='Drawing'>
                     <Canvas 
-                         borderRadius = {10}
-                         borderSize= {20}
+                         borderRadius = {5}
+                         borderSize= {10}
                          ref={this.canvasRef}
                          width={250}
-                         height={500}
+                         height={400}
                     />
                </div>
           )

@@ -1,8 +1,9 @@
 import React from 'react';
-import Button from './Button';
-import Drawing from './Drawing';
+import UserGreetings from './UserGreetings';
+//import Button from './Button'; week 8 lesson 2
+//import Drawing from './Drawing'; week 8 lesson 2
 
-class Header extends React.Component {
+/* class Header extends React.Component {
      constructor(props) {
           super(props);
           this.ButtonOneRef = React.createRef();
@@ -26,10 +27,20 @@ class Header extends React.Component {
                          button 2
                     </Button>
                     <Drawing />
+                    
                </>
           )
      }
 
+} */  //week 8 lesson 2
+
+const Header = ({handleLogout}) => {
+     return (
+          <header className="Header">
+               <UserGreetings />
+               <a className="Header__logout" href="" onClick={handleLogout}>wyloguj</a>
+          </header>
+     )
 }
 
 export default Header;

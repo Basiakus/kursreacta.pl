@@ -1,12 +1,10 @@
 import React from 'react';
-import Header from './Header';// (week 8 lesson 2) */
-import TimeboxList from './TimeboxList'; 
-import EditableTimebox from './EditableTimebox'; 
+import AuthenticatedApp from './AuthenticatedApp';
+import AuthenticationContext from '../contexts/AuthenticationContext';
 import LoginForm from './LoginForm';
 import Error from './Error';
 import '../styles/components/App.scss';
 import fetchAudenticationApi from '../api/fetchAudenticationApi';
-import jwt from "jsonwebtoken";
 
 class App extends React.Component {
 
@@ -18,9 +16,6 @@ class App extends React.Component {
 
    isUserLogIn = () => {
       return this.state.accessToken;
-   }
-   getLogedEmail = () => {
-      return jwt.decode(this.state.accessToken).email;
    }
    handleLogout = () => {
       localStorage.clear();
@@ -106,21 +101,10 @@ class App extends React.Component {
             <Error message="Wystąpił błąd w aplikacji">
                
                {this.isUserLogIn() ?
-                  <>
-                     {<Header /> /*(week 8 lesson 2)*/ }
-                     <header className="Header">
-                        {`witaj ${this.getLogedEmail()}`}
-                        <a className="Header__logout" href="" onClick={this.handleLogout}>wyloguj</a>
-                     </header>
-                     <div className="App">
-                        <Error message="Wystąpił błąd w TimeboxList">
-                              <TimeboxList accessToken={this.state.accessToken}/>
-                        </Error>
-                        <Error message="Wystąpił błąd w EditableTimebox">
-                           <EditableTimebox />
-                        </Error>
-                     </div>
-               </> :
+                  <AuthenticationContext.Provider value={{accessToken: this.state.accessToken}}>
+                     <AuthenticatedApp handleLogout={this.handleLogout}/>
+                  </AuthenticationContext.Provider>
+                  :
                   <LoginForm 
                      errorMessage={this.state.previusAttemptloginFailed ? "nie udało sie zalogować" : null}
                      onLoginAttempt={this.handleLoginAttempt}
