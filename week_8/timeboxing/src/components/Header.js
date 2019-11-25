@@ -41,7 +41,7 @@ const Header = () => {
                <UserGreetings />
                <AuthenticationContext.Consumer>
                     {
-                         ({ onLogout }) => <a className="Header__logout" href="" onClick={onLogout}>wyloguj</a>
+                         ({ onLogout }) => <a className="Header__logout" href="#" onClick={onLogout}>wyloguj</a>
                     }
                </AuthenticationContext.Consumer>
                

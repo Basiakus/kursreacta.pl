@@ -15,28 +15,10 @@
   ],
   "timeboxes": [
     {
-      "title": "adam",
-      "totalTimeInMinutes": 49,
-      "flag": "blue",
-      "id": 2
-    },
-    {
-      "title": "axios authenticationApp",
-      "totalTimeInMinutes": 69,
+      "title": "put function to the context for another component",
+      "totalTimeInMinutes": 60,
       "flag": "yellow",
-      "id": 3
-    },
-    {
-      "title": "brak",
-      "totalTimeInMinutes": 0,
-      "flag": "blue",
-      "id": 4
-    },
-    {
-      "title": "brak",
-      "totalTimeInMinutes": 0,
-      "flag": "blue",
-      "id": 5
+      "id": 1
     }
   ]
 }

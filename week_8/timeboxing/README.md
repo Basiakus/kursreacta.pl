@@ -13,3 +13,10 @@ Zadania domowe
 - [x] 1. Dodaj do kontekstu funkcję onLogout, przekaż do niej odpowiednią funkcję z komponentu App a następnie wyciągnij ją z kontekstu w komponencie Header i użyj do wylogowania się.
 - [ ] 2. Podaj przykład innego miejsca w aplikacji gdzie można by użyć tej funkcji do automatycznego wylogowania użytkownika.
 - [ ] 3. Dodaj do kontekstu funkcję onLoginAttempt, przekaż do niej odpowiednią funkcję z komponentu App a następnie wyciągnij ją z kontekstu w komponencie LoginForm i użyj do zalogowania się. (UWAGA! Jest mały haczyk w tym zadaniu. Dlatego jest trochę trudniejsze niż zadanie 1.)
+
+## Lekcja 4: Dzielenie kodu, React.lazy(), Suspense
+
+Zadania domowe
+- [ ] 1.Zaimportuj bibliotekę axios asynchronicznie w każdej funkcji modułu AxiosTimeboxAPI i zobacz ile razy moduł zostanie zaimportowany gdy edytujesz, - [ ]dodajesz i usuwasz timeboxy.
+- [ ] 2. Zaimportuj asynchronicznie komponent Timebox.
+- [ ] 3. Zaimportuj asynchronicznie komponent LoginForm. Czy to dobry pomysł?

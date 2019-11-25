@@ -101,14 +101,8 @@ class App extends React.Component {
             <Error message="Wystąpił błąd w aplikacji">
                
                {this.isUserLogIn() ?
-                  <AuthenticationContext.Provider 
-                     value={
-                        {
-                           accessToken: this.state.accessToken,
-                           onLogout: this.handleLogout
-                        }
-                     }>
-                     <AuthenticatedApp />
+                  <AuthenticationContext.Provider value={{accessToken: this.state.accessToken}}>
+                     <AuthenticatedApp handleLogout={this.handleLogout}/>
                   </AuthenticationContext.Provider>
                   :
                   <LoginForm 
