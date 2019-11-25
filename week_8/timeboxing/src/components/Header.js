@@ -32,7 +32,6 @@ import AuthenticationContext from '../contexts/AuthenticationContext';
                </>
           )
      }
-
 } */  //week 8 lesson 2
 
 const Header = () => {
