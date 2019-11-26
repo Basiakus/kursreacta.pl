@@ -1,10 +1,11 @@
-import React from 'react';
-import AuthenticatedApp from './AuthenticatedApp';
+import  React, { Suspense }from 'react';
+//import AuthenticatedApp from './AuthenticatedApp';
 import AuthenticationContext from '../contexts/AuthenticationContext';
 import LoginForm from './LoginForm';
 import Error from './Error';
 import '../styles/components/App.scss';
 import fetchAudenticationApi from '../api/fetchAudenticationApi';
+const AuthenticatedApp = React.lazy(() => import('./AuthenticatedApp'));
 
 class App extends React.Component {
 
@@ -109,7 +110,9 @@ class App extends React.Component {
                         }
                      }
                   >
+                  <Suspense fallback='... loading'>
                      <AuthenticatedApp handleLogout={this.handleLogout}/>
+                  </Suspense>
                   </AuthenticationContext.Provider>
                   :
                   <LoginForm 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Quote, { getQuote } from 'inspirational-quotes';
 import '../styles/components/InspiracionalQuote.scss';
 
 class InspiracionalQuote extends React.Component  {
@@ -10,11 +9,12 @@ class InspiracionalQuote extends React.Component  {
      componentDidMount() {
           import('inspirational-quotes').
           then((quote) => {
-               console.log(quote.getQuote());
+               //console.log(quote.getQuote());
                this.setState({
                     quote: quote.getQuote()
                })
-          });
+          }).
+          catch(console.log(`sorry but from some reason can't get quote`));
      }
      componentWillUnmount() {
           this.setState({
