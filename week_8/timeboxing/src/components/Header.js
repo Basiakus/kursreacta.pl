@@ -36,11 +36,11 @@ import AuthenticationContext from '../contexts/AuthenticationContext';
 
 const Header = () => {
      return (
-          <header className="Header">
+          <header className="Header" id='userGreetings'>
                <UserGreetings />
                <AuthenticationContext.Consumer>
                     {
-                         ({ onLogout }) => <a className="Header__logout" href="#" onClick={onLogout}>wyloguj</a>
+                         ({ onLogout }) => <a className="Header__logout" href="#userGreetings" onClick={onLogout}>wyloguj</a>
                     }
                </AuthenticationContext.Consumer>
                

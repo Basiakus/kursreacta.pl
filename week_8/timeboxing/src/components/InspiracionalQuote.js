@@ -7,14 +7,12 @@ class InspiracionalQuote extends React.Component  {
      }
 
      componentDidMount() {
-          import('inspirational-quotes').
-          then((quote) => {
+          import('inspirational-quotes').then((quote) => {
                //console.log(quote.getQuote());
                this.setState({
                     quote: quote.getQuote()
                })
-          }).
-          catch(console.log(`sorry but from some reason can't get quote`));
+          }).catch((error) => console.log(`sorry but from some reason can't get quote. Error ${error}`));
      }
      componentWillUnmount() {
           this.setState({
