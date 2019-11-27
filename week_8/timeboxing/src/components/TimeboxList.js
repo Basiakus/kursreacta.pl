@@ -1,10 +1,11 @@
-import React from 'react';
-import Timebox from './Timebox';
+import React, { Suspense, lazy } from 'react';
+//import Timebox from './Timebox';
 import TimeboxCreator from './TimeboxCreator';
 import Error from './Error';
 import axiosTimeboxesApi from '../api/axiosTimeboxesApi';
 import AuthenticationContext from '../contexts/AuthenticationContext';
-const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/');
+const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/'); 
+const Timebox = React.lazy(() => import('./Timebox'));
 
 
 class TimeboxList extends React.Component {
@@ -99,15 +100,17 @@ class TimeboxList extends React.Component {
                   timeboxes.map((timebox, index) =>
                      (
                         <Error key={timebox.id} message='Wystąpił błąd w Timebox'>
-                           <Timebox
-                              id={timebox.id}
-                              index={index}
-                              title={timebox.title}
-                              flag={timebox.flag}
-                              totalTimeInMinutes={timebox.totalTimeInMinutes}
-                              onEdit={this.updateTimebox}
-                              onDelete={() => this.removeTimebox(index)}
-                           />
+                           <Suspense fallback="... timebox loading">
+                              <Timebox
+                                 id={timebox.id}
+                                 index={index}
+                                 title={timebox.title}
+                                 flag={timebox.flag}
+                                 totalTimeInMinutes={timebox.totalTimeInMinutes}
+                                 onEdit={this.updateTimebox}
+                                 onDelete={() => this.removeTimebox(index)}
+                              />
+                           </Suspense>
                         </Error>
                      )
                   )

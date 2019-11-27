@@ -15,10 +15,22 @@
   ],
   "timeboxes": [
     {
-      "title": "put function to the context for another component",
-      "totalTimeInMinutes": 23,
-      "flag": "yellow",
-      "id": 1
+      "title": "brak",
+      "totalTimeInMinutes": 0,
+      "flag": "blue",
+      "id": 2
+    },
+    {
+      "title": "brak",
+      "totalTimeInMinutes": 0,
+      "flag": "blue",
+      "id": 3
+    },
+    {
+      "title": "asd",
+      "totalTimeInMinutes": 0,
+      "flag": "blue",
+      "id": 4
     }
   ]
 }
