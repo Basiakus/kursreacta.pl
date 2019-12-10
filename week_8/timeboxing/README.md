@@ -20,3 +20,8 @@ Zadania domowe
 - [x] 1.Zaimportuj bibliotekę axios asynchronicznie w każdej funkcji modułu AxiosTimeboxAPI i zobacz ile razy moduł zostanie zaimportowany gdy edytujesz, dodajesz i usuwasz timeboxy.
 - [x] 2. Zaimportuj asynchronicznie komponent Timebox.
 - [ ] 3. Zaimportuj asynchronicznie komponent LoginForm. Czy to dobry pomysł?
+
+## Lekcja 5: Portale
+
+Zadania domowe
+- [x] 1. Spraw by w aplikacji Timeboxing komponent Header wyświetlał się na samej górze strony (nad tekstem „Tydzień 8”) bez użycia css a przy użyciu portalu.
