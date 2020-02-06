@@ -6,7 +6,7 @@ import RealTimeClock from './RealTimeClock';
 //import '../styles/components/EditableTimebox.scss';
 function EditableTimebox() {
     const [title, setTitle] = useState("Nauka reacta")
-    const [totalTimeInMinutes, setTotalTimeInMinutes] = useState(0.2);
+    const [totalTimeInMinutes, setTotalTimeInMinutes] = useState(0.05);
     const [isRunning, setIsRunning] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [elapsedTimeInSeconds, setElapsedTimeInSeconds] = useState(0);
@@ -24,26 +24,18 @@ function EditableTimebox() {
     };
 
     const startTimer = () => {
-        if (intervalId.current === null) {
-            intervalId.current = window.setInterval(() => {
-                let totalTimeInSeconds = totalTimeInMinutes * 60;
-                if (totalTimeInSeconds < elapsedTimeInSeconds) {
-                    return window.clearInterval(intervalId.current);
-                }
-                setElapsedTimeInSeconds(prevValue => prevValue + 0.01)
-            }, 10);
-        }
+        setIsRunning(true)
     };
     
-    const stopTimer = () => {
+    const stopTimer = (e) => {
+        setIsRunning(false)
         window.clearInterval(intervalId.current);
-        return intervalId = null;
+        console.log('timer stop')
     };
-    const handleStart = e => {
-        setIsRunning(true)
+    const handleStart = (e) => {
         startTimer();
     };
-    const handleStop = e => {
+    const handleStop = () => {
         setIsRunning(false);
         setIsPaused(false);
         setPausesCount(0);
@@ -59,16 +51,6 @@ function EditableTimebox() {
             isPaused ? prevValue = prev + 1 : prevValue = prev;
             return prevValue;
         })
-        /* this.setState(prevState => {
-            const isPaused = !prevState.isPaused;
-            isPaused ? stopTimer() : startTimer();
-            return {
-                isPaused,
-                pausesCount: isPaused
-                ? prevState.pausesCount + 1
-                : prevState.pausesCount
-            };
-        }); */
     };
 
     const handleConfirm = () => {
@@ -79,12 +61,21 @@ function EditableTimebox() {
         setIsEditable(true)
         handleStop();
     };
-   useEffect(() => {
-    startTimer();
-    return () => {
-        clearInterval(intervalId);
-    }
-   }, [])
+
+    useEffect(() => {
+        let totalTimeInSeconds = totalTimeInMinutes * 60;
+        if (isRunning) {
+            intervalId.current = window.setInterval(() => {
+                setElapsedTimeInSeconds(prevValue => prevValue + 0.01)
+                console.log(elapsedTimeInSeconds, 'interval running')
+                if (totalTimeInSeconds < elapsedTimeInSeconds) {
+                    stopTimer();
+                    setElapsedTimeInSeconds(0)
+                }
+            }, 10);
+        } 
+        return () => window.clearInterval(intervalId.current);
+    }, [elapsedTimeInSeconds, isRunning, totalTimeInMinutes])
     return (
         <React.Fragment>
             <RealTimeClock />
