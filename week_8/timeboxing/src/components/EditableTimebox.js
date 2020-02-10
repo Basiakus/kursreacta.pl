@@ -6,7 +6,7 @@ import RealTimeClock from './RealTimeClock';
 //import '../styles/components/EditableTimebox.scss';
 function EditableTimebox() {
     const [title, setTitle] = useState("Nauka reacta")
-    const [totalTimeInMinutes, setTotalTimeInMinutes] = useState(0.05);
+    const [totalTimeInMinutes, setTotalTimeInMinutes] = useState(0.1);
     const [isRunning, setIsRunning] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [elapsedTimeInSeconds, setElapsedTimeInSeconds] = useState(0);
@@ -24,7 +24,9 @@ function EditableTimebox() {
     };
 
     const startTimer = () => {
-        setIsRunning(true)
+        setIsRunning(true);
+        setIsPaused(false)
+        console.log(isPaused)
     };
     
     const stopTimer = (e) => {
@@ -43,14 +45,14 @@ function EditableTimebox() {
         stopTimer();
     };
     const togglePause = () => {
-
-        setIsPaused(prev => !prev);
-        isPaused ? stopTimer() : startTimer();
+        const currentPause = !isPaused;
         setPausesCount(prev => {
             let prevValue;
-            isPaused ? prevValue = prev + 1 : prevValue = prev;
+            currentPause ? prevValue = prev + 1 : prevValue = prev;
             return prevValue;
         })
+        currentPause ? stopTimer() : startTimer();
+        return setIsPaused(currentPause);
     };
 
     const handleConfirm = () => {
@@ -67,7 +69,7 @@ function EditableTimebox() {
         if (isRunning) {
             intervalId.current = window.setInterval(() => {
                 setElapsedTimeInSeconds(prevValue => prevValue + 0.01)
-                console.log(elapsedTimeInSeconds, 'interval running')
+                //console.log(elapsedTimeInSeconds, 'interval running')
                 if (totalTimeInSeconds < elapsedTimeInSeconds) {
                     stopTimer();
                     setElapsedTimeInSeconds(0)
