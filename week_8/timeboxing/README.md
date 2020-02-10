@@ -25,3 +25,15 @@ Zadania domowe
 
 Zadania domowe
 - [x] 1. Spraw by w aplikacji Timeboxing komponent Header wyświetlał się na samej górze strony (nad tekstem „Tydzień 8”) bez użycia css a przy użyciu portalu.
+
+## Lekcja 6: useState()
+
+W aplikacji Timeboxing zmień poniższe komponenty na funkcyjne przy użyciu useState
+- [x] 1. EditableTimebox
+- [ ] 2. App
+
+## Lekcja 8: useEffect()
+
+W aplikacji Timeboxing zmień poniższe komponenty na funkcyjne przy użyciu useEffect i useState
+- [ ] 1. InspirationalQuote
+- [ ] 2. TimeboxList (pamiętaj o tym jak konsumujemy wartości kontekstu w komponentach funkcyjnych)
