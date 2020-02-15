@@ -52,7 +52,7 @@ function EditableTimebox() {
             return prevValue;
         })
         currentPause ? stopTimer() : startTimer();
-        return setIsPaused(currentPause);
+        setIsPaused(currentPause);
     };
 
     const handleConfirm = () => {
