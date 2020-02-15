@@ -43,4 +43,10 @@ W aplikacji Timeboxing zmień poniższe komponenty na funkcyjne przy użyciu use
 W aplikacji Timeboxing zmień poniższe komponenty na funkcyjne przy użyciu hooków useRef, useEffect i useState:
 - [x] 1. LoginForm
 - [x] 2. TimeboxCreator
-- [ ] 3. CurrentTimebox (ten jest najtrudniejszy)
+- [x] 3. CurrentTimebox (ten jest najtrudniejszy)
+
+## Lekcja 10: useContext
+
+W aplikacji timeboxing, przerób następujące komponenty przy użyciu useContext()
+- [x] 1. UserGreeting
+- [x] 2. TimeboxList
