@@ -110,9 +110,9 @@ class App extends React.Component {
                         }
                      }
                   >
-                  <Suspense fallback='...Application loading'>
-                     <AuthenticatedApp handleLogout={this.handleLogout}/>
-                  </Suspense>
+                     <Suspense fallback='...Application loading'>
+                        <AuthenticatedApp handleLogout={this.handleLogout}/>
+                     </Suspense>
                   </AuthenticationContext.Provider>
                   :
                   <LoginForm 

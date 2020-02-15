@@ -35,5 +35,5 @@ W aplikacji Timeboxing zmień poniższe komponenty na funkcyjne przy użyciu use
 ## Lekcja 8: useEffect()
 
 W aplikacji Timeboxing zmień poniższe komponenty na funkcyjne przy użyciu useEffect i useState
-- [ ] 1. InspirationalQuote
+- [x] 1. InspirationalQuote
 - [ ] 2. TimeboxList (pamiętaj o tym jak konsumujemy wartości kontekstu w komponentach funkcyjnych)

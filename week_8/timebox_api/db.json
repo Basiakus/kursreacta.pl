@@ -15,16 +15,28 @@
   ],
   "timeboxes": [
     {
-      "title": "edit",
-      "totalTimeInMinutes": 123,
-      "flag": "red",
+      "title": "function components",
+      "totalTimeInMinutes": 63,
+      "flag": "yellow",
+      "id": 1
+    },
+    {
+      "title": "a",
+      "totalTimeInMinutes": 2,
+      "flag": "blue",
       "id": 2
     },
     {
-      "title": "brak",
-      "totalTimeInMinutes": 0,
-      "flag": "blue",
+      "title": "b",
+      "totalTimeInMinutes": 12,
+      "flag": "yellow",
       "id": 3
+    },
+    {
+      "title": "c",
+      "totalTimeInMinutes": 121,
+      "flag": "blue",
+      "id": 4
     }
   ]
 }
