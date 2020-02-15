@@ -21,14 +21,7 @@ function TimeboxList() {
          .then((timeboxes) => setTimeboxes(timeboxes))
          .catch((error) => Promise.reject(setError(error)))
          .finally(() => setLoading(false)) 
-   }, [])
-   /* componentDidMount() {
-      console.log(this)
-      timeboxesApi.getAllTimeboxes(context.accessToken)
-      .then( (timeboxes) => this.setState({ timeboxes }) )
-      .catch( (error) => Promise.reject(this.setState({error})) )
-      .finally( () => this.setState({loading : false }) ) 
-   } */
+   }, [context.accessToken])
    
    const searchingTimeboxes = (inputReference) => {
       console.log(inputRef.current.value)

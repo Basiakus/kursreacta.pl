@@ -1,42 +1,39 @@
-import React from 'react';
+import React, { useRef } from 'react';
 //import uuid from 'uuid';
 import '../styles/components/LoginForm.scss';
 
-class LoginForm extends React.Component {
-     constructor(props) {
-          super(props);
-          this.emailRef = React.createRef();
-          this.passwordRef = React.createRef();
-     }
-     handleSubmit = (event) => {
+function LoginForm({ errorMessage, onLoginAttempt}) {
+
+     const emailRef = useRef();
+     const passwordRef = useRef();
+     
+     const handleSubmit = (event) => {
           event.preventDefault();
-          this.props.onLoginAttempt({
-               "email": this.emailRef.current.value,
-               "password": this.passwordRef.current.value
+          onLoginAttempt({
+               "email": emailRef.current.value,
+               "password": passwordRef.current.value
           });
-          this.emailRef.current.value ='podaj swój email';
-          this.passwordRef.current.value ='';
+          emailRef.current.value ='podaj swój email';
+          passwordRef.current.value ='';
      }
-     render() {
-          return (
-               <form className='LoginForm' onSubmit={this.handleSubmit}>
-                    {
-                         this.props.errorMessage ? <div className="LoginForm__errorMessage">{this.props.errorMessage}</div> : null
-                    }
-                    <label>
-                         email
-               <input type="text" ref={this.emailRef} defaultValue={"basiakus@gmail.com"}/>
-                    </label>
-                    <br />
-                    <label>
-                         hasło
-               <input type="password" ref={this.passwordRef} defaultValue={"myPassword"} />
-                    </label>
-                    <br />
-                    <button >Zaloguj się</button>
-               </form>
-          )
-     }
+     return (
+          <form className='LoginForm' onSubmit={handleSubmit}>
+               {
+                    errorMessage ? <div className="LoginForm__errorMessage">{errorMessage}</div> : null
+               }
+               <label>
+                    email
+          <input type="text" ref={emailRef} defaultValue={"basiakus@gmail.com"}/>
+               </label>
+               <br />
+               <label>
+                    hasło
+          <input type="password" ref={passwordRef} defaultValue={"myPassword"} />
+               </label>
+               <br />
+               <button >Zaloguj się</button>
+          </form>
+     )
 }
 
 export default LoginForm;
