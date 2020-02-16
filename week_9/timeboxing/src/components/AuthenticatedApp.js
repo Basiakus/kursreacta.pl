@@ -3,7 +3,7 @@ import Header from './Header';
 import TimeboxList from './TimeboxList';
 import EditableTimebox from './EditableTimebox'; 
 import Error from './Error';
-import InspiracionalQuote from './InspiracionalQuote';
+import InspiracionalQuoteContainer from './container/InspiracionalQuoteContainer';
 import Portal from './Portal'
 const AuthenticatedApp = () => {
      return (
@@ -18,7 +18,7 @@ const AuthenticatedApp = () => {
                     <Error message="Wystąpił błąd w EditableTimebox">
                          <EditableTimebox />
                     </Error>
-                    <InspiracionalQuote />
+                    <InspiracionalQuoteContainer />
                </div>
           </>
      )
