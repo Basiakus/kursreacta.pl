@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import InspiracionalQuote from '../InspiracionalQuote';
+import InspiracionalQuote from '../presentation/InspiracionalQuote';
 
 export default function InspiracionalQuoteContainer()  {
 

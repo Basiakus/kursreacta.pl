@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/components/InspiracionalQuote.scss';
+import '../../styles/components/InspiracionalQuote.scss';
 
 function InspiracionalQuote({ quote }) {
      return (
