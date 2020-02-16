@@ -1,0 +1,42 @@
+{
+  "users": [
+    {
+      "email": "olivier@mail.com",
+      "password": "$2a$10$m6p8RW4gBIVYGlngm02bCOLXML/H8eslkdEEHbAPz5K6FUXif83ra",
+      "id": 1
+    },
+    {
+      "email": "basiakus@gmail.com",
+      "password": "$2a$10$iYudWaHW07qCO8cLvWGY7.iYdbSnPkn4rzJueBBJ23vJ1ZWurR156",
+      "name": "Adam",
+      "surname": "Basiak",
+      "id": 2
+    }
+  ],
+  "timeboxes": [
+    {
+      "title": "function components",
+      "totalTimeInMinutes": 63,
+      "flag": "yellow",
+      "id": 1
+    },
+    {
+      "title": "aaa",
+      "totalTimeInMinutes": 2,
+      "flag": "red",
+      "id": 2
+    },
+    {
+      "title": "b",
+      "totalTimeInMinutes": 12,
+      "flag": "yellow",
+      "id": 3
+    },
+    {
+      "title": "c",
+      "totalTimeInMinutes": 121,
+      "flag": "blue",
+      "id": 4
+    }
+  ]
+}

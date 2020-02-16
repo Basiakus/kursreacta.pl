@@ -1,0 +1,39 @@
+{
+  "peoples": [
+    {
+      "first_name": "Adam",
+      "last_name": "Basiak",
+      "age": 32,
+      "email": "Adam@gmail.com",
+      "id": 1
+    },
+    {
+      "first_name": "Krzysztof",
+      "last_name": "Basiak",
+      "age": "unlimited",
+      "email": "Krzysztof@gmail.com",
+      "id": 2
+    },
+    {
+      "first_name": "Elżbieta",
+      "last_name": "Basiak",
+      "age": 57,
+      "email": "Ela@gmail.com",
+      "id": 3
+    },
+    {
+      "first_name": "Błażej",
+      "last_name": "Szkwarek",
+      "age": 30,
+      "email": "Blazej@gmail.com",
+      "id": 4
+    },
+    {
+      "first_name": "Piotr",
+      "last_name": "Konieczny",
+      "age": 33,
+      "email": "Piotr@gmail.com",
+      "id": 5
+    }
+  ]
+}
