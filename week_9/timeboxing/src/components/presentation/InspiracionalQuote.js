@@ -1,14 +1,17 @@
 import React from 'react';
 import '../../styles/components/InspiracionalQuote.scss';
 
-function InspiracionalQuote({ quote }) {
+function InspiracionalQuote({ text, author, quoteText, quoteAuthor }) {
      return (
           <>
                <figure className='InspiracionalQuote'>
-                    <blockquote>{quote.text}</blockquote>
-                    <figcaption className="InspiracionalQuote__author"><cite>{quote.author}</cite></figcaption>
+                    {quoteText(text)}
+                    <figcaption className="InspiracionalQuote__author">
+                         <cite>
+                              {quoteAuthor(author)}
+                         </cite>
+                    </figcaption>
                </figure>
-               
           </>
      );
 }
