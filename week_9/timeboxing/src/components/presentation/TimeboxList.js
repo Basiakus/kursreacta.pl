@@ -4,6 +4,7 @@ import Error from '../Error';
 
 function TimeboxList({ timeboxes, renderTimebox, renderReadOnlyTimebox }) {
           let randomEdit = Math.random() >= 0.5;
+          randomEdit = true;
 
      return timeboxes.map((timebox, index) =>
           (

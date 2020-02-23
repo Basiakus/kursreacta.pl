@@ -10,7 +10,7 @@ function TimeboxCreator({onCreate}) {
       event.preventDefault();
       onCreate({
          //"id": uuid.v4(),
-         "title": formRef.current[0].value === "" ? "brak" : this.formRef.current[0].value,
+         "title": formRef.current[0].value === "" ? "brak" : formRef.current[0].value,
          "totalTimeInMinutes": formRef.current[1].value === null ? 0 : Number(formRef.current[1].value),
          "flag": formRef.current[2].value
       });
