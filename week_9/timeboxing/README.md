@@ -16,4 +16,4 @@ Użyj wzorca renderProps w komponencie InspirationalQuoteContainer
 
 Zadania domowe
 - [x] 1. Stwórz komponent wyższego rzędu o nazwie withErrorBoundary, który obłoży przekazany do niego komponent komponentem ErrorBoundary.
-here is a (answer)[https://codesandbox.io/s/hoc-r63l9]
+Here is a [answer](https://codesandbox.io/s/hoc-r63l9)
