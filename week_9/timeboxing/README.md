@@ -11,3 +11,9 @@
 Użyj wzorca renderProps w komponencie InspirationalQuoteContainer
 - [x] 1. dodaj property render do InspirationalQuote
 – [x] 2. render ma być funkcją przyjmującą argumenty „text” i „author”
+
+## Lekcja 4: HOC – Komponenty wyższego rzędu
+
+Zadania domowe
+- [x] 1. Stwórz komponent wyższego rzędu o nazwie withErrorBoundary, który obłoży przekazany do niego komponent komponentem ErrorBoundary.
+here is a (answer)[https://codesandbox.io/s/hoc-r63l9]
