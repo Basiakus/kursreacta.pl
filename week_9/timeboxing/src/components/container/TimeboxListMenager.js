@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 //import Timebox from './Timebox';
 import TimeboxCreator from '../TimeboxCreator';
+import TimeboxEditor from '../TimeboxEditor';
 import TimeboxList from '../presentation/TimeboxList';
 import Error from '../Error';
 import axiosTimeboxesApi from '../../api/axiosTimeboxesApi';
@@ -16,8 +17,9 @@ function TimeboxListMenager() {
    let context = useContext(AuthenticationContext)
    const [timeboxes, setTimeboxes] = useState([]);
    const [hasError, setHasError] = useState(false);
-   const [loading, setLoading] = useState(true) ;
-   const [error, setError] = useState(null) ;
+   const [loading, setLoading] = useState(true);
+   const [error, setError] = useState(null);
+   const [editIndex, setEditIndex] = useState(null)
 
    useEffect(() => {
       timeboxesApi.getAllTimeboxes(context.accessToken)
@@ -84,15 +86,32 @@ function TimeboxListMenager() {
       )
    }
    const renderTimebox = (timebox, index) => {
-      return <Timebox
-         id={timebox.id}
-         index={index}
-         title={timebox.title}
-         flag={timebox.flag}
-         totalTimeInMinutes={timebox.totalTimeInMinutes}
-         onEdit={updateTimebox}
-         onDelete={() => removeTimebox(index)}
-      />
+      return <>
+         {
+            editIndex === index ?
+            <TimeboxEditor 
+               inicialTitle={timebox.title}
+               inicialTotalTimeInMinutes={timebox.totalTimeInMinutes}
+               inicialFlag={timebox.flag}
+               onCancel={() => setEditIndex(null)}
+               onUpdate={
+                  (updatedTimebox) => {
+                     updateTimebox(index, {...timebox, ...updatedTimebox});
+                     setEditIndex(null);
+                  }
+               }
+            /> :
+            <Timebox
+               id={timebox.id}
+               index={index}
+               title={timebox.title}
+               flag={timebox.flag}
+               totalTimeInMinutes={timebox.totalTimeInMinutes}
+               onEdit={() => setEditIndex(index)}
+               onDelete={() => removeTimebox(index, timebox)}
+            />
+         }
+      </>
    }
 
    const renderReadOnlyTimebox = (timebox, index) => {
@@ -108,7 +127,11 @@ function TimeboxListMenager() {
    return (
       <> 
          {
-            hasError ? <h1>emulacja błędu metody addTimebox</h1> : <TimeboxCreator onCreate={handleCreate} />
+            hasError ? 
+               <h1>emulacja błędu metody addTimebox</h1> : 
+               <TimeboxCreator
+                  onCreate={handleCreate} 
+               />
          }
          {loading ? 'Pobieranie listy timeboxów . . .' : null}
          {error ? 'nie udało sie pobrać timeboxów ;(' : null}

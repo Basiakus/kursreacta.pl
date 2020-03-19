@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import TimeboxListMenager from './container/TimeboxListMenager';
-import EditableTimebox from './EditableTimebox'; 
+import CurrentTimebox from './CurrentTimebox'; 
 import Error from './Error';
 import InspiracionalQuoteContainer from './container/InspiracionalQuoteContainer';
 import Portal from './Portal'
@@ -16,7 +16,10 @@ const AuthenticatedApp = () => {
                          <TimeboxListMenager />
                     </Error>
                     <Error message="Wystąpił błąd w EditableTimebox">
-                         <EditableTimebox />
+                         <CurrentTimebox 
+                              title='refaktoryzacja'
+                              totalTimeInMinutes={1}
+                         />
                     </Error>
                     <InspiracionalQuoteContainer />
                </div>

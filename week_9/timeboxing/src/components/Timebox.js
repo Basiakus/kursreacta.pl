@@ -14,7 +14,7 @@ class Timebox extends React.Component {
       this.setState({ isEditActive: !this.state.isEditActive });
    }
    render() {
-      const { onDelete, title, totalTimeInMinutes, flag } = this.props;
+      const { onDelete, title, totalTimeInMinutes, flag, onEdit } = this.props;
       /* if (totalTimeInMinutes <= 0) {
          throw new Error('totalTimeInMinutes musi być większy od 0');
       } */
@@ -43,7 +43,7 @@ class Timebox extends React.Component {
                Zadanie: {title} - {totalTimeInMinutes}min.
             </h3>
             <button onClick={onDelete}>Delete</button>
-            <button onClick={this.handleIsEditActive}>Edit</button>
+            <button onClick={onEdit}>Edit</button>
          </div>
       )
    }
