@@ -1,6 +1,5 @@
 import React from 'react';
-import UserGreetings from './UserGreetings';
-import AuthenticationContext from '../contexts/AuthenticationContext';
+
 //import Button from './Button'; week 8 lesson 2
 //import Drawing from './Drawing'; week 8 lesson 2
 
@@ -34,16 +33,13 @@ import AuthenticationContext from '../contexts/AuthenticationContext';
      }
 } */  //week 8 lesson 2
 
-const Header = () => {
+const Header = ({children}) => {
+     if (React.Children.count(children) < 1) {
+          throw new Error('header has to have at least one child');
+     }
      return (
           <header className="Header" id='userGreetings'>
-               <UserGreetings />
-               <AuthenticationContext.Consumer>
-                    {
-                         ({ onLogout }) => <a className="Header__logout" href="#userGreetings" onClick={onLogout}>wyloguj</a>
-                    }
-               </AuthenticationContext.Consumer>
-               
+               {children}
           </header>
      )
 }
