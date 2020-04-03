@@ -1,0 +1,27 @@
+@import '../variables.scss';
+@import '../utilities.scss';
+
+.LoginForm {
+     border: $default-border;
+     border-radius: $default-border-radius;
+     padding: 20px;
+     text-align: right;
+     margin-bottom: 10px;
+     input, select {
+          min-width: 50%;
+          margin-left: 20px;
+          font-size: 1em;
+     }
+     button {
+          font-size: 1em;
+          margin-left: 10px;
+     }
+     &__errorMessage {
+          text-align: center;
+          margin: 15px auto;
+          border: 1px solid red;
+          padding: 10px;
+          border-radius: 5px;
+          color: red;
+     }
+}

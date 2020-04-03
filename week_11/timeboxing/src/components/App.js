@@ -1,4 +1,4 @@
-import  React, { Suspense } from 'react';
+import React, { Suspense } from 'react';
 //import AuthenticatedApp from './AuthenticatedApp';
 import AuthenticationContext from '../contexts/AuthenticationContext';
 import LoginForm from './LoginForm';
@@ -7,7 +7,7 @@ import '../styles/components/App.scss';
 import fetchAudenticationApi from '../api/fetchAudenticationApi';
 const AuthenticatedApp = React.lazy(() => import('./AuthenticatedApp'));
 
-App = () => {
+class App extends React.Component {
 
    state = {
       accessToken: null,
@@ -43,26 +43,26 @@ App = () => {
    }
    handleLoginAttempt = (credencials) => {
       fetchAudenticationApi.login(credencials)
-      .then(({accessToken}) => {
-         this.setState({
-            accessToken,
-            previusAttemptloginFailed: false,
+         .then(({ accessToken }) => {
+            this.setState({
+               accessToken,
+               previusAttemptloginFailed: false,
+            })
          })
-      })
          .then(() => this.setDataToLocalstorage("accessToken", this.state.accessToken))
          .then(() => this.setCoundownLogout(3000))
          .then(() => this.setCoundownInterval())
-      .catch(() => {
-         this.setState({
-            previusAttemptloginFailed: true,
+         .catch(() => {
+            this.setState({
+               previusAttemptloginFailed: true,
+            })
          })
-      })
    }
    setCoundownInterval = () => {
       this.intervalTime = window.setInterval(() => {
          let newSecondToLogOut = this.getDataFromLocalStorage("expireTime");
          if (newSecondToLogOut <= 0) clearInterval(this.intervalTime);
-         let currentTime = newSecondToLogOut - 1; 
+         let currentTime = newSecondToLogOut - 1;
          //console.clear();
          //console.log(`pozostało ${currentTime}s. do wylogowania sesji`);
          this.setDataToLocalstorage("expireTime", currentTime);
@@ -95,34 +95,36 @@ App = () => {
       clearInterval(this.setCoundownInterval);
       console.log('clear timeout')
    }
-   
-   return (
-      <React.StrictMode>
-         <Error message="Wystąpił błąd w aplikacji">
-            
-            {this.isUserLogIn() ?
-               <AuthenticationContext.Provider 
-                  value={
-                     {
-                        accessToken: this.state.accessToken,
-                        onLogout: this.handleLogout
+
+   render() {
+      return (
+         <React.StrictMode>
+            <Error message="Wystąpił błąd w aplikacji">
+
+               {this.isUserLogIn() ?
+                  <AuthenticationContext.Provider
+                     value={
+                        {
+                           accessToken: this.state.accessToken,
+                           onLogout: this.handleLogout
+                        }
                      }
-                  }
-               >
-                  <Suspense fallback='...Application loading'>
-                     <AuthenticatedApp handleLogout={this.handleLogout}/>
-                  </Suspense>
-               </AuthenticationContext.Provider>
-               :
-               <LoginForm 
-                  errorMessage={this.state.previusAttemptloginFailed ? "nie udało sie zalogować" : null}
-                  onLoginAttempt={this.handleLoginAttempt}
-               />
-            }
-         </Error>
-      </React.StrictMode>
-   )
+                  >
+                     <Suspense fallback='...Application loading'>
+                        <AuthenticatedApp handleLogout={this.handleLogout} />
+                     </Suspense>
+                  </AuthenticationContext.Provider>
+                  :
+                  <LoginForm
+                     errorMessage={this.state.previusAttemptloginFailed ? "nie udało sie zalogować" : null}
+                     onLoginAttempt={this.handleLoginAttempt}
+                  />
+               }
+            </Error>
+         </React.StrictMode>
+      )
+   }
 }
-   
+
 
 export default App;

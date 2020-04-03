@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Clock from './Clock';
 import ProgressBar from './ProgressBar';
 //import ProgressArc from './ProgressArc';
@@ -34,13 +34,14 @@ function CurrentTimebox({
    const handleStart = (e) => {
       startTimer();
    };
-   const handleStop = useCallback(() => {
-         setIsRunning(false);
-         setIsPaused(false);
-         setPausesCount(0);
-         setElapsedTimeInSeconds(0);
-         stopTimer();
-   });
+   
+   const handleStop = () => {
+      setIsRunning(false);
+      setIsPaused(false);
+      setPausesCount(0);
+      setElapsedTimeInSeconds(0);
+      stopTimer();
+   };
    const togglePause = () => {
       const currentPause = !isPaused;
       setPausesCount(prev => {
@@ -65,7 +66,7 @@ function CurrentTimebox({
          }, 10);
       }
       return () => window.clearInterval(intervalId.current);
-   }, [elapsedTimeInSeconds, isRunning, totalTimeInMinutes, handleStop])
+   }, [elapsedTimeInSeconds, isRunning, totalTimeInMinutes])
    useEffect(() => handleStop(), [])
 
    const totalTimeInSeconds = totalTimeInMinutes * 60;

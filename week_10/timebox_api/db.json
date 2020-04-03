@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "email": "olivier@mail.com",
+      "password": "$2a$10$m6p8RW4gBIVYGlngm02bCOLXML/H8eslkdEEHbAPz5K6FUXif83ra",
+      "id": 1
+    },
+    {
+      "email": "basiakus@gmail.com",
+      "password": "$2a$10$iYudWaHW07qCO8cLvWGY7.iYdbSnPkn4rzJueBBJ23vJ1ZWurR156",
+      "name": "Adam",
+      "surname": "Basiak",
+      "id": 2
+    }
+  ],
+  "timeboxes": [
+    {
+      "title": "11111111",
+      "totalTimeInMinutes": 111111111,
+      "flag": "blue",
+      "id": 1
+    },
+    {
+      "title": "test",
+      "totalTimeInMinutes": 123,
+      "flag": "blue",
+      "id": 2
+    },
+    {
+      "title": "brak",
+      "totalTimeInMinutes": 0,
+      "flag": "blue",
+      "id": 3
+    }
+  ]
+}

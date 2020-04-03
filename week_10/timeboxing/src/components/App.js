@@ -7,7 +7,7 @@ import '../styles/components/App.scss';
 import fetchAudenticationApi from '../api/fetchAudenticationApi';
 const AuthenticatedApp = React.lazy(() => import('./AuthenticatedApp'));
 
-App = () => {
+class App extends React.Component {
 
    state = {
       accessToken: null,
@@ -96,32 +96,34 @@ App = () => {
       console.log('clear timeout')
    }
    
-   return (
-      <React.StrictMode>
-         <Error message="Wystąpił błąd w aplikacji">
-            
-            {this.isUserLogIn() ?
-               <AuthenticationContext.Provider 
-                  value={
-                     {
-                        accessToken: this.state.accessToken,
-                        onLogout: this.handleLogout
+   render() {
+      return (
+         <React.StrictMode>
+            <Error message="Wystąpił błąd w aplikacji">
+               
+               {this.isUserLogIn() ?
+                  <AuthenticationContext.Provider 
+                     value={
+                        {
+                           accessToken: this.state.accessToken,
+                           onLogout: this.handleLogout
+                        }
                      }
-                  }
-               >
-                  <Suspense fallback='...Application loading'>
-                     <AuthenticatedApp handleLogout={this.handleLogout}/>
-                  </Suspense>
-               </AuthenticationContext.Provider>
-               :
-               <LoginForm 
-                  errorMessage={this.state.previusAttemptloginFailed ? "nie udało sie zalogować" : null}
-                  onLoginAttempt={this.handleLoginAttempt}
-               />
-            }
-         </Error>
-      </React.StrictMode>
-   )
+                  >
+                     <Suspense fallback='...Application loading'>
+                        <AuthenticatedApp handleLogout={this.handleLogout}/>
+                     </Suspense>
+                  </AuthenticationContext.Provider>
+                  :
+                  <LoginForm 
+                     errorMessage={this.state.previusAttemptloginFailed ? "nie udało sie zalogować" : null}
+                     onLoginAttempt={this.handleLoginAttempt}
+                  />
+               }
+            </Error>
+         </React.StrictMode>
+      )
+   }
 }
    
 
