@@ -15,16 +15,10 @@
   ],
   "timeboxes": [
     {
-      "title": "aas",
-      "totalTimeInMinutes": 12,
-      "flag": "blue",
-      "id": 1
-    },
-    {
       "title": "bbb",
       "totalTimeInMinutes": 0,
       "flag": "blue",
-      "id": 2
+      "id": 1
     }
   ]
 }

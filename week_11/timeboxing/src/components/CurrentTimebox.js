@@ -7,17 +7,20 @@ import { getMinutesAndSecondsFromDuractionInSeconds } from '../lib/time.js';
 
 import '../styles/components/CurrentTimebox.scss';
 
-function CurrentTimebox({
-   title,
-   totalTimeInMinutes
-
-}) {
+function CurrentTimebox({title, totalTimeInMinutes}) {
 
    const [isRunning, setIsRunning] = useState(false);
    const [isPaused, setIsPaused] = useState(false);
    const [elapsedTimeInSeconds, setElapsedTimeInSeconds] = useState(0);
    const [pausesCount, setPausesCount] = useState(0);
    let intervalId = useRef();
+
+   const stateTwo = {
+      running: false,
+      paused: false,
+      elapsedSecond: 0,
+      pauses: 0
+   }
 
 
    const startTimer = () => {
@@ -30,6 +33,7 @@ function CurrentTimebox({
       setIsRunning(false)
       window.clearInterval(intervalId.current);
       console.log('timer stop')
+      
    };
    const handleStart = (e) => {
       startTimer();
