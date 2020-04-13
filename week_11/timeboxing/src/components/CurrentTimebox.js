@@ -24,13 +24,10 @@ const curentTimeboxReducer = (state, action) => {
       }
       case "CURRENT_TIMEBOX_PAUSES_COUNT": {
          const { currentPause } = action;
-         let currentPausesValue = state.pausesCount;
-         if (currentPause) {
-            const pausesCount = currentPausesValue + 1;
-            return { ...state, pausesCount }
-         } else {
-            return null
-         }
+         const currentPausesValue = state.pausesCount;
+         let pausesCount = null
+         currentPause ? pausesCount = currentPausesValue + 1 : pausesCount = currentPausesValue;
+         return { ...state, pausesCount }
       }
       case "CURRENT_TIMEBOX_ELAPSED_TIME": {
          let { elapsedTimeInSeconds } = action;
@@ -147,9 +144,9 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
             percent={progressInPercent}
             trackRemaining={false}
          /> */}
-         <button onClick={handleStart} disabled={state.isRunning}>Start</button>
+         <button onClick={handleStart} disabled={state.isRunning || state.isPaused}>Start</button>
          <button onClick={handleStop} disabled={!state.isRunning}>Stop</button>
-         <button onClick={togglePause} >{state.isPaused ? 'Wznów' : 'Pauzuj'}</button>
+         <button onClick={togglePause} disabled={!state.isRunning && state.pausesCount === 0}>{state.isPaused ? 'Wznów' : 'Pauzuj'}</button>
          liczba przerw: {state.pausesCount}
       </div>
    )

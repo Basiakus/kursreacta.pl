@@ -36,8 +36,8 @@ const timeboxesReducer = (state, action) => {
          return {...state, timeboxes}
       }
       case "TIMEBOX_DELETE": {
-         const {indexToRemove} = action;
-         const timeboxes = [...state.timeboxes.filter((timebox, index) => index !== indexToRemove)];
+         const { timeboxToRemove } = action;
+         const timeboxes = [...state.timeboxes.filter((timebox) => timebox.id !== timeboxToRemove)];
          return {...state, timeboxes }
       }
       case "TIMEBOX_UPDATE": {
@@ -46,11 +46,11 @@ const timeboxesReducer = (state, action) => {
          return { ...state, timeboxes }
       }
       case "TIMEBOX_EDIT_START": {
-         const {editIndex} = action;
-         return { ...state, editIndex }
+         const { currentTimeboxId } = action;
+         return { ...state, currentTimeboxId }
       }
       case "TIMEBOX_EDIT_STOP": {
-         return { ...state, editIndex: null }
+         return { ...state, currentTimeboxId: null }
       }
       default: {
          return state;
@@ -65,7 +65,8 @@ function TimeboxListMenager() {
       hasError: false,
       loading: true,
       error: null,
-      editIndex: null
+      editIndex: null,
+      currentTimeboxId: null
    };
 
    let inputRef = useRef();
@@ -104,26 +105,29 @@ function TimeboxListMenager() {
          } 
    }
 
-   const removeTimebox = (indexToRemove) => {
-      timeboxesApi.removeTimebox(state.timeboxes[indexToRemove], context.accessToken)
+   const removeTimebox = (timeboxToRemove) => {
+      console.log(timeboxToRemove)
+      const index = timeboxToRemove - 1;
+      console.log(state.timeboxes[index])
+      timeboxesApi.removeTimebox(state.timeboxes[index], context.accessToken)
          .then(
             () => {
-               dispatch({ type: 'TIMEBOX_DELETE', indexToRemove})
+               dispatch({ type: 'TIMEBOX_DELETE', timeboxToRemove})
             }
          )
    }
 
-   const updateTimebox = (indexToUpdate, timeboxToUpdate) => {
+   const updateTimebox = (timeboxToUpdate) => {
       timeboxesApi.partiallyUpdateTimebox(timeboxToUpdate, context.accessToken).then(
          (updatedTimebox) => {
             dispatch({ type: "TIMEBOX_UPDATE", updatedTimebox})
          }
       )
    }
-   const renderTimebox = (timebox, index) => {
+   const renderTimebox = (timebox) => {
       return <>
          {
-            state.editIndex === index ?
+            state.currentTimeboxId === timebox.id ?
             <TimeboxEditor 
                inicialTitle={timebox.title}
                inicialTotalTimeInMinutes={timebox.totalTimeInMinutes}
@@ -131,28 +135,26 @@ function TimeboxListMenager() {
                   onCancel={() => dispatch({ type: 'TIMEBOX_EDIT_STOP'})}
                onUpdate={
                   (updatedTimebox) => {
-                     updateTimebox(index, {...timebox, ...updatedTimebox});
+                     updateTimebox({...timebox, ...updatedTimebox});
                      dispatch({ type: 'TIMEBOX_EDIT_STOP' });
                   }
                }
             /> :
             <Timebox
                id={timebox.id}
-               index={index}
                title={timebox.title}
                flag={timebox.flag}
                totalTimeInMinutes={timebox.totalTimeInMinutes}
-                  onEdit={() => dispatch({ type: 'TIMEBOX_EDIT_START', editIndex: index})}
-               onDelete={() => removeTimebox(index, timebox)}
+               onEdit={() => dispatch({ type: 'TIMEBOX_EDIT_START', currentTimeboxId: timebox.id})}
+               onDelete={() => removeTimebox(timebox.id)}
             />
          }
       </>
    }
 
-   const renderReadOnlyTimebox = (timebox, index) => {
+   const renderReadOnlyTimebox = (timebox) => {
       return <ReadOnlyTimebox
          id={timebox.id}
-         index={index}
          title={timebox.title}
          flag={timebox.flag}
          totalTimeInMinutes={timebox.totalTimeInMinutes}

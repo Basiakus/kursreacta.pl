@@ -15,10 +15,16 @@
   ],
   "timeboxes": [
     {
-      "title": "bbb",
+      "title": "brak",
       "totalTimeInMinutes": 0,
-      "flag": "blue",
+      "flag": "red",
       "id": 1
+    },
+    {
+      "title": "brak",
+      "totalTimeInMinutes": 0,
+      "flag": "yellow",
+      "id": 2
     }
   ]
 }
