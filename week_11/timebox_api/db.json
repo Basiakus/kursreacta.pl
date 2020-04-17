@@ -22,8 +22,8 @@
     },
     {
       "title": "brak",
-      "totalTimeInMinutes": 0,
-      "flag": "yellow",
+      "totalTimeInMinutes": 4,
+      "flag": "red",
       "id": 2
     }
   ]

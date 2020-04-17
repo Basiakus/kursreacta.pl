@@ -1,47 +1,12 @@
 import React, { useEffect, useState, useRef, useReducer } from 'react';
 import Clock from './Clock';
 import ProgressBar from './ProgressBar';
+import { currentTimeboxReducer } from "../reducers/currentTimeboxReducer.js";
 //import ProgressArc from './ProgressArc';
 //import ProgressBarJui from './ProgressBarJui';
 import { getMinutesAndSecondsFromDuractionInSeconds } from '../lib/time.js';
 
 import '../styles/components/CurrentTimebox.scss';
-
-const curentTimeboxReducer = (state, action) => {
-   switch (action.type) {
-      case "CURRENT_TIMEBOX_START": {
-         return { ...state, isRunning: true, isPaused: false };
-      }
-      case "CURRENT_TIMEBOX_STOP": {
-         return { ...state, isRunning: false };
-      }
-      case "CURRENT_TIMEBOX_STOP_HANDLER": {
-         return { ...state, isRunning: false, isPaused: false, pausesCount: 0, elapsedTimeInSeconds: 0};
-      }
-      case "CURRENT_TIMEBOX_PAUSE": {
-         const { currentPause } = action;
-         return { ...state, isPaused: currentPause};
-      }
-      case "CURRENT_TIMEBOX_PAUSES_COUNT": {
-         const { currentPause } = action;
-         const currentPausesValue = state.pausesCount;
-         let pausesCount = null
-         currentPause ? pausesCount = currentPausesValue + 1 : pausesCount = currentPausesValue;
-         return { ...state, pausesCount }
-      }
-      case "CURRENT_TIMEBOX_ELAPSED_TIME": {
-         let { elapsedTimeInSeconds } = action;
-         elapsedTimeInSeconds = elapsedTimeInSeconds + 0.01;
-         return { ...state, elapsedTimeInSeconds };
-      }
-      case "CURRENT_TIMEBOX_ELAPSED_TIME_RESET": {
-         return { ...state, elapsedTimeInSeconds: 0 };
-      }
-      default: {
-         return state;
-      }
-   }
-}
 
 function CurrentTimebox({title, totalTimeInMinutes}) {
 
@@ -50,25 +15,18 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
    const [elapsedTimeInSeconds, setElapsedTimeInSeconds] = useState(0);
    const [pausesCount, setPausesCount] = useState(0); */
 
-   const inicialState = {
-      isRunning: false,
-      isPaused: false,
-      elapsedTimeInSeconds: 0,
-      pausesCount: 0
-   }
-
    let intervalId = useRef();
-   const [state, dispatch] = useReducer(curentTimeboxReducer, inicialState);
+   const [state, dispatch] = useReducer(currentTimeboxReducer, undefined, currentTimeboxReducer);
 
    const startTimer = () => {
       dispatch({type: "CURRENT_TIMEBOX_START"})
-      console.log(state)
+      //console.log(state)
    };
 
    const stopTimer = (e) => {
       dispatch({ type: "CURRENT_TIMEBOX_STOP" })
       window.clearInterval(intervalId.current);
-      console.log(state)
+      //console.log(state)
       
    };
    const handleStart = (e) => {
