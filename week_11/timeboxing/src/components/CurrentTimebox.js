@@ -5,43 +5,33 @@ import { currentTimeboxReducer } from "../reducers/currentTimeboxReducer.js";
 //import ProgressArc from './ProgressArc';
 //import ProgressBarJui from './ProgressBarJui';
 import { getMinutesAndSecondsFromDuractionInSeconds } from '../lib/time.js';
-
 import '../styles/components/CurrentTimebox.scss';
+import {
+      startTimer,
+      resetTimer,
+      stopTimer,
+      setPausesCount,
+      setPause,
+      setElapsedTime,
+      elapsetTimeReset
+} from '../actions/currentTimeboxActions.js';
 
 function CurrentTimebox({title, totalTimeInMinutes}) {
-
-   /* const [isRunning, setIsRunning] = useState(false);
-   const [isPaused, setIsPaused] = useState(false);
-   const [elapsedTimeInSeconds, setElapsedTimeInSeconds] = useState(0);
-   const [pausesCount, setPausesCount] = useState(0); */
 
    let intervalId = useRef();
    const [state, dispatch] = useReducer(currentTimeboxReducer, undefined, currentTimeboxReducer);
 
-   const startTimer = () => {
-      dispatch({type: "CURRENT_TIMEBOX_START"})
-      //console.log(state)
-   };
 
-   const stopTimer = (e) => {
-      dispatch({ type: "CURRENT_TIMEBOX_STOP" })
-      window.clearInterval(intervalId.current);
-      //console.log(state)
-      
-   };
-   const handleStart = (e) => {
-      startTimer();
-   };
    
    const handleStop = () => {
-      dispatch({ type: "CURRENT_TIMEBOX_STOP_HANDLER" })
-      stopTimer();
+      dispatch(resetTimer())
+      window.clearInterval(intervalId.current);
    };
    const togglePause = () => {
       const currentPause = !state.isPaused;
-      dispatch({ type: "CURRENT_TIMEBOX_PAUSES_COUNT", currentPause })
-      currentPause ? stopTimer() : startTimer();
-      dispatch({ type: "CURRENT_TIMEBOX_PAUSE", currentPause })
+      dispatch(setPausesCount(currentPause))
+      currentPause ? dispatch(stopTimer()) : dispatch(startTimer());
+      dispatch(setPause(currentPause))
    };
 
    useEffect(() => {
@@ -49,11 +39,11 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
       if (state.isRunning) {
          intervalId.current = window.setInterval(() => {
             const { elapsedTimeInSeconds } = state;
-            dispatch({ type: 'CURRENT_TIMEBOX_ELAPSED_TIME', elapsedTimeInSeconds })
+            dispatch(setElapsedTime(elapsedTimeInSeconds))
             //console.log(elapsedTimeInSeconds, 'interval running')
             if (totalTimeInSeconds < elapsedTimeInSeconds) {
-               stopTimer();
-               dispatch({ type: 'CURRENT_TIMEBOX_ELAPSED_TIME_RESET' })
+               dispatch(resetTimer());
+               dispatch(elapsetTimeReset())
             }
          }, 10);
       }
@@ -102,9 +92,9 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
             percent={progressInPercent}
             trackRemaining={false}
          /> */}
-         <button onClick={handleStart} disabled={state.isRunning || state.isPaused}>Start</button>
-         <button onClick={handleStop} disabled={!state.isRunning}>Stop</button>
-         <button onClick={togglePause} disabled={!state.isRunning && state.pausesCount === 0}>{state.isPaused ? 'Wznów' : 'Pauzuj'}</button>
+         <button className={`CurrentTimebox__buttons`} onClick={() => dispatch(startTimer())} disabled={state.isRunning || state.isPaused}>Start</button>
+         <button className={`CurrentTimebox__buttons`} onClick={(handleStop)} disabled={!state.isRunning}>Reset</button>
+         <button className={`CurrentTimebox__buttons`} onClick={togglePause} disabled={!state.isRunning && state.pausesCount === 0}>{state.isPaused ? '\u25B6' : 'II'}</button>
          liczba przerw: {state.pausesCount}
       </div>
    )

@@ -1,8 +1,18 @@
 import React, { useRef } from 'react';
 //import uuid from 'uuid';
 import '../styles/components/TimeboxCreator.scss';
+import classNames from 'classnames';
 
-function TimeboxEditor({ onUpdate, inicialTitle, inicialTotalTimeInMinutes, onCancel, flag }) {
+function TimeboxEditor({ onUpdate, inicialTitle, inicialTotalTimeInMinutes, onCancel, inicialFlag }) {
+
+     let timeboxEditorClasses = classNames(
+          "TimeboxCreator",
+          {
+               "TimeboxCreator--blue": inicialFlag === "blue",
+               "TimeboxCreator--yellow": inicialFlag === "yellow",
+               "TimeboxCreator--red": inicialFlag === "red"
+          }
+     );
 
      const formRef = useRef();
 
@@ -16,23 +26,23 @@ function TimeboxEditor({ onUpdate, inicialTitle, inicialTotalTimeInMinutes, onCa
           });
      }
      return (
-          <form onSubmit={handleSubmit} className='TimeboxCreator' ref={formRef}>
+          <form onSubmit={handleSubmit} className={timeboxEditorClasses} ref={formRef}>
                <label>
                     Co robisz?
-            <input type="text" defaultValue={inicialTitle}/>
-               </label>
-               <br />
-               <label>
-                    Ile minut?
-            <input type="number" defaultValue={inicialTotalTimeInMinutes}/>
-               </label>
-               <br />
-               <label> kolor?
-            <select>
-                         <option value="blue">niebieski</option>
-                         <option value="yellow">żółty</option>
-                         <option value="red">czerwony</option>
-                    </select>
+               <input type="text" defaultValue={inicialTitle}/>
+                    </label>
+                    <br />
+                    <label>
+                         Ile minut?
+               <input type="number" defaultValue={inicialTotalTimeInMinutes}/>
+                    </label>
+                    <br />
+                    <label> kolor?
+               <select defaultValue={inicialFlag}>
+                    <option value="blue">niebieski</option>
+                    <option value="yellow">żółty</option>
+                    <option value="red">czerwony</option>
+               </select>
                </label>
                <br />
                <a href="#" onClick={() => onCancel()}>Anuluj</a>

@@ -6,81 +6,79 @@ import TimeboxList from '../presentation/TimeboxList';
 import Error from '../Error';
 import axiosTimeboxesApi from '../../api/axiosTimeboxesApi';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
-import { timeboxesReducer } from '../../reducers/timeboxesReducer.js';
+
+import {
+   timeboxesReducer, 
+   getAllTimeboxes,
+   areTimeboxesLoading,
+   getTimeboxesError,
+   getCurrentlyEditableTimebox,
+   isAnyTimeboxEditabled,
+   isCurrentTimeboxEditing 
+} from '../../reducers/timeboxesReducer.js';
+
+import { 
+   timeboxesLoad, 
+   setError, 
+   setLoading, 
+   timeboxesSearch, 
+   addTimebox, 
+   deleteTimebox, 
+   timeboxEditStart, 
+   timeboxEditStop, 
+   updateTimebox 
+} from "../../actions/timeboxListMenagerActions.js";
+
 const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/'); 
 const Timebox = React.lazy(() => import('../Timebox'));
 const ReadOnlyTimebox = React.lazy(() => import('../ReadOnlyTimebox'));
+
 
 function TimeboxListMenager() {
 
    let inputRef = useRef();
    let context = useContext(AuthenticationContext);
    const [state, dispatch] = useReducer(timeboxesReducer, undefined, timeboxesReducer);
-   /* const [timeboxes, setTimeboxes] = useState([]);
-   const [hasError, setHasError] = useState(false);
-   const [loading, setLoading] = useState(true);
-   const [error, setError] = useState(null);
-   const [editIndex, setEditIndex] = useState(null) */
 
    useEffect(() => {
       timeboxesApi.getAllTimeboxes(context.accessToken)
-         .then((timeboxes) => dispatch({ type: "TIMEBOXES_LOAD", timeboxes}))
-         .catch((error) => Promise.reject(dispatch({type: "ERROR_SET", error})))
-         .finally(() => dispatch({type: "LOADING_SET"})) 
+         .then((timeboxes) => dispatch(timeboxesLoad(timeboxes)))
+         .catch((error) => Promise.reject(dispatch(setError(error))))
+         .finally(() => dispatch(setLoading())) 
    }, [context.accessToken])
    
    const searchingTimeboxes = (inputReference) => {
       timeboxesApi.getTimeboxesByFullTextSearch(inputReference, context.accessToken)
-         .then((searchTimeboxes) => dispatch({ type: "TIMEBOXES_SEARCH", searchTimeboxes}) 
+         .then((searchTimeboxes) => dispatch(timeboxesSearch(searchTimeboxes)) 
       )
    }
 
-   const addTimebox = (newTimebox) => {
-      timeboxesApi.addTimebox(newTimebox, context.accessToken).then(
-         (addedTimebox) => dispatch({ type: "TIMEBOX_ADD", timebox: addedTimebox})
-      )
-   }
    const handleCreate = (createdTimebox) => {
          try {
-            addTimebox(createdTimebox);
+            timeboxesApi.addTimebox(createdTimebox, context.accessToken).then(
+               (timebox) => dispatch(addTimebox(timebox))
+            )
          }
          catch(error) {
-            dispatch({error: true});
+            console.log('wystąpił błąd: ', error)
          } 
    }
 
-   const removeTimebox = (timeboxToRemove) => {
-      console.log(timeboxToRemove)
-      const index = timeboxToRemove - 1;
-      console.log(state.timeboxes[index])
-      timeboxesApi.removeTimebox(state.timeboxes[index], context.accessToken)
-         .then(
-            () => {
-               dispatch({ type: 'TIMEBOX_DELETE', timeboxToRemove})
-            }
-         )
-   }
-
-   const updateTimebox = (timeboxToUpdate) => {
-      timeboxesApi.partiallyUpdateTimebox(timeboxToUpdate, context.accessToken).then(
-         (updatedTimebox) => {
-            dispatch({ type: "TIMEBOX_UPDATE", updatedTimebox})
-         }
-      )
-   }
    const renderTimebox = (timebox) => {
       return <>
          {
-            state.currentTimeboxId === timebox.id ?
+            isCurrentTimeboxEditing(state, timebox) ?
             <TimeboxEditor 
                inicialTitle={timebox.title}
                inicialTotalTimeInMinutes={timebox.totalTimeInMinutes}
                inicialFlag={timebox.flag}
-                  onCancel={() => dispatch({ type: 'TIMEBOX_EDIT_STOP'})}
+               onCancel={() => dispatch(timeboxEditStop())}
                onUpdate={
                   (updatedTimebox) => {
-                     updateTimebox({...timebox, ...updatedTimebox});
-                     dispatch({ type: 'TIMEBOX_EDIT_STOP' });
+                     const updateingTimebox = {...timebox, ...updatedTimebox};
+                     timeboxesApi.partiallyUpdateTimebox(updateingTimebox, context.accessToken).then(
+                        (updatedTimebox) => dispatch(updateTimebox(updatedTimebox)))
+                     dispatch(timeboxEditStop());
                   }
                }
             /> :
@@ -89,8 +87,15 @@ function TimeboxListMenager() {
                title={timebox.title}
                flag={timebox.flag}
                totalTimeInMinutes={timebox.totalTimeInMinutes}
-               onEdit={() => dispatch({ type: 'TIMEBOX_EDIT_START', currentTimeboxId: timebox.id})}
-               onDelete={() => removeTimebox(timebox.id)}
+                  onEdit={() => dispatch(timeboxEditStart(timebox.id))}
+                  onDelete={() => {
+                     timeboxesApi.removeTimebox(timebox, context.accessToken)
+                        .then(
+                           () => {
+                              dispatch(deleteTimebox(timebox))
+                           }
+                        )
+                  }}
             />
          }
       </>
@@ -107,18 +112,14 @@ function TimeboxListMenager() {
 
    return (
       <> 
-         {
-            state.hasError ? 
-               <h1>emulacja błędu metody addTimebox</h1> : 
-               <TimeboxCreator
-                  onCreate={handleCreate} 
-               />
-         }
-         {state.loading ? 'Pobieranie listy timeboxów . . .' : null}
-         {state.error ? 'nie udało sie pobrać timeboxów ;(' : null}
-         {<label>szukaj wg. tekstu :<input ref={inputRef} onChange={() => { searchingTimeboxes(inputRef.current.value)}} /></label>}
+         {isAnyTimeboxEditabled(state) ? renderReadOnlyTimebox(getCurrentlyEditableTimebox(state)) : null}
+         {isAnyTimeboxEditabled(state) ? <p style={ {fontSize: ".6em"} }>edit: <b>on</b></p> : <p style={{fontSize: ".6em"}}><b>edit: off</b></p>}
+         {<TimeboxCreator  onCreate={handleCreate} />}
+         {areTimeboxesLoading(state) ? 'Pobieranie listy timeboxów . . .' : null}
+         {getTimeboxesError(state) ? 'nie udało sie pobrać timeboxów ;(' : null}
+         {<label>szukaj wg. tekstu :<input ref={inputRef} onChange={() => searchingTimeboxes(inputRef.current.value)} /></label>}
          <Error message='Wystąpił błąd w TimeboxList'>
-            <TimeboxList timeboxes={state.timeboxes} renderTimebox={renderTimebox} renderReadOnlyTimebox={renderReadOnlyTimebox}/>
+            <TimeboxList timeboxes={getAllTimeboxes(state)} renderTimebox={renderTimebox} renderReadOnlyTimebox={renderReadOnlyTimebox}/>
          </Error>
       </>
    )

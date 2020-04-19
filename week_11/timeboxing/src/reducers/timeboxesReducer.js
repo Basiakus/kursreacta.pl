@@ -1,6 +1,5 @@
 const inicialState = {
      timeboxes: [],
-     hasError: false,
      loading: true,
      error: null,
      currentTimeboxId: null
@@ -22,7 +21,6 @@ export const timeboxesReducer = (state = inicialState, action = {}) => {
           case "TIMEBOX_ADD": {
                const { timebox } = action
                const timeboxes = [...state.timeboxes, timebox];
-               console.log(timeboxes);
                return { ...state, timeboxes }
           }
           case "TIMEBOXES_SEARCH": {
@@ -33,7 +31,7 @@ export const timeboxesReducer = (state = inicialState, action = {}) => {
           }
           case "TIMEBOX_DELETE": {
                const { timeboxToRemove } = action;
-               const timeboxes = [...state.timeboxes.filter((timebox) => timebox.id !== timeboxToRemove)];
+               const timeboxes = [...state.timeboxes.filter((timebox) => timebox.id !== timeboxToRemove.id)];
                return { ...state, timeboxes }
           }
           case "TIMEBOX_UPDATE": {
@@ -53,3 +51,11 @@ export const timeboxesReducer = (state = inicialState, action = {}) => {
           }
      }
 }
+
+export const getAllTimeboxes = state => state.timeboxes;
+export const areTimeboxesLoading = state => state.loading;
+export const getTimeboxesError = state => state.error;
+export const isCurrentTimeboxEditing = (state, timebox) => state.currentTimeboxId && state.currentTimeboxId === timebox.id;
+export const getTimeboxById = (state, timeboxId) => state.timeboxes.find(timebox => timebox.id === timeboxId);
+export const getCurrentlyEditableTimebox = state => getTimeboxById(state, state.currentTimeboxId);
+export const isAnyTimeboxEditabled = state => !!state.currentTimeboxId;

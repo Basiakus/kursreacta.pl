@@ -13,7 +13,7 @@ export const currentTimeboxReducer = (state = inicialState, action = {}) => {
           case "CURRENT_TIMEBOX_STOP": {
                return { ...state, isRunning: false };
           }
-          case "CURRENT_TIMEBOX_STOP_HANDLER": {
+          case "CURRENT_TIMEBOX_RESET": {
                return { ...state, isRunning: false, isPaused: false, pausesCount: 0, elapsedTimeInSeconds: 0 };
           }
           case "CURRENT_TIMEBOX_PAUSE": {
