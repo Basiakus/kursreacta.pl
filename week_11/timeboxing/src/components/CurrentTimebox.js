@@ -2,23 +2,8 @@ import React, { useEffect, useRef, useReducer } from 'react';
 import Clock from './Clock';
 import ProgressBar from './ProgressBar';
 import { getMinutesAndSecondsFromDuractionInSeconds } from '../lib/time.js';
-import { 
-   currentTimeboxReducer,
-   setPauseValue,
-   getPausesCount,
-   isTimeRunning,
-   getElapsedTime,
-   isTimePaused 
-} from "../reducers/currentTimeboxReducer.js";
-import {
-   startTimer,
-   resetTimer,
-   stopTimer,
-   setPausesCount,
-   setPause,
-   setElapsedTime,
-   elapsetTimeReset
-} from '../actions/currentTimeboxActions.js';
+import { currentTimeboxReducer, setPauseValue, getPausesCount, isTimeRunning, getElapsedTime, isTimePaused } from "../reducers/currentTimeboxReducer.js";
+import { startTimer, resetTimer, stopTimer, setPausesCount, setPause, setElapsedTime, elapsetTimeReset } from '../actions/currentTimeboxActions.js';
 import '../styles/components/CurrentTimebox.scss';
 
 function CurrentTimebox({title, totalTimeInMinutes}) {
@@ -45,7 +30,6 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
          intervalId.current = window.setInterval(() => {
             
             dispatch(setElapsedTime(elapsedTime))
-            //console.log(elapsedTimeInSeconds, 'interval running')
             if (totalTimeInSeconds < elapsedTime) {
                dispatch(resetTimer());
                dispatch(elapsetTimeReset())
