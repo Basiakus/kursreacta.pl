@@ -45,7 +45,7 @@ function TimeboxEditor({ onUpdate, inicialTitle, inicialTotalTimeInMinutes, onCa
                </select>
                </label>
                <br />
-               <a href="#" onClick={() => onCancel()}>Anuluj</a>
+               <button href="#" onClick={() => onCancel()}>Anuluj</button>
                <button >zapisz zmiany</button>
           </form>
      )

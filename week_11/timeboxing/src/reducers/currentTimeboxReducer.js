@@ -4,7 +4,7 @@ const inicialState = {
      elapsedTimeInSeconds: 0,
      pausesCount: 0
 }
-
+// REDUCER
 export const currentTimeboxReducer = (state = inicialState, action = {}) => {
      switch (action.type) {
           case "CURRENT_TIMEBOX_START": {
@@ -40,3 +40,9 @@ export const currentTimeboxReducer = (state = inicialState, action = {}) => {
           }
      }
 }
+//SELECTORS
+export const setPauseValue = state => !state.isPaused;
+export const getPausesCount = state => state.pausesCount;
+export const isTimeRunning = state => state.isRunning;
+export const getElapsedTime = state => state.elapsedTimeInSeconds;
+export const isTimePaused = state => state.isPaused;

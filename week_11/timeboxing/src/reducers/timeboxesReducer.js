@@ -4,7 +4,7 @@ const inicialState = {
      error: null,
      currentTimeboxId: null
 };
-
+// REDUCER
 export const timeboxesReducer = (state = inicialState, action = {}) => {
      switch (action.type) {
           case "TIMEBOXES_LOAD": {
@@ -51,7 +51,7 @@ export const timeboxesReducer = (state = inicialState, action = {}) => {
           }
      }
 }
-
+//SELECTORS
 export const getAllTimeboxes = state => state.timeboxes;
 export const areTimeboxesLoading = state => state.loading;
 export const getTimeboxesError = state => state.error;
