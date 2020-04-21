@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useReducer } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 //import Timebox from './Timebox';
 import TimeboxCreator from '../TimeboxCreator';
 import TimeboxEditor from '../TimeboxEditor';
@@ -6,7 +6,7 @@ import TimeboxList from '../presentation/TimeboxList';
 import Error from '../Error';
 import axiosTimeboxesApi from '../../api/axiosTimeboxesApi';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
-
+import { createStore } from 'redux'
 import {
    timeboxesReducer, 
    getAllTimeboxes,
@@ -16,7 +16,6 @@ import {
    isAnyTimeboxEditabled,
    isCurrentTimeboxEditing 
 } from '../../reducers/timeboxesReducer.js';
-
 import { 
    timeboxesLoad, 
    setError, 
@@ -33,13 +32,21 @@ const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/');
 const Timebox = React.lazy(() => import('../Timebox'));
 const ReadOnlyTimebox = React.lazy(() => import('../ReadOnlyTimebox'));
 
+let store = createStore(timeboxesReducer);
+const useForceUpdate = () => {
+   const [updateCounter, setUpdateCounter] = useState(0);
+   const forceUpdate = () => setUpdateCounter(prevUpdateCounter => prevUpdateCounter + 1);
+   return forceUpdate;
+}
 
 function TimeboxListMenager() {
-
+   const forceUpdate = useForceUpdate();
    let inputRef = useRef();
    let context = useContext(AuthenticationContext);
-   const [state, dispatch] = useReducer(timeboxesReducer, undefined, timeboxesReducer);
-
+   let state = store.getState();
+   let dispatch = store.dispatch;
+   //const [state, dispatch] = useReducer(timeboxesReducer, undefined, timeboxesReducer);
+   useEffect(() => store.subscribe(forceUpdate), []);
    useEffect(() => {
       timeboxesApi.getAllTimeboxes(context.accessToken)
          .then((timeboxes) => dispatch(timeboxesLoad(timeboxes)))
