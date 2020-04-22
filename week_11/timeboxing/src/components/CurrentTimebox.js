@@ -1,15 +1,26 @@
-import React, { useEffect, useRef, useReducer } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Clock from './Clock';
 import ProgressBar from './ProgressBar';
 import { getMinutesAndSecondsFromDuractionInSeconds } from '../lib/time.js';
-import { currentTimeboxReducer, setPauseValue, getPausesCount, isTimeRunning, getElapsedTime, isTimePaused } from "../reducers/currentTimeboxReducer.js";
+import { setPauseValue, getPausesCount, isTimeRunning, getElapsedTime, isTimePaused } from "../reducers/currentTimeboxReducer.js";
 import { startTimer, resetTimer, stopTimer, setPausesCount, setPause, setElapsedTime, elapsetTimeReset } from '../actions/currentTimeboxActions.js';
+import { reducer } from '../reducers/rootReducer.js';
 import '../styles/components/CurrentTimebox.scss';
 
+import { createStore } from 'redux';
+let store = createStore(reducer);
+const useForceUpdate = () => {
+   const [updateCounter, setUpdateCounter] = useState(0);
+   const forceUpdate = () => setUpdateCounter(prevUpdateCounter => prevUpdateCounter + 1);
+   return forceUpdate;
+}
 function CurrentTimebox({title, totalTimeInMinutes}) {
 
+   const forceUpdate = useForceUpdate();
    let intervalId = useRef();
-   const [state, dispatch] = useReducer(currentTimeboxReducer, undefined, currentTimeboxReducer); 
+   //const [state, dispatch] = useReducer(currentTimeboxReducer, undefined, currentTimeboxReducer); 
+   let state = store.getState();
+   let dispatch = store.dispatch;
    const elapsedTime = getElapsedTime(state);
    
    const handleStop = () => {
@@ -24,6 +35,7 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
       dispatch(setPause(currentPause))
    };
 
+   useEffect(() => store.subscribe(forceUpdate), []);
    useEffect(() => {
       let totalTimeInSeconds = totalTimeInMinutes * 60;
       if (isTimeRunning(state)) {

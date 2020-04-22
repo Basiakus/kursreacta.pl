@@ -40,9 +40,9 @@ export const currentTimeboxReducer = (state = inicialState, action = {}) => {
           }
      }
 }
-//SELECTORS
-export const setPauseValue = state => !state.isPaused;
-export const getPausesCount = state => state.pausesCount;
-export const isTimeRunning = state => state.isRunning;
-export const getElapsedTime = state => state.elapsedTimeInSeconds;
-export const isTimePaused = state => state.isPaused;
+//CURRENTTIMEBOX SELECTORS
+export const setPauseValue = state => !state.currentTimeboxReducer.isPaused;
+export const getPausesCount = state => state.currentTimeboxReducer.pausesCount;
+export const isTimeRunning = state => state.currentTimeboxReducer.isRunning;
+export const getElapsedTime = state => state.currentTimeboxReducer.elapsedTimeInSeconds;
+export const isTimePaused = state => state.currentTimeboxReducer.isPaused;

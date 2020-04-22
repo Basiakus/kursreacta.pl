@@ -6,9 +6,9 @@ import TimeboxList from '../presentation/TimeboxList';
 import Error from '../Error';
 import axiosTimeboxesApi from '../../api/axiosTimeboxesApi';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
-import { createStore } from 'redux'
+import { createStore } from 'redux';
+import { reducer } from '../../reducers/rootReducer.js';
 import {
-   timeboxesReducer, 
    getAllTimeboxes,
    areTimeboxesLoading,
    getTimeboxesError,
@@ -28,14 +28,15 @@ import {
    updateTimebox 
 } from "../../actions/timeboxListMenagerActions.js";
 
+let store = createStore(reducer);
 const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/'); 
 const Timebox = React.lazy(() => import('../Timebox'));
 const ReadOnlyTimebox = React.lazy(() => import('../ReadOnlyTimebox'));
 
-let store = createStore(timeboxesReducer);
 const useForceUpdate = () => {
    const [updateCounter, setUpdateCounter] = useState(0);
    const forceUpdate = () => setUpdateCounter(prevUpdateCounter => prevUpdateCounter + 1);
+   console.log(store.getState())
    return forceUpdate;
 }
 
