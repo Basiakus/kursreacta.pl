@@ -15,22 +15,10 @@
   ],
   "timeboxes": [
     {
-      "title": "edycja dodatkowa",
-      "totalTimeInMinutes": 1,
-      "flag": "yellow",
+      "title": "qqq",
+      "totalTimeInMinutes": 11,
+      "flag": "blue",
       "id": 1
-    },
-    {
-      "title": "awsed",
-      "totalTimeInMinutes": 0,
-      "flag": "red",
-      "id": 2
-    },
-    {
-      "title": "edycja",
-      "totalTimeInMinutes": 0,
-      "flag": "yellow",
-      "id": 3
     }
   ]
 }

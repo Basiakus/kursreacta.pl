@@ -57,5 +57,5 @@ export const areTimeboxesLoading = state => state.timeboxesReducer.loading;
 export const getTimeboxesError = state => state.timeboxesReducer.error;
 export const isCurrentTimeboxEditing = (state, timebox) => state.timeboxesReducer.currentTimeboxId && state.timeboxesReducer.currentTimeboxId === timebox.id;
 export const getTimeboxById = (state, timeboxId) => state.timeboxesReducer.timeboxes.find(timebox => timebox.id === timeboxId);
-export const getCurrentlyEditableTimebox = state => getTimeboxById(state.timeboxesReducer, state.timeboxesReducer.currentTimeboxId);
+export const getCurrentlyEditableTimebox = state => getTimeboxById(state, state.timeboxesReducer.currentTimeboxId);
 export const isAnyTimeboxEditabled = state => !!state.timeboxesReducer.currentTimeboxId;

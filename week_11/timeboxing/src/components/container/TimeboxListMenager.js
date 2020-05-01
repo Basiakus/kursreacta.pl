@@ -1,20 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-//import Timebox from './Timebox';
+import EditableTimebox from '../EditableTimebox';
 import TimeboxCreator from '../TimeboxCreator';
-import TimeboxEditor from '../TimeboxEditor';
-import TimeboxList from '../presentation/TimeboxList';
+import { AllTimeboxesList } from '../presentation/TimeboxList';
 import Error from '../Error';
 import axiosTimeboxesApi from '../../api/axiosTimeboxesApi';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
-import { createStore } from 'redux';
-import { reducer } from '../../reducers/rootReducer.js';
+import {  useStore } from 'react-redux';
 import {
-   getAllTimeboxes,
    areTimeboxesLoading,
    getTimeboxesError,
    getCurrentlyEditableTimebox,
-   isAnyTimeboxEditabled,
-   isCurrentTimeboxEditing 
+   isAnyTimeboxEditabled
 } from '../../reducers/timeboxesReducer.js';
 import { 
    timeboxesLoad, 
@@ -23,26 +19,25 @@ import {
    timeboxesSearch, 
    addTimebox, 
    deleteTimebox, 
-   timeboxEditStart, 
-   timeboxEditStop, 
-   updateTimebox 
+   updateTimebox,
+   timeboxEditStop 
 } from "../../actions/timeboxListMenagerActions.js";
 
-let store = createStore(reducer);
 const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/'); 
-const Timebox = React.lazy(() => import('../Timebox'));
+
 const ReadOnlyTimebox = React.lazy(() => import('../ReadOnlyTimebox'));
 
 const useForceUpdate = () => {
    const [updateCounter, setUpdateCounter] = useState(0);
    const forceUpdate = () => setUpdateCounter(prevUpdateCounter => prevUpdateCounter + 1);
-   console.log(store.getState())
    return forceUpdate;
 }
 
 function TimeboxListMenager() {
    const forceUpdate = useForceUpdate();
    let inputRef = useRef();
+   //let { store } = useContext(ReactReduxContext);
+   let store = useStore();
    let context = useContext(AuthenticationContext);
    let state = store.getState();
    let dispatch = store.dispatch;
@@ -73,40 +68,25 @@ function TimeboxListMenager() {
    }
 
    const renderTimebox = (timebox) => {
-      return <>
-         {
-            isCurrentTimeboxEditing(state, timebox) ?
-            <TimeboxEditor 
-               inicialTitle={timebox.title}
-               inicialTotalTimeInMinutes={timebox.totalTimeInMinutes}
-               inicialFlag={timebox.flag}
-               onCancel={() => dispatch(timeboxEditStop())}
-               onUpdate={
-                  (updatedTimebox) => {
-                     const updateingTimebox = {...timebox, ...updatedTimebox};
-                     timeboxesApi.partiallyUpdateTimebox(updateingTimebox, context.accessToken).then(
-                        (updatedTimebox) => dispatch(updateTimebox(updatedTimebox)))
-                     dispatch(timeboxEditStop());
-                  }
+      const onUpdate = (updatedTimebox) => {
+         const updateingTimebox = { ...timebox, ...updatedTimebox };
+         timeboxesApi.partiallyUpdateTimebox(updateingTimebox, context.accessToken).then(
+            (updatedTimebox) => dispatch(updateTimebox(updatedTimebox)))
+         dispatch(timeboxEditStop());
+      }
+      const onDelete = () => {
+         timeboxesApi.removeTimebox(timebox, context.accessToken)
+            .then(
+               () => {
+                  dispatch(deleteTimebox(timebox))
                }
-            /> :
-            <Timebox
-               id={timebox.id}
-               title={timebox.title}
-               flag={timebox.flag}
-               totalTimeInMinutes={timebox.totalTimeInMinutes}
-                  onEdit={() => dispatch(timeboxEditStart(timebox.id))}
-                  onDelete={() => {
-                     timeboxesApi.removeTimebox(timebox, context.accessToken)
-                        .then(
-                           () => {
-                              dispatch(deleteTimebox(timebox))
-                           }
-                        )
-                  }}
-            />
-         }
-      </>
+            )
+      }
+      return <EditableTimebox 
+         onUpdate = {onUpdate}
+         timebox = {timebox}
+         onDelete = {onDelete}
+      />
    }
 
    const renderReadOnlyTimebox = (timebox) => {
@@ -127,7 +107,7 @@ function TimeboxListMenager() {
          {getTimeboxesError(state) ? 'nie udało sie pobrać timeboxów ;(' : null}
          {<label>szukaj wg. tekstu :<input ref={inputRef} onChange={() => searchingTimeboxes(inputRef.current.value)} /></label>}
          <Error message='Wystąpił błąd w TimeboxList'>
-            <TimeboxList timeboxes={getAllTimeboxes(state)} renderTimebox={renderTimebox} renderReadOnlyTimebox={renderReadOnlyTimebox}/>
+            <AllTimeboxesList renderTimebox={renderTimebox} renderReadOnlyTimebox={renderReadOnlyTimebox}/>
          </Error>
       </>
    )

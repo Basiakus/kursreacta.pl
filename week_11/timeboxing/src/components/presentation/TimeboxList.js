@@ -1,8 +1,10 @@
 import React, { Suspense } from 'react';
 import Error from '../Error';
+import { connect } from 'react-redux';
+import { getAllTimeboxes } from '../../reducers/timeboxesReducer.js';
 
 
-function TimeboxList({ timeboxes, renderTimebox, renderReadOnlyTimebox }) {
+const TimeboxList = ({ timeboxes, renderTimebox, renderReadOnlyTimebox }) => {
           let randomEdit = Math.random() >= 0.5;
           randomEdit = true;
 
@@ -17,4 +19,5 @@ function TimeboxList({ timeboxes, renderTimebox, renderReadOnlyTimebox }) {
      )
 }
 
-export default TimeboxList;
+const mapStateToProps = state => ({ timeboxes: getAllTimeboxes(state) })
+export const AllTimeboxesList = connect(mapStateToProps)(TimeboxList)
