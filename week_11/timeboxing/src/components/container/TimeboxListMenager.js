@@ -24,8 +24,13 @@ import {
 } from "../../actions/timeboxListMenagerActions.js";
 
 const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/'); 
-
 const ReadOnlyTimebox = React.lazy(() => import('../ReadOnlyTimebox'));
+
+/* get selectors with useSelectors from react-redux */
+const timeboxEditabled = useSelector(state => isAnyTimeboxEditabled(state));
+const currentlyEditableTimebox = useSelector(state => getCurrentlyEditableTimebox(state));
+const timeboxesLoading = useSelector(state => areTimeboxesLoading(state));
+const timeboxesError = useSelector(state => getTimeboxesError(state));
 
 function TimeboxListMenager() {
    let inputRef = useRef();
@@ -87,10 +92,6 @@ function TimeboxListMenager() {
       />
    }
 
-   const timeboxEditabled = useSelector(state => isAnyTimeboxEditabled(state));
-   const currentlyEditableTimebox = useSelector(state => getCurrentlyEditableTimebox(state));
-   const timeboxesLoading = useSelector(state => areTimeboxesLoading(state));
-   const timeboxesError = useSelector(state => getTimeboxesError(state));
    return (
       <> 
          {timeboxEditabled ? renderReadOnlyTimebox(currentlyEditableTimebox) : null}
