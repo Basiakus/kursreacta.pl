@@ -37,7 +37,7 @@ function TimeboxListMenager() {
          .then((timeboxes) => dispatch(timeboxesLoad(timeboxes)))
          .catch((error) => Promise.reject(dispatch(setError(error))))
          .finally(() => dispatch(setLoading())) 
-   }, [context.accessToken])
+   }, [context.accessToken, dispatch])
    
    const searchingTimeboxes = (inputReference) => {
       timeboxesApi.getTimeboxesByFullTextSearch(inputReference, context.accessToken)
