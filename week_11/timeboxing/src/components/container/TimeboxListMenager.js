@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import EditableTimebox from '../EditableTimebox';
 import TimeboxCreator from '../TimeboxCreator';
 import { AllTimeboxesList } from '../presentation/TimeboxList';
 import Error from '../Error';
 import axiosTimeboxesApi from '../../api/axiosTimeboxesApi';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
-import {  useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
    areTimeboxesLoading,
    getTimeboxesError,
@@ -27,22 +27,11 @@ const timeboxesApi = axiosTimeboxesApi('http://localhost:4000/timeboxes/');
 
 const ReadOnlyTimebox = React.lazy(() => import('../ReadOnlyTimebox'));
 
-const useForceUpdate = () => {
-   const [updateCounter, setUpdateCounter] = useState(0);
-   const forceUpdate = () => setUpdateCounter(prevUpdateCounter => prevUpdateCounter + 1);
-   return forceUpdate;
-}
-
 function TimeboxListMenager() {
-   const forceUpdate = useForceUpdate();
    let inputRef = useRef();
-   //let { store } = useContext(ReactReduxContext);
-   let store = useStore();
    let context = useContext(AuthenticationContext);
-   let state = store.getState();
-   let dispatch = store.dispatch;
-   //const [state, dispatch] = useReducer(timeboxesReducer, undefined, timeboxesReducer);
-   useEffect(() => store.subscribe(forceUpdate), []);
+   let dispatch = useDispatch();
+
    useEffect(() => {
       timeboxesApi.getAllTimeboxes(context.accessToken)
          .then((timeboxes) => dispatch(timeboxesLoad(timeboxes)))
@@ -98,13 +87,17 @@ function TimeboxListMenager() {
       />
    }
 
+   const timeboxEditabled = useSelector(state => isAnyTimeboxEditabled(state));
+   const currentlyEditableTimebox = useSelector(state => getCurrentlyEditableTimebox(state));
+   const timeboxesLoading = useSelector(state => areTimeboxesLoading(state));
+   const timeboxesError = useSelector(state => getTimeboxesError(state));
    return (
       <> 
-         {isAnyTimeboxEditabled(state) ? renderReadOnlyTimebox(getCurrentlyEditableTimebox(state)) : null}
-         {isAnyTimeboxEditabled(state) ? <p style={ {fontSize: ".6em"} }>edit: <b>on</b></p> : <p style={{fontSize: ".6em"}}><b>edit: off</b></p>}
+         {timeboxEditabled ? renderReadOnlyTimebox(currentlyEditableTimebox) : null}
+         {timeboxEditabled ? <p style={ {fontSize: ".6em"} }>edit: <b>on</b></p> : <p style={{fontSize: ".6em"}}><b>edit: off</b></p>}
          {<TimeboxCreator  onCreate={handleCreate} />}
-         {areTimeboxesLoading(state) ? 'Pobieranie listy timeboxów . . .' : null}
-         {getTimeboxesError(state) ? 'nie udało sie pobrać timeboxów ;(' : null}
+         {timeboxesLoading ? 'Pobieranie listy timeboxów . . .' : null}
+         {timeboxesError ? 'nie udało sie pobrać timeboxów ;(' : null}
          {<label>szukaj wg. tekstu :<input ref={inputRef} onChange={() => searchingTimeboxes(inputRef.current.value)} /></label>}
          <Error message='Wystąpił błąd w TimeboxList'>
             <AllTimeboxesList renderTimebox={renderTimebox} renderReadOnlyTimebox={renderReadOnlyTimebox}/>
