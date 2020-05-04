@@ -25,7 +25,7 @@ describe('timeboxesReducer', () => {
                }
           );
      });
-     test('update timebox with inported action', () => {
+     test('update timebox with imported action', () => {
           expect(timeboxesReducer(state, updateTimebox(updatedTimebox))).
                toEqual({
                     timeboxes: [
