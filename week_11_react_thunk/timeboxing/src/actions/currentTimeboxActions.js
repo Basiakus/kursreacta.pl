@@ -1,0 +1,7 @@
+export const startTimer = () => ({ type: "CURRENT_TIMEBOX_START" })
+export const resetTimer = () => ({ type: "CURRENT_TIMEBOX_RESET" })
+export const stopTimer = () => ({ type: "CURRENT_TIMEBOX_STOP" })
+export const setPausesCount = currentPause => ({ type: "CURRENT_TIMEBOX_PAUSES_COUNT", currentPause })
+export const setPause = currentPause => ({ type: "CURRENT_TIMEBOX_PAUSE", currentPause })
+export const setElapsedTime = elapsedTimeInSeconds => ({ type: 'CURRENT_TIMEBOX_ELAPSED_TIME', elapsedTimeInSeconds })
+export const elapsetTimeReset = () => ({ type: 'CURRENT_TIMEBOX_ELAPSED_TIME_RESET' })
