@@ -15,9 +15,9 @@
   ],
   "timeboxes": [
     {
-      "title": "brak",
-      "totalTimeInMinutes": 0,
-      "flag": "blue",
+      "title": "edycja",
+      "totalTimeInMinutes": 3,
+      "flag": "yellow",
       "id": 1
     },
     {
@@ -25,6 +25,12 @@
       "totalTimeInMinutes": 0,
       "flag": "blue",
       "id": 2
+    },
+    {
+      "title": "???",
+      "totalTimeInMinutes": 2,
+      "flag": "red",
+      "id": 3
     }
   ]
 }

@@ -29,6 +29,6 @@ export const deleteTimeboxRemotely = (timebox, accessToken) => dispatch => {
 export const editingTimeboxRemotely = (timebox, updatedTimebox, accessToken) => dispatch => {
      const updateingTimebox = { ...timebox, ...updatedTimebox };
      timeboxesApi.partiallyUpdateTimebox(updateingTimebox, accessToken).then(
-          (updatedTimebox) => dispatch(updateTimebox(updatedTimebox)))
+          (updateingTimebox) => dispatch(updateTimebox(updatedTimebox)))
      dispatch(timeboxEditStop());
 }
