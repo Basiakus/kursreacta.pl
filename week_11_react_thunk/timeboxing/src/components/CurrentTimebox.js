@@ -4,7 +4,8 @@ import ProgressBar from './ProgressBar';
 import { getMinutesAndSecondsFromDuractionInSeconds } from '../lib/time.js';
 import { setPauseValue, getPausesCount, isTimeRunning, getElapsedTime, isTimePaused } from "../reducers/currentTimeboxReducer.js";
 import { startTimer, resetTimer, stopTimer, setPausesCount, setPause, setElapsedTime, elapsetTimeReset } from '../actions/currentTimeboxActions.js';
-import {  useDispatch, useSelector } from 'react-redux';
+import { getCurrentTimebox } from '../reducers/timeboxesReducer.js';
+import {  useDispatch, useSelector, connect } from 'react-redux';
 import '../styles/components/CurrentTimebox.scss';
 
 
@@ -78,7 +79,7 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
             percent={progressInPercent}
             trackRemaining={false}
          />
-         <button className={`CurrentTimebox__buttons`} onClick={() => dispatch(startTimer())} disabled={timeRunning || timePaused}>Start</button>
+         <button className={`CurrentTimebox__buttons`} onClick={() => dispatch(startTimer())} disabled={timeRunning || timePaused || totalTimeInMinutes === null}>Start</button>
          <button className={`CurrentTimebox__buttons`} onClick={(handleStop)} disabled={!timeRunning}>Reset</button>
          <button className={`CurrentTimebox__buttons`} onClick={togglePause} disabled={!timeRunning && pausesCount === 0}>{timePaused ? '\u25B6' : 'II'}</button>
          liczba przerw: {pausesCount}
@@ -86,4 +87,13 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
    )
 }
 
-export default CurrentTimebox;
+const mapStateToProps = state => {
+   const currentTimebox = getCurrentTimebox(state);
+   console.log(currentTimebox)
+   return {
+      title: currentTimebox ? currentTimebox.title : null,
+      totalTimeInMinutes: currentTimebox ? currentTimebox.totalTimeInMinutes : null
+   }
+}
+
+export default connect(mapStateToProps)(CurrentTimebox);

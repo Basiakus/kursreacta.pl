@@ -25,10 +25,7 @@ const AuthenticatedApp = ({handleLogout}) => {
                          <TimeboxListMenager />
                     </Error>
                     <Error message="Wystąpił błąd w EditableTimebox">
-                         <CurrentTimebox 
-                              title='refaktoryzacja'
-                              totalTimeInMinutes={1}
-                         />
+                         <CurrentTimebox />
                     </Error>
                     <InspiracionalQuoteContainer />
                </div>

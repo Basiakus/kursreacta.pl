@@ -14,7 +14,7 @@ class Timebox extends React.Component {
       this.setState({ isEditActive: !this.state.isEditActive });
    }
    render() {
-      const { onDelete, title, totalTimeInMinutes, flag, onEdit } = this.props;
+      const { onDelete, title, totalTimeInMinutes, flag, onEdit, onMakeCurrent } = this.props;
       /* if (totalTimeInMinutes <= 0) {
          throw new Error('totalTimeInMinutes musi być większy od 0');
       } */
@@ -44,6 +44,7 @@ class Timebox extends React.Component {
             </h3>
             <button onClick={onDelete}>Delete</button>
             <button onClick={onEdit}>Edit</button>
+            <button onClick={onMakeCurrent}>Zacznij</button>
          </div>
       )
    }
