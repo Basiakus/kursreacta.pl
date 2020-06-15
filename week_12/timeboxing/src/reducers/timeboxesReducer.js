@@ -8,9 +8,11 @@ const inicialState = {
 // REDUCER
 export const timeboxesReducer = (state = inicialState, action = {}) => {
      switch (action.type) {
+          case "RESET_CURRENT_TIMEBOX": {
+               return { ...state, currentTimeboxId: null }
+          }
           case "TIMEBOX_MAKE_CURRENT": {
                const {timebox} = action;
-               console.log('state', state) 
                return { ...state, currentTimeboxId: timebox.id }
           }
           case "TIMEBOXES_LOAD": {

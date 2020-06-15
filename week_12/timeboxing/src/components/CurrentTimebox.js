@@ -4,8 +4,9 @@ import ProgressBar from './ProgressBar';
 import { getMinutesAndSecondsFromDuractionInSeconds } from '../lib/time.js';
 import { setPauseValue, getPausesCount, isTimeRunning, getElapsedTime, isTimePaused } from "../reducers/currentTimeboxReducer.js";
 import { startTimer, resetTimer, stopTimer, setPausesCount, setPause, setElapsedTime, elapsetTimeReset } from '../actions/currentTimeboxActions.js';
+import { resetCurrentTimebox } from "../actions/timeboxListMenagerActions.js";
 import { getCurrentTimebox } from '../reducers/timeboxesReducer.js';
-import {  useDispatch, useSelector, connect } from 'react-redux';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import '../styles/components/CurrentTimebox.scss';
 
 
@@ -53,8 +54,6 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
       dispatch(setPause(currentPause))
    };
 
-
-
    return (
       <div className={`CurrentTimebox`}>
          <h1>{title}</h1>
@@ -85,8 +84,9 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
             <h1>ZACZNIJ ZADANIE</h1>
          }
          <button className={`CurrentTimebox__buttons`} onClick={() => dispatch(startTimer())} disabled={timeRunning || timePaused || totalTimeInMinutes === null}>Start</button>
-         <button className={`CurrentTimebox__buttons`} onClick={(handleStop)} disabled={!timeRunning}>Reset</button>
+         <button className={`CurrentTimebox__buttons`} onClick={handleStop} disabled={!timeRunning}>Reset</button>
          <button className={`CurrentTimebox__buttons`} onClick={togglePause} disabled={!timeRunning && pausesCount === 0}>{timePaused ? '\u25B6' : 'II'}</button>
+         <button className={`CurrentTimebox__buttons`} onClick={() => dispatch(resetCurrentTimebox())} >Zakończ</button>
          <p>liczba przerw: {pausesCount}</p>
       </div>
    )
@@ -94,7 +94,7 @@ function CurrentTimebox({title, totalTimeInMinutes}) {
 
 const mapStateToProps = state => {
    const currentTimebox = getCurrentTimebox(state);
-   console.log(currentTimebox)
+   console.log(currentTimebox, state)
    return {
       title: currentTimebox ? currentTimebox.title : null,
       totalTimeInMinutes: currentTimebox ? currentTimebox.totalTimeInMinutes : null

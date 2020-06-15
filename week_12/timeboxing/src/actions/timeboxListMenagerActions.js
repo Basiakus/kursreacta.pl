@@ -9,12 +9,9 @@ export const deleteTimebox = timebox => ({ type: 'TIMEBOX_DELETE', timeboxToRemo
 export const timeboxEditStart = currentlyTimeboxId => ({ type: 'TIMEBOX_EDIT_START', currentlyTimeboxId });
 export const timeboxEditStop = () => ({ type: 'TIMEBOX_EDIT_STOP', currentTimeboxId: null });
 export const updateTimebox = updatedTimebox => ({ type: "TIMEBOX_UPDATE", updatedTimebox });
-export const makeTimeboxCurrent = timebox => {
-     console.log('timebox', timebox) 
-     return {
-          type: "TIMEBOX_MAKE_CURRENT", timebox
-     }
-};
+export const makeTimeboxCurrent = timebox => ({ type: "TIMEBOX_MAKE_CURRENT", timebox });
+export const resetCurrentTimebox = () => ({ type: "RESET_CURRENT_TIMEBOX" });
+
 
 export const fetchAllTimeboxes = accessToken => dispatch => {
      timeboxesApi.getAllTimeboxes(accessToken)
