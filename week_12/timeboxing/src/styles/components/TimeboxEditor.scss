@@ -1,0 +1,29 @@
+@import '../variables.scss';
+@import '../utilities.scss';
+
+.TimeboxEditor {
+   border: $default-border;
+   border-radius: $default-border-radius;
+   padding: 20px;
+   text-align: right;
+   background-color: rgb(249, 255, 143);
+   margin-top: 10px;
+   input {
+      min-width: 60%;
+      margin-left: 20px;
+      font-size: 1em;
+   }
+   .TimeboxEditor--red {
+      background-color: red;
+   }
+   .TimeboxEditor--blue {
+      background-color:  blue;
+   }
+   .TimeboxEditor--yellow {
+      background-color: yellow;
+   }
+   button {
+      font-size: 1em;
+      margin-left: 10px;
+   }
+}
