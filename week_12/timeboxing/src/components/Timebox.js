@@ -42,8 +42,8 @@ class Timebox extends React.Component {
             <h3>
                Zadanie: {title} - {totalTimeInMinutes}min.
             </h3>
-            <button onClick={onDelete}>Delete</button>
-            <button onClick={onEdit}>Edit</button>
+            <button onClick={onDelete}>Usuń</button>
+            <button onClick={onEdit}>Edytuj</button>
             <button onClick={onMakeCurrent}>Zacznij</button>
          </div>
       )
